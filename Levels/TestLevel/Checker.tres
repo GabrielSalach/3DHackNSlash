@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bshd1sgfky7tc"]
+
+[ext_resource type="Texture2D" uid="uid://d1oevi2bws3v6" path="res://Levels/TestLevel/CheckerTexture.png" id="1_5qbme"]
+
+[resource]
+albedo_texture = ExtResource("1_5qbme")
+uv1_scale = Vector3(-10, 10, 10)
+texture_filter = 0
