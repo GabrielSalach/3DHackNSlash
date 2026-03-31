@@ -18,7 +18,7 @@ public partial class GroundedState : State
         groundMovement.parent = this;
     }
 
-    public override void _PhysicsProcess(double delta)
+    protected override void OnUpdatePhysics(float delta)
     {
         if (Input.IsActionJustPressed("jump"))
         {
@@ -26,4 +26,5 @@ public partial class GroundedState : State
         }
         Machine.context.characterBody.ApplyFriction(groundFriction);
     }
+
 }
