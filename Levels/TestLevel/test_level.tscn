@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://jasy8has0pr4"]
 
 [ext_resource type="Material" uid="uid://bshd1sgfky7tc" path="res://Levels/TestLevel/Checker.tres" id="1_gojnm"]
-[ext_resource type="Script" uid="uid://sqkl1vqbx6q2" path="res://PlayerStateDriver.cs" id="2_0cvxl"]
-[ext_resource type="Script" uid="uid://dfm2pdvd7id1t" path="res://StateMachineContext.cs" id="3_up0yw"]
-[ext_resource type="Script" uid="uid://bl0dwynrv74gl" path="res://IdleState.cs" id="4_fcxcq"]
-[ext_resource type="Script" uid="uid://cbjip600o0gec" path="res://GroundedState.cs" id="4_x0v55"]
-[ext_resource type="Script" uid="uid://b2e8f0yptl635" path="res://MovementState.cs" id="5_x0v55"]
+[ext_resource type="Script" uid="uid://sqkl1vqbx6q2" path="res://Player/PlayerStateDriver.cs" id="2_0cvxl"]
+[ext_resource type="Script" uid="uid://cdjb4k0q1cycf" path="res://Core/PhysicsCharacterBody.cs" id="2_x0v55"]
+[ext_resource type="Script" uid="uid://bl0dwynrv74gl" path="res://Player/States/IdleState.cs" id="4_fcxcq"]
+[ext_resource type="Script" uid="uid://spjaywyr125y" path="res://Player/States/PlayerState.cs" id="4_okgj3"]
+[ext_resource type="Script" uid="uid://cbjip600o0gec" path="res://Player/States/GroundedState.cs" id="4_x0v55"]
+[ext_resource type="Script" uid="uid://b2e8f0yptl635" path="res://Player/States/MovementState.cs" id="5_x0v55"]
+[ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://Core/DebugControl.cs" id="7_go2h7"]
+[ext_resource type="Script" uid="uid://brlkgplaav8jn" path="res://Player/States/AirborneState.cs" id="8_0ku8u"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcxcq"]
-
-[sub_resource type="Resource" id="Resource_x0v55"]
-script = ExtResource("3_up0yw")
 
 [node name="TestLevel" type="Node3D" unique_id=603005608]
 
@@ -22,39 +22,50 @@ material_override = ExtResource("1_gojnm")
 size = Vector3(100, 1, 100)
 material = ExtResource("1_gojnm")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=1726797518]
+[node name="PlayerCharacter" type="CharacterBody3D" parent="." unique_id=1246426368]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
+script = ExtResource("2_x0v55")
+metadata/_custom_type_script = "uid://cdjb4k0q1cycf"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1073845349]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter" unique_id=1073845349]
 shape = SubResource("CapsuleShape3D_fcxcq")
 
-[node name="PlayerStateDriver" type="Node" parent="CharacterBody3D" unique_id=652781254 node_paths=PackedStringArray("rootState", "debugLabel")]
+[node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody")]
 script = ExtResource("2_0cvxl")
-rootState = NodePath("GroundedState")
-context = SubResource("Resource_x0v55")
-debugLabel = NodePath("Label")
+rootState = NodePath("PlayerState")
+characterBody = NodePath("..")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
-[node name="GroundedState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=429184902 node_paths=PackedStringArray("idleState", "groundMovement", "character")]
+[node name="PlayerState" type="Node" parent="PlayerCharacter/PlayerStateDriver" unique_id=1154849357 node_paths=PackedStringArray("groundedState", "airborneState")]
+script = ExtResource("4_okgj3")
+groundedState = NodePath("GroundedState")
+airborneState = NodePath("AirborneState")
+metadata/_custom_type_script = "uid://spjaywyr125y"
+
+[node name="GroundedState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=429184902 node_paths=PackedStringArray("idleState", "groundMovement")]
 script = ExtResource("4_x0v55")
-idleState = NodePath("../IdleState")
-groundMovement = NodePath("../MovementState")
-character = NodePath("../..")
-Friction = 5.0
+idleState = NodePath("IdleState")
+groundMovement = NodePath("MovementState")
+jumpForce = 5.0
 metadata/_custom_type_script = "uid://cbjip600o0gec"
 
-[node name="IdleState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=203968002 node_paths=PackedStringArray("character")]
+[node name="IdleState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/GroundedState" unique_id=203968002]
 script = ExtResource("4_fcxcq")
-character = NodePath("../..")
 metadata/_custom_type_script = "uid://bl0dwynrv74gl"
 
-[node name="MovementState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=1097579072 node_paths=PackedStringArray("character")]
+[node name="MovementState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/GroundedState" unique_id=1097579072]
 script = ExtResource("5_x0v55")
-character = NodePath("../..")
 metadata/_custom_type_script = "uid://b2e8f0yptl635"
 
-[node name="Label" type="Label" parent="CharacterBody3D/PlayerStateDriver" unique_id=1813843412]
-offset_right = 110.0
-offset_bottom = 23.0
+[node name="AirborneState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=1572790719]
+script = ExtResource("8_0ku8u")
+metadata/_custom_type_script = "uid://brlkgplaav8jn"
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1896581073]
+[node name="Camera3D" type="Camera3D" parent="PlayerCharacter" unique_id=1896581073]
+
+[node name="DebugControl" type="BoxContainer" parent="PlayerCharacter" unique_id=1147038709]
+offset_right = 40.0
+offset_bottom = 40.0
+vertical = true
+script = ExtResource("7_go2h7")
+metadata/_custom_type_script = "uid://bn10yp5bfrywl"

@@ -9,8 +9,24 @@ public abstract partial class State : Node
     public State parent;
     public State activeState;
 
-    public StateMachine machine;
-   
+    private StateMachine stateMachine;
+    
+    public StateMachine Machine
+    {
+        get => stateMachine;
+        set
+        {
+            foreach (Node child in GetChildren())
+            {
+                if (child is State state)
+                {
+                    state.Machine = value;
+                }
+            }
+            stateMachine = value;
+        }
+    }
+
     protected virtual void OnEnter() {}
     protected virtual void OnUpdate(float delta) {}
     protected virtual void OnUpdatePhysics(float delta) {}
@@ -18,7 +34,7 @@ public abstract partial class State : Node
 
     protected virtual State GetInitialState() => null;
     protected virtual State GetTransition() => null;
-
+    
     internal void Enter()
     {
         if (parent != null)
@@ -38,7 +54,7 @@ public abstract partial class State : Node
         State t = GetTransition();
         if (t != null && t != activeState)
         {
-            machine.sequencer.RequestTransition(activeState, t);
+            Machine.sequencer.RequestTransition(activeState, t);
             return;
         }
 

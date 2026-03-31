@@ -9,20 +9,15 @@ public partial class PlayerStateDriver : Node
 	private StateMachine stateMachine;
 	
 	[Export] private State rootState;
-	[Export] private StateMachineContext context;
-	[Export] private Label debugLabel;
+	private StateMachineContext context;
+	[ExportGroup("StateMachineContext")]
+	[Export] PhysicsCharacterBody characterBody;
 	
 	public override void _Ready()
 	{
+		context = new StateMachineContext(characterBody);
 		stateMachine = new StateMachine(rootState, context);
-		
-		foreach (Node node in GetChildren())
-		{
-			if (node is State state)
-			{
-				state.machine = stateMachine;
-			}
-		}
+		rootState.Machine = stateMachine;
 	}
 
 	public override void _Process(double delta)
@@ -53,10 +48,11 @@ public partial class PlayerStateDriver : Node
 		foreach (State state in rootState.Leaf().PathToRoot().Reverse())
 		{
 			path += state.GetType().Name;
+			path = path[..^5];
 			path += " > ";
 		}
 		path = path[..^3];
-		debugLabel.Text = path;
+		DebugControl.instance.SetValue("leafNodePath", path);
 	}
 
 	public override void _PhysicsProcess(double delta)
