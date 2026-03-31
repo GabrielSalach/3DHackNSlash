@@ -28,10 +28,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1073845349]
 shape = SubResource("CapsuleShape3D_fcxcq")
 
-[node name="PlayerStateDriver" type="Node" parent="CharacterBody3D" unique_id=652781254 node_paths=PackedStringArray("rootState")]
+[node name="PlayerStateDriver" type="Node" parent="CharacterBody3D" unique_id=652781254 node_paths=PackedStringArray("rootState", "debugLabel")]
 script = ExtResource("2_0cvxl")
 rootState = NodePath("GroundedState")
 context = SubResource("Resource_x0v55")
+debugLabel = NodePath("Label")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
 [node name="GroundedState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=429184902 node_paths=PackedStringArray("idleState", "groundMovement", "character")]
@@ -42,13 +43,18 @@ character = NodePath("../..")
 Friction = 5.0
 metadata/_custom_type_script = "uid://cbjip600o0gec"
 
-[node name="IdleState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=203968002]
+[node name="IdleState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=203968002 node_paths=PackedStringArray("character")]
 script = ExtResource("4_fcxcq")
+character = NodePath("../..")
 metadata/_custom_type_script = "uid://bl0dwynrv74gl"
 
 [node name="MovementState" type="Node" parent="CharacterBody3D/PlayerStateDriver" unique_id=1097579072 node_paths=PackedStringArray("character")]
 script = ExtResource("5_x0v55")
 character = NodePath("../..")
 metadata/_custom_type_script = "uid://b2e8f0yptl635"
+
+[node name="Label" type="Label" parent="CharacterBody3D/PlayerStateDriver" unique_id=1813843412]
+offset_right = 110.0
+offset_bottom = 23.0
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=1896581073]
