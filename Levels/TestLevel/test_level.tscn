@@ -27,9 +27,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
 script = ExtResource("2_x0v55")
 metadata/_custom_type_script = "uid://cdjb4k0q1cycf"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter" unique_id=1073845349]
-shape = SubResource("CapsuleShape3D_fcxcq")
-
 [node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody")]
 script = ExtResource("2_0cvxl")
 rootState = NodePath("PlayerState")
@@ -62,6 +59,11 @@ script = ExtResource("8_0ku8u")
 metadata/_custom_type_script = "uid://brlkgplaav8jn"
 
 [node name="Camera3D" type="Camera3D" parent="PlayerCharacter" unique_id=1896581073]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=1065928103]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter" unique_id=1073845349]
+shape = SubResource("CapsuleShape3D_fcxcq")
 
 [node name="DebugControl" type="BoxContainer" parent="PlayerCharacter" unique_id=1147038709]
 offset_right = 40.0
