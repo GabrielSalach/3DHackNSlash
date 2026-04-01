@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 [GlobalClass]
 public partial class GroundedState : State
@@ -7,7 +6,7 @@ public partial class GroundedState : State
     [Export] private IdleState idleState;
     [Export] private MovementState groundMovement;
     [Export] private float jumpForce;
-    [Export] private float groundFriction = 5.0f;
+    [Export] private float friction = 5.0f;
     
     protected override State GetInitialState() => idleState;
     protected override State GetTransition() => InputHelpers.GetMovementInput().Length() > 0 ? groundMovement : idleState;
@@ -20,11 +19,14 @@ public partial class GroundedState : State
 
     protected override void OnUpdatePhysics(float delta)
     {
+        Vector3 vel = Context.characterBody.Velocity;
         if (Input.IsActionJustPressed("jump"))
         {
-            Context.characterBody.AddVelocity(new Vector3(0, jumpForce, 0));
+            vel.Y = jumpForce;
         }
-        Context.characterBody.ApplyFriction(groundFriction);
+        // Context.characterBody.ApplyFriction(friction);
+        vel.X = Mathf.MoveToward(vel.X, 0, friction * delta);
+        vel.Z = Mathf.MoveToward(vel.Z, 0, friction * delta);
+        Context.characterBody.Velocity = vel;
     }
-
 }

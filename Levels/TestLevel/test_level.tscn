@@ -2,7 +2,6 @@
 
 [ext_resource type="Material" uid="uid://bshd1sgfky7tc" path="res://Levels/TestLevel/Checker.tres" id="1_gojnm"]
 [ext_resource type="Script" uid="uid://sqkl1vqbx6q2" path="res://Player/PlayerStateDriver.cs" id="2_0cvxl"]
-[ext_resource type="Script" uid="uid://cdjb4k0q1cycf" path="res://Core/PhysicsCharacterBody.cs" id="2_x0v55"]
 [ext_resource type="Script" uid="uid://bl0dwynrv74gl" path="res://Player/States/IdleState.cs" id="4_fcxcq"]
 [ext_resource type="Script" uid="uid://spjaywyr125y" path="res://Player/States/PlayerState.cs" id="4_okgj3"]
 [ext_resource type="Script" uid="uid://cbjip600o0gec" path="res://Player/States/GroundedState.cs" id="4_x0v55"]
@@ -40,6 +39,7 @@ sky = SubResource("Sky_ttmpx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=589114478]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 9, 0)
+shadow_enabled = true
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1715431056]
 use_collision = true
@@ -49,10 +49,8 @@ material_override = ExtResource("1_gojnm")
 size = Vector3(100, 1, 100)
 material = ExtResource("1_gojnm")
 
-[node name="PlayerCharacter" type="CharacterBody3D" parent="." unique_id=1246426368]
+[node name="PlayerCharacter" type="CharacterBody3D" parent="." unique_id=1205731400]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
-script = ExtResource("2_x0v55")
-metadata/_custom_type_script = "uid://cdjb4k0q1cycf"
 
 [node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody", "animationPlayer", "springArm", "modelRoot")]
 script = ExtResource("2_0cvxl")
@@ -74,6 +72,7 @@ script = ExtResource("4_x0v55")
 idleState = NodePath("IdleState")
 groundMovement = NodePath("MovementState")
 jumpForce = 5.0
+friction = 10.0
 metadata/_custom_type_script = "uid://cbjip600o0gec"
 
 [node name="IdleState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/GroundedState" unique_id=203968002]

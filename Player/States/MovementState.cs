@@ -14,8 +14,15 @@ public partial class MovementState : State
 
     protected override void OnUpdatePhysics(float delta)
     {
-        Vector3 direction = (Context.springArm.Transform.Basis * InputHelpers.GetMovementInputAsVector3()).Normalized();
-        Context.characterBody.AddVelocity(direction * Speed);
+        Vector3 input = InputHelpers.GetMovementInputAsVector3();
+        if (input != Vector3.Zero)
+        {
+            Vector3 direction = (Context.springArm.Transform.Basis * InputHelpers.GetMovementInputAsVector3()).Normalized();
+            Vector3 velocity = Context.characterBody.Velocity;
+            velocity.X = direction.X * Speed;
+            velocity.Z = direction.Z * Speed;
+            Context.characterBody.Velocity = velocity;
+        }
         
         OrientModelToVelocity(rotationSpeed * delta);
     }
@@ -24,13 +31,7 @@ public partial class MovementState : State
     {
         Vector3 direction = Context.characterBody.Velocity.Normalized();
         Vector3 leftAxis = Vector3.Up.Cross(direction);
-        Quaternion rotationBasis = new Basis(leftAxis, Vector3.Up, direction).GetRotationQuaternion();
+        Quaternion rotationBasis = new Basis(leftAxis, Vector3.Up, direction).GetRotationQuaternion().Normalized();
         Context.modelRoot.Basis = new Basis(Context.modelRoot.Transform.Basis.GetRotationQuaternion().Slerp(rotationBasis, weight));
-        
-        // float targetAngle = Context.modelRoot.Basis.Z.AngleTo(Context.characterBody.Velocity.Normalized());
-        // targetAngle -= Mathf.Pi;
-        // DebugControl.instance.SetValue("angle", $"{Mathf.RadToDeg(targetAngle)}");
-        // float angle = Mathf.LerpAngle(Context.modelRoot.Rotation.Y, targetAngle, weight);
-        // Context.modelRoot.SetRotation(new Vector3(Context.modelRoot.Rotation.X, angle, Context.modelRoot.Rotation.Z));
     }
 }

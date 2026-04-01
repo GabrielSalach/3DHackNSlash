@@ -1,6 +1,4 @@
-
 using System.Collections.Generic;
-using Godot;
 
 public class StateMachine
 {
@@ -45,7 +43,12 @@ public class StateMachine
     }
     
     internal void InternalTick(float deltaTime) => root.Update(deltaTime);
-    internal void InternalPhysicsTick(float deltaTime) => root.UpdatePhysics(deltaTime);
+
+    internal void InternalPhysicsTick(float deltaTime)
+    {
+        root.UpdatePhysics(deltaTime);
+        context.characterBody.MoveAndSlide();
+    }
 
     public void ChangeState(State from, State to)
     {

@@ -1,6 +1,5 @@
-using Godot;
-using System;
 using System.Linq;
+using Godot;
 
 [GlobalClass]
 public partial class PlayerStateDriver : Node
@@ -11,7 +10,7 @@ public partial class PlayerStateDriver : Node
 	[Export] private State rootState;
 	private StateMachineContext context;
 	[ExportGroup("StateMachineContext")]
-	[Export] private PhysicsCharacterBody characterBody;
+	[Export] private CharacterBody3D characterBody;
 	[Export] private AnimationPlayer animationPlayer;
 	[Export] private SpringArm3D springArm;
 	[Export] private Node3D modelRoot;

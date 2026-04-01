@@ -1,7 +1,5 @@
-using Godot;
-using System;
 using System.Collections.Generic;
-using System.Reflection.PortableExecutable;
+using Godot;
 
 [GlobalClass]
 public abstract partial class State : Node
