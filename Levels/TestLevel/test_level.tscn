@@ -9,10 +9,37 @@
 [ext_resource type="Script" uid="uid://b2e8f0yptl635" path="res://Player/States/MovementState.cs" id="5_x0v55"]
 [ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://Core/DebugControl.cs" id="7_go2h7"]
 [ext_resource type="Script" uid="uid://brlkgplaav8jn" path="res://Player/States/AirborneState.cs" id="8_0ku8u"]
+[ext_resource type="Animation" uid="uid://c14vd0g88gbhk" path="res://Player/Animations/Idle.res" id="9_xqj8x"]
+[ext_resource type="PackedScene" uid="uid://c6g3dxj7r31xp" path="res://Player/Y Bot.fbx" id="10_3pk1f"]
+[ext_resource type="Animation" uid="uid://dmr1rliil2vdy" path="res://Player/Animations/Slash1.anim" id="10_ttmpx"]
+[ext_resource type="Animation" uid="uid://bcf1euwpx4lsk" path="res://Player/Animations/Slash2.res" id="11_pcqpa"]
+[ext_resource type="Animation" uid="uid://cn5r4d8v4o7t8" path="res://Player/Animations/StandardRun.res" id="12_83khu"]
+[ext_resource type="Animation" uid="uid://c28mroxq1tsqg" path="res://Player/Animations/Walking.res" id="13_idbum"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0i3xh"]
+_data = {
+&"Idle": ExtResource("9_xqj8x"),
+&"Slash1": ExtResource("10_ttmpx"),
+&"Slash2": ExtResource("11_pcqpa"),
+&"StandardRun": ExtResource("12_83khu"),
+&"Walking": ExtResource("13_idbum")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcxcq"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqj8x"]
+
+[sub_resource type="Sky" id="Sky_ttmpx"]
+sky_material = SubResource("ProceduralSkyMaterial_xqj8x")
+
+[sub_resource type="Environment" id="Environment_pcqpa"]
+background_mode = 2
+sky = SubResource("Sky_ttmpx")
+
 [node name="TestLevel" type="Node3D" unique_id=603005608]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=589114478]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 9, 0)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1715431056]
 use_collision = true
@@ -27,10 +54,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
 script = ExtResource("2_x0v55")
 metadata/_custom_type_script = "uid://cdjb4k0q1cycf"
 
-[node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody")]
+[node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody", "animationPlayer", "springArm", "modelRoot")]
 script = ExtResource("2_0cvxl")
 rootState = NodePath("PlayerState")
 characterBody = NodePath("..")
+animationPlayer = NodePath("../AnimationPlayer")
+springArm = NodePath("../SpringArm3D")
+modelRoot = NodePath("../Y Bot")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
 [node name="PlayerState" type="Node" parent="PlayerCharacter/PlayerStateDriver" unique_id=1154849357 node_paths=PackedStringArray("groundedState", "airborneState")]
@@ -48,24 +78,37 @@ metadata/_custom_type_script = "uid://cbjip600o0gec"
 
 [node name="IdleState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/GroundedState" unique_id=203968002]
 script = ExtResource("4_fcxcq")
+animationName = "Idle"
 metadata/_custom_type_script = "uid://bl0dwynrv74gl"
 
 [node name="MovementState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/GroundedState" unique_id=1097579072]
 script = ExtResource("5_x0v55")
+animationName = "StandardRun"
 metadata/_custom_type_script = "uid://b2e8f0yptl635"
 
 [node name="AirborneState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=1572790719]
 script = ExtResource("8_0ku8u")
 metadata/_custom_type_script = "uid://brlkgplaav8jn"
 
-[node name="Camera3D" type="Camera3D" parent="PlayerCharacter" unique_id=1896581073]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=1065928103]
+root_node = NodePath("../Y Bot")
+libraries/ = SubResource("AnimationLibrary_0i3xh")
+playback_default_blend_time = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter" unique_id=1073845349]
 shape = SubResource("CapsuleShape3D_fcxcq")
 
-[node name="DebugControl" type="BoxContainer" parent="PlayerCharacter" unique_id=1147038709]
+[node name="Y Bot" parent="PlayerCharacter" unique_id=1858932774 instance=ExtResource("10_3pk1f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerCharacter" unique_id=678312209]
+transform = Transform3D(-0.9895258, 0, -0.14435613, 0, 1, 0, 0.14435613, 0, -0.9895258, 0, 0, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerCharacter/SpringArm3D" unique_id=1896581073]
+environment = SubResource("Environment_pcqpa")
+
+[node name="DebugControl" type="BoxContainer" parent="." unique_id=1147038709]
 offset_right = 40.0
 offset_bottom = 40.0
 vertical = true

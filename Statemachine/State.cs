@@ -6,6 +6,8 @@ using System.Reflection.PortableExecutable;
 [GlobalClass]
 public abstract partial class State : Node
 {
+    [Export] private string animationName;
+    
     public State parent;
     public State activeState;
 
@@ -35,6 +37,8 @@ public abstract partial class State : Node
     protected virtual State GetInitialState() => null;
     protected virtual State GetTransition() => null;
     
+    protected StateMachineContext Context => Machine.context;
+    
     internal void Enter()
     {
         if (parent != null)
@@ -42,11 +46,16 @@ public abstract partial class State : Node
             parent.activeState = this;
         }
         OnEnter();
+        if (!string.IsNullOrEmpty(animationName))
+        {
+            Machine.context.animationPlayer.Play(animationName);
+        }
         State init = GetInitialState();
         if (init != null)
         {
             init.Enter();
         }
+
     }
 
     internal void Update(float deltaTime)

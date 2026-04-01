@@ -1,8 +1,10 @@
 
 using Godot;
 
-public class StateMachineContext(PhysicsCharacterBody cBody)
+public class StateMachineContext()
 {
-    public Vector2 input = new();
-    public PhysicsCharacterBody characterBody = cBody;
+    public PhysicsCharacterBody characterBody;
+    public AnimationPlayer animationPlayer;
+    public SpringArm3D springArm;
+    public Node3D modelRoot;
 }

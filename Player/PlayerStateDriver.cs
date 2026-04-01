@@ -11,38 +11,26 @@ public partial class PlayerStateDriver : Node
 	[Export] private State rootState;
 	private StateMachineContext context;
 	[ExportGroup("StateMachineContext")]
-	[Export] PhysicsCharacterBody characterBody;
+	[Export] private PhysicsCharacterBody characterBody;
+	[Export] private AnimationPlayer animationPlayer;
+	[Export] private SpringArm3D springArm;
+	[Export] private Node3D modelRoot;
 	
 	public override void _Ready()
 	{
-		context = new StateMachineContext(characterBody);
+		context = new StateMachineContext
+		{
+			animationPlayer = animationPlayer,
+			characterBody = characterBody,
+			springArm = springArm,
+			modelRoot = modelRoot
+		};
 		stateMachine = new StateMachine(rootState, context);
 		rootState.Machine = stateMachine;
 	}
 
 	public override void _Process(double delta)
 	{
-		context.input = Vector2.Zero;
-		if (Input.IsActionPressed("forward"))
-		{
-			context.input.Y -= 1;
-		}
-
-		if (Input.IsActionPressed("back"))
-		{
-			context.input.Y += 1;
-		}
-
-		if (Input.IsActionPressed("left"))
-		{
-			context.input.X -= 1;
-		}
-
-		if (Input.IsActionPressed("right"))
-		{
-			context.input.X += 1;
-		}
-		
 		stateMachine.Tick((float)delta);
 		string path = string.Empty;
 		foreach (State state in rootState.Leaf().PathToRoot().Reverse())
