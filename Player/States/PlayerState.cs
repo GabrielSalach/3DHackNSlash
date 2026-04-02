@@ -6,6 +6,7 @@ public partial class PlayerState : State
 {
     [Export] private GroundedState groundedState;
     [Export] private AirborneState airborneState;
+    [Export] private DashState dashState;
     
     [Export] public float MouseSensitivity = 0.003f;
     [Export] public float MinPitch = -40.0f;
@@ -17,13 +18,31 @@ public partial class PlayerState : State
 
     protected override State GetInitialState() => airborneState;
 
-    protected override State GetTransition() =>
-        Machine.context.characterBody.IsOnFloor() ? groundedState : airborneState;
+    protected override State GetTransition()
+    {
+        if (Input.IsActionJustPressed("dash"))
+        {
+            return dashState;
+        }
+        
+        if (!dashState.Started)
+        {
+            return Machine.context.characterBody.IsOnFloor() ? groundedState : airborneState;
+        }
+        
+        return dashState;
+    }
+
+    protected override void OnEnter()
+    {
+        Input.MouseMode = Input.MouseModeEnum.Captured;
+    }
 
     public override void _Ready()
     {
         groundedState.parent = this;
         airborneState.parent = this;
+        dashState.parent = this;
     }
 
     protected override void OnUpdate(float delta)
@@ -41,6 +60,11 @@ public partial class PlayerState : State
             _pitch = Mathf.Clamp(_pitch,
                 Mathf.DegToRad(MinPitch),
                 Mathf.DegToRad(MaxPitch));
+        }
+
+        if (@event is InputEventKey { Keycode: Key.Escape })
+        {
+            Input.MouseMode = Input.MouseModeEnum.Visible;
         }
     }
 }

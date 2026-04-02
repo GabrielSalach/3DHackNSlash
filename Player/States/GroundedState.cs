@@ -24,7 +24,6 @@ public partial class GroundedState : State
         {
             vel.Y = jumpForce;
         }
-        // Context.characterBody.ApplyFriction(friction);
         vel.X = Mathf.MoveToward(vel.X, 0, friction * delta);
         vel.Z = Mathf.MoveToward(vel.Z, 0, friction * delta);
         Context.characterBody.Velocity = vel;
