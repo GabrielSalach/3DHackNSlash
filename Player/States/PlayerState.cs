@@ -6,6 +6,14 @@ public partial class PlayerState : State
 {
     [Export] private GroundedState groundedState;
     [Export] private AirborneState airborneState;
+    
+    [Export] public float MouseSensitivity = 0.003f;
+    [Export] public float MinPitch = -40.0f;
+    [Export] public float MaxPitch = 60.0f;
+
+    private float _yaw ;
+    private float _pitch;
+
 
     protected override State GetInitialState() => airborneState;
 
@@ -16,5 +24,23 @@ public partial class PlayerState : State
     {
         groundedState.parent = this;
         airborneState.parent = this;
+    }
+
+    protected override void OnUpdate(float delta)
+    {
+        Context.springArm.Rotation = new Vector3(_pitch, _yaw, 0);
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventMouseMotion motion)
+        {
+            _yaw -= motion.Relative.X * MouseSensitivity;
+
+            _pitch -= motion.Relative.Y * MouseSensitivity;
+            _pitch = Mathf.Clamp(_pitch,
+                Mathf.DegToRad(MinPitch),
+                Mathf.DegToRad(MaxPitch));
+        }
     }
 }
