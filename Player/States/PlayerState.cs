@@ -38,13 +38,6 @@ public partial class PlayerState : State
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
-    public override void _Ready()
-    {
-        groundedState.parent = this;
-        airborneState.parent = this;
-        dashState.parent = this;
-    }
-
     protected override void OnUpdate(float delta)
     {
         Context.springArm.Rotation = new Vector3(_pitch, _yaw, 0);

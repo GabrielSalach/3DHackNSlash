@@ -4,10 +4,10 @@ using Godot;
 [GlobalClass]
 public abstract partial class State : Node
 {
-    [Export] private string animationName;
+    [Export] public string animationName;
     
     public State parent;
-    public State activeState;
+    protected State activeState;
 
     private StateMachine stateMachine;
     
@@ -39,6 +39,7 @@ public abstract partial class State : Node
     
     internal void Enter()
     {
+        parent ??= GetParentOrNull<State>();
         if (parent != null)
         {
             parent.activeState = this;
