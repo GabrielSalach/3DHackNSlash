@@ -34,7 +34,7 @@ public partial class PlayerStateDriver : Node
 		string path = string.Empty;
 		foreach (State state in rootState.Leaf().PathToRoot().Reverse())
 		{
-			path += state.GetType().Name;
+			path += state.GetName();
 			path = path[..^5];
 			path += " > ";
 		}

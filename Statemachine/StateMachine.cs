@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Godot;
 
 public class StateMachine
 {
@@ -53,7 +52,7 @@ public class StateMachine
 
     public void ChangeState(State from, State to)
     {
-        GD.Print($"Switching from {from?.GetType()?.Name} to {to.GetType().Name}");
+        // GD.Print($"Switching from {from.GetName()} to {to.GetName()}");
         State lca = TransitionSequencer.LowestCommonAncestor(from, to);
         for (State state = from; state != lca; state = state.parent)
         {

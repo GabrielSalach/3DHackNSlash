@@ -6,7 +6,6 @@ public partial class PlayerState : State
 {
     [Export] private GroundedState groundedState;
     [Export] private AirborneState airborneState;
-    [Export] private DashState dashState;
     
     [Export] public float MouseSensitivity = 0.003f;
     [Export] public float MinPitch = -40.0f;
@@ -17,20 +16,10 @@ public partial class PlayerState : State
 
 
     protected override State GetInitialState() => airborneState;
-
-    protected override State GetTransition()
+    protected override void SetupTransitions()
     {
-        if (Input.IsActionJustPressed("dash"))
-        {
-            return dashState;
-        }
-        
-        if (!dashState.Started)
-        {
-            return Machine.context.characterBody.IsOnFloor() ? groundedState : airborneState;
-        }
-        
-        return dashState;
+        AddTransition(groundedState, airborneState, () => !Context.characterBody.IsOnFloor());
+        AddTransition(airborneState, groundedState, () => Context.characterBody.IsOnFloor());
     }
 
     protected override void OnEnter()

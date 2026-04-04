@@ -8,9 +8,10 @@ public partial class MovementState : State
     public float Speed = 5.0f;
     [Export]
     public float JumpVelocity = 4.5f;
-
     [Export] public float rotationSpeed = 5.0f;
-
+    
+    protected override State GetInitialState() => null;
+    protected override void SetupTransitions() { }
 
     protected override void OnUpdatePhysics(float delta)
     {

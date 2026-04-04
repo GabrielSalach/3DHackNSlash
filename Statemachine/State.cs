@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -10,7 +11,6 @@ public abstract partial class State : Node
     protected State activeState;
 
     private StateMachine stateMachine;
-    
     public StateMachine Machine
     {
         get => stateMachine;
@@ -26,20 +26,34 @@ public abstract partial class State : Node
             stateMachine = value;
         }
     }
+    protected StateMachineContext Context => Machine.context;
+
+    
+    
+    
+    protected abstract State GetInitialState();
+    protected abstract void SetupTransitions();
+    protected delegate bool TransitionCondition();
+    private Dictionary<State, Dictionary<State, TransitionCondition>> transitions = new Dictionary<State, Dictionary<State, TransitionCondition>>();
+    
+    
+    //##########################################################
+    //################# LIFECYCLE ##############################
+    //##########################################################
+
+    public override void _Ready()
+    {
+        parent ??= GetParentOrNull<State>();
+        SetupTransitions();
+    }
 
     protected virtual void OnEnter() {}
     protected virtual void OnUpdate(float delta) {}
     protected virtual void OnUpdatePhysics(float delta) {}
     protected virtual void OnExit() {}
 
-    protected virtual State GetInitialState() => null;
-    protected virtual State GetTransition() => null;
-    
-    protected StateMachineContext Context => Machine.context;
-    
     internal void Enter()
     {
-        parent ??= GetParentOrNull<State>();
         if (parent != null)
         {
             parent.activeState = this;
@@ -54,20 +68,16 @@ public abstract partial class State : Node
         {
             init.Enter();
         }
-
     }
 
     internal void Update(float deltaTime)
     {
-        State t = GetTransition();
-        if (t != null && t != activeState)
-        {
-            Machine.sequencer.RequestTransition(activeState, t);
-            return;
-        }
-
         if (activeState != null)
         {
+            if (TryGetTargetState(out State state))
+            {
+                Machine.sequencer.RequestTransition(activeState, state);
+            }
             activeState.Update(deltaTime);
         }
         OnUpdate(deltaTime);
@@ -92,6 +102,11 @@ public abstract partial class State : Node
         activeState = null;
         OnExit();
     }
+    
+    //##########################################################
+    //################# HELPERS ################################
+    //##########################################################
+
 
     public State Leaf()
     {
@@ -110,5 +125,44 @@ public abstract partial class State : Node
         {
             yield return s;
         }
+    }
+
+    protected bool TryAddTransition(State from, State to, TransitionCondition condition)
+    {
+        if (transitions.TryGetValue(from, out Dictionary<State, TransitionCondition> t))
+        {
+            return t.TryAdd(to, condition);
+        }
+        transitions[from] = new Dictionary<State, TransitionCondition>
+        {
+            {to, condition}
+        };
+        return true;
+    }
+
+    protected void AddTransition(State from, State to, TransitionCondition condition)
+    {
+        if (!TryAddTransition(from, to, condition))
+        {
+            throw new Exception("Couldn't add transition " + from + " to " + to);
+        }
+    }
+
+    private bool TryGetTargetState(out State state)
+    {
+        if(activeState != null && transitions.TryGetValue(activeState, out Dictionary<State, TransitionCondition> currentTransitions))
+        {
+            foreach (KeyValuePair<State, TransitionCondition> transition in currentTransitions)
+            {
+                if (transition.Value())
+                {
+                    state = transition.Key;
+                    return true;
+                }
+            }
+        }
+        
+        state = null;
+        return false;
     }
 }

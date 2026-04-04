@@ -3,32 +3,23 @@ using Godot;
 [GlobalClass]
 public partial class GroundedState : State
 {
-    [Export] private IdleState idleState;
+    [Export] private State idleState;
     [Export] private MovementState groundMovement;
-    [Export] private SwordState swordState;
     
     [Export] private float jumpForce;
     [Export] private float friction = 5.0f;
     
     protected override State GetInitialState() => idleState;
-
-    protected override State GetTransition()
+    protected override void SetupTransitions()
     {
-        if (Input.IsActionJustPressed("light_attack"))
-        {
-            return swordState;
-        }
-
-        if (Input.IsActionJustPressed("heavy_attack"))
-        {
-            return swordState;
-        }
-        return InputHelpers.GetMovementInput().Length() > 0 ? groundMovement : idleState;
+        AddTransition(groundMovement, idleState, () => InputHelpers.GetMovementInput().Length() <= 0);
+        AddTransition(idleState, groundMovement, () => InputHelpers.GetMovementInput().Length() > 0);
     }
 
-    protected override void OnUpdate(float delta)
-    {
-    }
+    // protected override State GetTransition()
+    // {
+    //     return InputHelpers.GetMovementInput().Length() > 0 ? groundMovement : idleState;
+    // }
 
     protected override void OnUpdatePhysics(float delta)
     {
