@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://b2e8f0yptl635" path="res://Player/States/Locomotion/MovementState.cs" id="5_x0v55"]
 [ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://Core/DebugControl.cs" id="7_go2h7"]
 [ext_resource type="Script" uid="uid://brlkgplaav8jn" path="res://Player/States/Locomotion/AirborneState.cs" id="8_0ku8u"]
+[ext_resource type="Script" uid="uid://x4pr6bw6nhqt" path="res://Player/States/Combat/CombatState.cs" id="8_aer1k"]
+[ext_resource type="Script" uid="uid://5cqrqfqeqffd" path="res://Player/States/Combat/AttackState.cs" id="9_x1cb1"]
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="11_xdcba"]
 [ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="12_nmviu"]
 [ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="12_x1cb1"]
@@ -226,10 +228,11 @@ springArm = NodePath("../SpringArm3D")
 modelRoot = NodePath("../UAL1_Standard")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
-[node name="PlayerState" type="Node" parent="PlayerCharacter/PlayerStateDriver" unique_id=1154849357 node_paths=PackedStringArray("groundedState", "airborneState")]
+[node name="PlayerState" type="Node" parent="PlayerCharacter/PlayerStateDriver" unique_id=1154849357 node_paths=PackedStringArray("groundedState", "airborneState", "combatState")]
 script = ExtResource("4_okgj3")
 groundedState = NodePath("GroundedState")
 airborneState = NodePath("AirborneState")
+combatState = NodePath("CombatState")
 metadata/_custom_type_script = "uid://spjaywyr125y"
 
 [node name="GroundedState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=429184902 node_paths=PackedStringArray("idleState", "groundMovement")]
@@ -264,6 +267,66 @@ metadata/_custom_type_script = "uid://bsqijymya7p46"
 [node name="FallState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/AirborneState" unique_id=179345951]
 script = ExtResource("13_63xd4")
 animationName = "Jump"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="CombatState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=365626694 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "heavyAttack")]
+script = ExtResource("8_aer1k")
+initState = NodePath("InitState")
+lightAttackA = NodePath("LightAttackAState")
+lightAttackB = NodePath("LightAttackBState")
+heavyAttack = NodePath("HeavyAttackState")
+metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
+
+[node name="InitState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=671979041]
+script = ExtResource("13_63xd4")
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="LightAttackAState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=236741559 node_paths=PackedStringArray("hit", "recovery")]
+script = ExtResource("9_x1cb1")
+hit = NodePath("HitState")
+recovery = NodePath("RecoveryState")
+metadata/_custom_type_script = "uid://5cqrqfqeqffd"
+
+[node name="HitState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/LightAttackAState" unique_id=1369552862]
+script = ExtResource("13_63xd4")
+animationName = "Sword_Regular_A"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="RecoveryState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/LightAttackAState" unique_id=1535436626]
+script = ExtResource("13_63xd4")
+animationName = "Sword_Regular_A_Rec"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="LightAttackBState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=2003707033 node_paths=PackedStringArray("hit", "recovery")]
+script = ExtResource("9_x1cb1")
+hit = NodePath("HitState")
+recovery = NodePath("RecoveryState")
+metadata/_custom_type_script = "uid://5cqrqfqeqffd"
+
+[node name="HitState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/LightAttackBState" unique_id=1628195209]
+script = ExtResource("13_63xd4")
+animationName = "Sword_Regular_B"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="RecoveryState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/LightAttackBState" unique_id=533760906]
+script = ExtResource("13_63xd4")
+animationName = "Sword_Regular_B_Rec"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="HeavyAttackState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=2044979947 node_paths=PackedStringArray("hit", "recovery")]
+script = ExtResource("9_x1cb1")
+hit = NodePath("HitState")
+recovery = NodePath("RecoveryState")
+metadata/_custom_type_script = "uid://5cqrqfqeqffd"
+
+[node name="HitState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/HeavyAttackState" unique_id=2100227038]
+script = ExtResource("13_63xd4")
+animationName = "Sword_Regular_C"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="RecoveryState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/HeavyAttackState" unique_id=218300617]
+script = ExtResource("13_63xd4")
+animationName = "Sword_Regular_C"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=1065928103]

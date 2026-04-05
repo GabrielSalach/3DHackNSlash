@@ -165,4 +165,13 @@ public abstract partial class State : Node
         state = null;
         return false;
     }
+
+    public virtual bool IsCompleted()
+    {
+        if (string.IsNullOrEmpty(animationName)) return true;
+        
+        if (Context.animationPlayer.AssignedAnimation != animationName) return false;
+        
+        return !Context.animationPlayer.IsPlaying();
+    }
 }

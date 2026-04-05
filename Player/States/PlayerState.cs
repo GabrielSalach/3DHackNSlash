@@ -6,6 +6,7 @@ public partial class PlayerState : State
 {
     [Export] private GroundedState groundedState;
     [Export] private AirborneState airborneState;
+    [Export] private CombatState combatState;
     
     [Export] public float MouseSensitivity = 0.003f;
     [Export] public float MinPitch = -40.0f;
@@ -20,6 +21,8 @@ public partial class PlayerState : State
     {
         AddTransition(groundedState, airborneState, () => !Context.characterBody.IsOnFloor());
         AddTransition(airborneState, groundedState, () => Context.characterBody.IsOnFloor());
+        AddTransition(groundedState, combatState, () => Input.IsActionJustPressed("light_attack") || Input.IsActionJustPressed("heavy_attack"));
+        AddTransition(combatState, groundedState, () => combatState.IsCompleted());
     }
 
     protected override void OnEnter()

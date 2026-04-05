@@ -1,0 +1,44 @@
+using Godot;
+
+public enum AttackType
+{
+    LIGHT,
+    HEAVY
+}
+
+[GlobalClass]
+public partial class CombatState : State
+{
+    [Export] private State initState;
+    [Export] private AttackState lightAttackA;
+    [Export] private AttackState lightAttackB;
+    [Export] private AttackState heavyAttack;
+
+    
+    protected override State GetInitialState() => initState;
+
+    protected override void SetupTransitions()
+    {
+        AddTransition(initState, lightAttackA, () => Input.IsActionJustPressed("light_attack"));
+        AddTransition(lightAttackA, lightAttackB,
+            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("light_attack"));
+        AddTransition(lightAttackB, lightAttackA,
+            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("light_attack"));
+        
+        AddTransition(initState, heavyAttack, () => Input.IsActionJustPressed("heavy_attack"));
+        AddTransition(lightAttackA, heavyAttack,
+            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("heavy_attack"));
+        AddTransition(lightAttackB, heavyAttack,
+            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("heavy_attack"));
+    }
+
+    public override bool IsCompleted()
+    {
+        return activeState.IsCompleted();
+    }
+
+    protected override void OnEnter()
+    {
+        Context.characterBody.Velocity = Vector3.Zero;
+    }
+}
