@@ -33,6 +33,8 @@ public partial class CombatState : State
         return activeState.IsCompleted();
     }
 
+    public override bool IsCancellable => activeState is AttackState { CurrentPhase: AnimationPhase.RECOVERY };
+
     protected override void OnEnter()
     {
         Context.characterBody.Velocity = Vector3.Zero;

@@ -174,4 +174,6 @@ public abstract partial class State : Node
         
         return !Context.animationPlayer.IsPlaying();
     }
+
+    public virtual bool IsCancellable => false;
 }
