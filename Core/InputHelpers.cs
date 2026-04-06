@@ -13,4 +13,9 @@ public static class InputHelpers
         Vector2 input = GetMovementInput();
         return new Vector3(input.X, 0, input.Y); 
     }
+
+    public static bool DidAttackThisFrame()
+    {
+        return Input.IsActionJustPressed("light_attack") || Input.IsActionJustPressed("heavy_attack") || Input.IsActionJustPressed("dash");
+    }
 }

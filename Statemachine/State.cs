@@ -31,8 +31,8 @@ public abstract partial class State : Node
     
     
     
-    protected abstract State GetInitialState();
-    protected abstract void SetupTransitions();
+    protected virtual State GetInitialState() => null;
+    protected virtual void SetupTransitions() { }
     protected delegate bool TransitionCondition();
     private Dictionary<State, Dictionary<State, TransitionCondition>> transitions = new Dictionary<State, Dictionary<State, TransitionCondition>>();
     

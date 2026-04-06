@@ -7,6 +7,7 @@ public partial class CombatState : State
     [Export] private AttackState lightAttackA;
     [Export] private AttackState lightAttackB;
     [Export] private AttackState heavyAttack;
+    [Export] private DashState dashState;
 
     [Export] private PackedScene weapon;
     private Node weaponReference;
@@ -26,6 +27,8 @@ public partial class CombatState : State
             () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("heavy_attack"));
         AddTransition(lightAttackB, heavyAttack,
             () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("heavy_attack"));
+        
+        AddTransition(initState, dashState, () => Input.IsActionJustPressed("dash"));
     }
 
     public override bool IsCompleted()

@@ -20,15 +20,16 @@ public partial class PlayerState : State
     protected override void SetupTransitions()
     {
         AddTransition(groundedState, airborneState, () => !Context.characterBody.IsOnFloor());
-        AddTransition(groundedState, combatState, () => Input.IsActionJustPressed("light_attack") || Input.IsActionJustPressed("heavy_attack"));
-        
-        AddTransition(combatState, groundedState, () => 
-            combatState.IsCompleted()
-            || (Context.characterBody.IsOnFloor() 
-            && !InputHelpers.GetMovementInput().Equals(Vector2.Zero) 
-            && combatState.IsCancellable));
+        AddTransition(groundedState, combatState, InputHelpers.DidAttackThisFrame);
         
         AddTransition(airborneState, groundedState, () => Context.characterBody.IsOnFloor());
+        AddTransition(airborneState, combatState, InputHelpers.DidAttackThisFrame);
+        
+        AddTransition(combatState, groundedState, () => Context.characterBody.IsOnFloor() && (
+            combatState.IsCompleted()
+            || (!InputHelpers.GetMovementInput().Equals(Vector2.Zero) && combatState.IsCancellable)
+        ));
+        AddTransition(combatState, airborneState, () => !Context.characterBody.IsOnFloor() && combatState.IsCompleted());
     }
 
     protected override void OnEnter()

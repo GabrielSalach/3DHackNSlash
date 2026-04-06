@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://x4pr6bw6nhqt" path="res://Player/States/Combat/CombatState.cs" id="8_aer1k"]
 [ext_resource type="PackedScene" uid="uid://cxerp4umfkijk" path="res://Player/ArtoriasSword.tscn" id="9_67us6"]
 [ext_resource type="Script" uid="uid://5cqrqfqeqffd" path="res://Player/States/Combat/AttackState.cs" id="9_x1cb1"]
+[ext_resource type="Script" uid="uid://kewaupp57wpr" path="res://Player/States/Combat/DashState.cs" id="11_67us6"]
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="11_xdcba"]
 [ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="12_nmviu"]
 [ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="12_x1cb1"]
@@ -99,7 +100,6 @@
 [ext_resource type="Animation" uid="uid://br6c1ol3qg7xk" path="res://Player/Animations/UniversalAnimationPack/Zombie_Scratch.res" id="96_jfit0"]
 [ext_resource type="PackedScene" uid="uid://wtn3muehpyi8" path="res://Player/PlayerModel.tscn" id="97_aer1k"]
 [ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="97_mr0pe"]
-[ext_resource type="Script" path="res://Player/PlayerModel.cs" id="99_67us6"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lwd48"]
 _data = {
@@ -271,12 +271,13 @@ script = ExtResource("13_63xd4")
 animationName = "Jump"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
-[node name="CombatState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=365626694 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "heavyAttack")]
+[node name="CombatState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState" unique_id=365626694 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "heavyAttack", "dashState")]
 script = ExtResource("8_aer1k")
 initState = NodePath("InitState")
 lightAttackA = NodePath("LightAttackAState")
 lightAttackB = NodePath("LightAttackBState")
 heavyAttack = NodePath("HeavyAttackState")
+dashState = NodePath("DashState")
 weapon = ExtResource("9_67us6")
 metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
 
@@ -332,6 +333,12 @@ script = ExtResource("13_63xd4")
 animationName = "Sword_Regular_C"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
+[node name="DashState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=1344520183]
+script = ExtResource("11_67us6")
+dashDuration = 0.1
+dashSpeed = 15.0
+metadata/_custom_type_script = "uid://kewaupp57wpr"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=1065928103]
 root_node = NodePath("../PlayerModel")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
@@ -344,7 +351,6 @@ shape = SubResource("CapsuleShape3D_fcxcq")
 
 [node name="PlayerModel" parent="PlayerCharacter" unique_id=1564736375 instance=ExtResource("97_aer1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-script = ExtResource("99_67us6")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="PlayerCharacter" unique_id=678312209]
 transform = Transform3D(-0.9895258, 0, -0.14435613, 0, 1, 0, 0.14435613, 0, -0.9895258, 0, 0, 0)
