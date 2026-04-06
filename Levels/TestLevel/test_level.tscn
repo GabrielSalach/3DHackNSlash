@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://Core/DebugControl.cs" id="7_go2h7"]
 [ext_resource type="Script" uid="uid://brlkgplaav8jn" path="res://Player/States/Locomotion/AirborneState.cs" id="8_0ku8u"]
 [ext_resource type="Script" uid="uid://x4pr6bw6nhqt" path="res://Player/States/Combat/CombatState.cs" id="8_aer1k"]
+[ext_resource type="PackedScene" uid="uid://cxerp4umfkijk" path="res://Player/ArtoriasSword.tscn" id="9_67us6"]
 [ext_resource type="Script" uid="uid://5cqrqfqeqffd" path="res://Player/States/Combat/AttackState.cs" id="9_x1cb1"]
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="11_xdcba"]
 [ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="12_nmviu"]
@@ -78,7 +79,6 @@
 [ext_resource type="Animation" uid="uid://y61tls7565o0" path="res://Player/Animations/UniversalAnimationPack/Sword_Idle.res" id="53_x1cb1"]
 [ext_resource type="Animation" uid="uid://dlor4a7um2efc" path="res://Player/Animations/UniversalAnimationPack/Walk.res" id="54_67us6"]
 [ext_resource type="Animation" uid="uid://ckw25f83ukmii" path="res://Player/Animations/UniversalAnimationPack/Walk_Formal.res" id="55_lyfs2"]
-[ext_resource type="PackedScene" uid="uid://cnbiod1l0ltvy" path="res://Player/Animations/UAL1_Standard.glb" id="56_63xd4"]
 [ext_resource type="Animation" uid="uid://kga5h7kkh78v" path="res://Player/Animations/UniversalAnimationPack/Shield_Dash_RM.res" id="63_3lm6i"]
 [ext_resource type="Animation" uid="uid://b3l7wsuf3mssk" path="res://Player/Animations/UniversalAnimationPack/Shield_OneShot.res" id="64_5etqi"]
 [ext_resource type="Animation" uid="uid://v6u0877aykrg" path="res://Player/Animations/UniversalAnimationPack/Slide.res" id="69_rd6oh"]
@@ -97,7 +97,9 @@
 [ext_resource type="Animation" uid="uid://cuasbji77jxi4" path="res://Player/Animations/UniversalAnimationPack/Yes.res" id="94_nuav0"]
 [ext_resource type="Animation" uid="uid://dsjy5ah7ulea7" path="res://Player/Animations/UniversalAnimationPack/Zombie_Idle.res" id="95_hnv1o"]
 [ext_resource type="Animation" uid="uid://br6c1ol3qg7xk" path="res://Player/Animations/UniversalAnimationPack/Zombie_Scratch.res" id="96_jfit0"]
+[ext_resource type="PackedScene" uid="uid://wtn3muehpyi8" path="res://Player/PlayerModel.tscn" id="97_aer1k"]
 [ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="97_mr0pe"]
+[ext_resource type="Script" path="res://Player/PlayerModel.cs" id="99_67us6"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lwd48"]
 _data = {
@@ -225,7 +227,7 @@ rootState = NodePath("PlayerState")
 characterBody = NodePath("..")
 animationPlayer = NodePath("../AnimationPlayer")
 springArm = NodePath("../SpringArm3D")
-modelRoot = NodePath("../UAL1_Standard")
+modelRoot = NodePath("../PlayerModel")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
 [node name="PlayerState" type="Node" parent="PlayerCharacter/PlayerStateDriver" unique_id=1154849357 node_paths=PackedStringArray("groundedState", "airborneState", "combatState")]
@@ -275,6 +277,7 @@ initState = NodePath("InitState")
 lightAttackA = NodePath("LightAttackAState")
 lightAttackB = NodePath("LightAttackBState")
 heavyAttack = NodePath("HeavyAttackState")
+weapon = ExtResource("9_67us6")
 metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
 
 [node name="InitState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=671979041]
@@ -330,7 +333,7 @@ animationName = "Sword_Regular_C"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerCharacter" unique_id=1065928103]
-root_node = NodePath("../UAL1_Standard")
+root_node = NodePath("../PlayerModel")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
 root_motion_local = true
 libraries/ = SubResource("AnimationLibrary_lwd48")
@@ -339,8 +342,9 @@ playback_default_blend_time = 0.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerCharacter" unique_id=1073845349]
 shape = SubResource("CapsuleShape3D_fcxcq")
 
-[node name="UAL1_Standard" parent="PlayerCharacter" unique_id=56753629 instance=ExtResource("56_63xd4")]
+[node name="PlayerModel" parent="PlayerCharacter" unique_id=1564736375 instance=ExtResource("97_aer1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("99_67us6")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="PlayerCharacter" unique_id=678312209]
 transform = Transform3D(-0.9895258, 0, -0.14435613, 0, 1, 0, 0.14435613, 0, -0.9895258, 0, 0, 0)

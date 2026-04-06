@@ -1,11 +1,5 @@
 using Godot;
 
-public enum AttackType
-{
-    LIGHT,
-    HEAVY
-}
-
 [GlobalClass]
 public partial class CombatState : State
 {
@@ -14,6 +8,8 @@ public partial class CombatState : State
     [Export] private AttackState lightAttackB;
     [Export] private AttackState heavyAttack;
 
+    [Export] private PackedScene weapon;
+    private Node weaponReference;
     
     protected override State GetInitialState() => initState;
 
@@ -40,5 +36,13 @@ public partial class CombatState : State
     protected override void OnEnter()
     {
         Context.characterBody.Velocity = Vector3.Zero;
+        weaponReference = weapon.Instantiate();
+        Context.modelRoot.rightHand.AddChild(weaponReference);
+    }
+
+    protected override void OnExit()
+    {
+        Context.modelRoot.rightHand.RemoveChild(weaponReference);
+        weaponReference.QueueFree();
     }
 }

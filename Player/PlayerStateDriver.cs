@@ -13,7 +13,7 @@ public partial class PlayerStateDriver : Node
 	[Export] private CharacterBody3D characterBody;
 	[Export] private AnimationPlayer animationPlayer;
 	[Export] private SpringArm3D springArm;
-	[Export] private Node3D modelRoot;
+	[Export] private PlayerModel modelRoot;
 	
 	public override void _Ready()
 	{
