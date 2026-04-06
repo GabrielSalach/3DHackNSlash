@@ -21,7 +21,6 @@ public partial class DashState : State
             timer = new Timer();
             timer.Timeout += () =>
             {
-                GD.Print("Coucou");
                 completed = true;
             };
             timer.OneShot = true;
