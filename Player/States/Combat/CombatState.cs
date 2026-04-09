@@ -8,10 +8,12 @@ public partial class CombatState : State
     [Export] private AttackState lightAttackB;
     [Export] private AttackState heavyAttack;
     [Export] private DashState dashState;
-
-    [Export] private PackedScene weapon;
-    private Node weaponReference;
     
+    
+    [Export] private PackedScene weapon;
+    public Weapon WeaponReference { get;private set; }
+
+
     protected override State GetInitialState() => initState;
 
     protected override void SetupTransitions()
@@ -40,14 +42,16 @@ public partial class CombatState : State
 
     protected override void OnEnter()
     {
+        if (WeaponReference == null)
+        {
+            WeaponReference = weapon.Instantiate() as Weapon;
+        }
+        Context.modelRoot.rightHand.AddChild(WeaponReference);
         Context.characterBody.Velocity = Vector3.Zero;
-        weaponReference = weapon.Instantiate();
-        Context.modelRoot.rightHand.AddChild(weaponReference);
     }
 
     protected override void OnExit()
     {
-        Context.modelRoot.rightHand.RemoveChild(weaponReference);
-        weaponReference.QueueFree();
+        Context.modelRoot.rightHand.RemoveChild(WeaponReference);
     }
 }

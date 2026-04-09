@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://cxerp4umfkijk"]
-
-[ext_resource type="PackedScene" uid="uid://bxtvbkbsy45lr" path="res://sword_of_artorias.glb" id="1_bll1j"]
-
-[node name="Sketchfab_Scene" unique_id=213238358 instance=ExtResource("1_bll1j")]
-
-[node name="Sketchfab_model" parent="." index="0" unique_id=341109358]
-transform = Transform3D(-0.027089108, 8.017337e-09, -0.053536728, 0.05353673, 1.8626451e-09, -0.027089112, 9.313226e-10, -0.060000017, -7.916242e-09, 0.43537256, -0.0037525073, 0.034793407)

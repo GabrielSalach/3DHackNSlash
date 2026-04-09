@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cxerp4umfkijk"]
+
+[ext_resource type="PackedScene" uid="uid://bxtvbkbsy45lr" path="res://sword_of_artorias.glb" id="1_bll1j"]
+[ext_resource type="Script" uid="uid://rqwcq5vhlr0e" path="res://Combat/Weapon.cs" id="2_tkcql"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tkcql"]
+size = Vector3(1.0902491, 0.1631012, 0.1303711)
+
+[node name="Sword" unique_id=213238358 node_paths=PackedStringArray("hurtBox") instance=ExtResource("1_bll1j")]
+script = ExtResource("2_tkcql")
+hurtBox = NodePath("Area3D")
+
+[node name="Sketchfab_model" parent="." index="0" unique_id=341109358]
+transform = Transform3D(-0.027089108, 8.017337e-09, -0.053536728, 0.05353673, 1.8626451e-09, -0.027089112, 9.313226e-10, -0.060000017, -7.916242e-09, 0.43537256, -0.0037525073, 0.034793407)
+
+[node name="Area3D" type="Area3D" parent="." index="1" unique_id=1616622103]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=902269939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78097874, -0.0037002563, 0.0007324219)
+shape = SubResource("BoxShape3D_tkcql")

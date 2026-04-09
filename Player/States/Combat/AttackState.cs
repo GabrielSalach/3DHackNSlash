@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 public enum AnimationPhase
@@ -12,17 +13,11 @@ public partial class AttackState : State
     [Export] private State hit;
     [Export] private State recovery;
     [Export] private Ability ability;
-    [Export] private CombatEntity target;
 
+    private Weapon weapon;
+    private readonly List<CombatEntity> hitEntities = new List<CombatEntity>();
+    
     protected override State GetInitialState() => hit;
-
-    protected override void OnEnter()
-    {
-        if (ability != null && target != null)
-        {
-            ability.Execute(Context.combatEntity, target);
-        }
-    }
 
     protected override void SetupTransitions()
     {
@@ -32,4 +27,49 @@ public partial class AttackState : State
     public AnimationPhase CurrentPhase => activeState == hit ? AnimationPhase.HIT : AnimationPhase.RECOVERY;
 
     public override bool IsCompleted() => recovery.IsCompleted();
+
+    
+    private void OnHit(CombatEntity hitEntity)
+    {
+        if (ability != null && hitEntity != null)
+        {
+            if (!hitEntities.Contains(hitEntity))
+            {
+                GD.Print($"Hit {hitEntity.Name}");
+                ability.Execute(Context.combatEntity, hitEntity);
+                hitEntities.Add(hitEntity);
+            }
+        }
+    }
+
+    protected override void OnEnter()
+    {
+        hitEntities.Clear();
+        if (weapon == null)
+        {
+            weapon = ((CombatState)parent).WeaponReference;
+        }
+
+        if (weapon != null)
+        {
+            weapon.OnEntityHit += OnHit;
+            weapon.ActivateHurtBox();
+        }
+    }
+
+    protected override void OnUpdate(float delta)
+    {
+        if (CurrentPhase == AnimationPhase.RECOVERY)
+        {
+            weapon.DeactivateHurtBox();
+        }
+    }
+
+    protected override void OnExit()
+    {
+        if (weapon != null)
+        {
+            weapon.OnEntityHit -= OnHit;
+        }
+    }
 }
