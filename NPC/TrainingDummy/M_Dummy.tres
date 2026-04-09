@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c0xhptege731q"]
+
+[ext_resource type="Texture2D" uid="uid://v7n8rxydmmay" path="res://NPC/TrainingDummy/textures/Dummy_Dummy_BaseColor.png" id="1_k43qg"]
+[ext_resource type="Texture2D" uid="uid://biygc5pmua86a" path="res://NPC/TrainingDummy/textures/Dummy_Dummy_Normal.png" id="2_4vw5h"]
+[ext_resource type="Texture2D" uid="uid://onw7sqy2l6p" path="res://NPC/TrainingDummy/textures/Dummy_Dummy_Roughness.png" id="3_8cc2n"]
+
+[resource]
+resource_name = "M_Dummy"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_k43qg")
+roughness_texture = ExtResource("3_8cc2n")
+emission_enabled = true
+emission_energy_multiplier = 0.0
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("2_4vw5h")

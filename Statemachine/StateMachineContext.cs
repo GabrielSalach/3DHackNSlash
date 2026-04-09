@@ -7,5 +7,5 @@ public class StateMachineContext()
     public AnimationPlayer animationPlayer;
     public SpringArm3D springArm;
     public PlayerModel modelRoot;
-    
+    public CombatEntity combatEntity;
 }

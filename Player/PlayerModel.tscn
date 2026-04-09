@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://wtn3muehpyi8"]
 
 [ext_resource type="PackedScene" uid="uid://cnbiod1l0ltvy" path="res://Player/Animations/UAL1_Standard.glb" id="1_j4ai3"]
-[ext_resource type="Script" uid="uid://coe866d6n6v0o" path="res://Player/PlayerModelUtils.cs" id="2_neewq"]
+[ext_resource type="Script" uid="uid://coe866d6n6v0o" path="res://Player/PlayerModel.cs" id="2_neewq"]
 
 [node name="UAL1_Standard" unique_id=1564736375 node_paths=PackedStringArray("rightHand") instance=ExtResource("1_j4ai3")]
 script = ExtResource("2_neewq")
 rightHand = NodePath("Armature/GeneralSkeleton/BoneAttachment3D")
 
-[node name="GeneralSkeleton" parent="Armature" parent_id_path=PackedInt32Array(892024646) index="0" unique_id=643418385]
+[node name="GeneralSkeleton" parent="Armature" parent_id_path=PackedInt32Array(1962793049) index="0" unique_id=725402916]
 bones/1/position = Vector3(0, 0.9167, -0.050100043)
 bones/1/rotation = Quaternion(2.682209e-07, 0, 0, 1)
 bones/3/rotation = Quaternion(-8.568167e-08, 0, 0, 1)

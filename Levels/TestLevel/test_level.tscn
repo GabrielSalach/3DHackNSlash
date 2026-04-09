@@ -5,12 +5,13 @@
 [ext_resource type="Script" uid="uid://spjaywyr125y" path="res://Player/States/PlayerState.cs" id="4_okgj3"]
 [ext_resource type="Script" uid="uid://cbjip600o0gec" path="res://Player/States/Locomotion/GroundedState.cs" id="4_x0v55"]
 [ext_resource type="Script" uid="uid://b2e8f0yptl635" path="res://Player/States/Locomotion/MovementState.cs" id="5_x0v55"]
-[ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://Core/DebugControl.cs" id="7_go2h7"]
+[ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://_Core/DebugControl.cs" id="7_go2h7"]
 [ext_resource type="Script" uid="uid://brlkgplaav8jn" path="res://Player/States/Locomotion/AirborneState.cs" id="8_0ku8u"]
 [ext_resource type="Script" uid="uid://x4pr6bw6nhqt" path="res://Player/States/Combat/CombatState.cs" id="8_aer1k"]
 [ext_resource type="PackedScene" uid="uid://cxerp4umfkijk" path="res://Player/ArtoriasSword.tscn" id="9_67us6"]
 [ext_resource type="Script" uid="uid://5cqrqfqeqffd" path="res://Player/States/Combat/AttackState.cs" id="9_x1cb1"]
 [ext_resource type="Script" uid="uid://kewaupp57wpr" path="res://Player/States/Combat/DashState.cs" id="11_67us6"]
+[ext_resource type="Resource" uid="uid://bq31qyug880vl" path="res://Player/Combat/DebugAbility.tres" id="11_q5c37"]
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="11_xdcba"]
 [ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="12_nmviu"]
 [ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="12_x1cb1"]
@@ -100,6 +101,10 @@
 [ext_resource type="Animation" uid="uid://br6c1ol3qg7xk" path="res://Player/Animations/UniversalAnimationPack/Zombie_Scratch.res" id="96_jfit0"]
 [ext_resource type="PackedScene" uid="uid://wtn3muehpyi8" path="res://Player/PlayerModel.tscn" id="97_aer1k"]
 [ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="97_mr0pe"]
+[ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_63xd4"]
+[ext_resource type="Material" uid="uid://c0xhptege731q" path="res://NPC/TrainingDummy/M_Dummy.tres" id="102_5frrj"]
+[ext_resource type="ArrayMesh" uid="uid://cskallo0n36hp" path="res://NPC/TrainingDummy/Mesh_003.res" id="103_4yoyx"]
+[ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/Health.cs" id="105_ndew3"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lwd48"]
 _data = {
@@ -221,13 +226,14 @@ material = ExtResource("1_gojnm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
 collision_layer = 2
 
-[node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody", "animationPlayer", "springArm", "modelRoot")]
+[node name="PlayerStateDriver" type="Node" parent="PlayerCharacter" unique_id=652781254 node_paths=PackedStringArray("rootState", "characterBody", "animationPlayer", "springArm", "modelRoot", "combatEntity")]
 script = ExtResource("2_0cvxl")
 rootState = NodePath("PlayerState")
 characterBody = NodePath("..")
 animationPlayer = NodePath("../AnimationPlayer")
 springArm = NodePath("../SpringArm3D")
 modelRoot = NodePath("../PlayerModel")
+combatEntity = NodePath("../CombatEntity")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
 [node name="PlayerState" type="Node" parent="PlayerCharacter/PlayerStateDriver" unique_id=1154849357 node_paths=PackedStringArray("groundedState", "airborneState", "combatState")]
@@ -285,10 +291,12 @@ metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
 script = ExtResource("13_63xd4")
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
-[node name="LightAttackAState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=236741559 node_paths=PackedStringArray("hit", "recovery")]
+[node name="LightAttackAState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState" unique_id=236741559 node_paths=PackedStringArray("hit", "recovery", "target")]
 script = ExtResource("9_x1cb1")
 hit = NodePath("HitState")
 recovery = NodePath("RecoveryState")
+ability = ExtResource("11_q5c37")
+target = NodePath("../../../../../TrainingDummy/TrainingDummy")
 metadata/_custom_type_script = "uid://5cqrqfqeqffd"
 
 [node name="HitState" type="Node" parent="PlayerCharacter/PlayerStateDriver/PlayerState/CombatState/LightAttackAState" unique_id=1369552862]
@@ -359,9 +367,30 @@ spring_length = 3.0
 [node name="Camera3D" type="Camera3D" parent="PlayerCharacter/SpringArm3D" unique_id=1896581073]
 environment = SubResource("Environment_pcqpa")
 
+[node name="CombatEntity" type="Node" parent="PlayerCharacter" unique_id=1803396664]
+script = ExtResource("100_63xd4")
+metadata/_custom_type_script = "uid://basrpbnesb5wq"
+
+[node name="Health" type="Node" parent="PlayerCharacter/CombatEntity" unique_id=573520717]
+
 [node name="DebugControl" type="BoxContainer" parent="." unique_id=1147038709]
 offset_right = 40.0
 offset_bottom = 40.0
 vertical = true
 script = ExtResource("7_go2h7")
 metadata/_custom_type_script = "uid://bn10yp5bfrywl"
+
+[node name="TrainingDummy" type="MeshInstance3D" parent="." unique_id=1627023891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4645872, -7.592221)
+material_override = ExtResource("102_5frrj")
+mesh = ExtResource("103_4yoyx")
+
+[node name="TrainingDummy" type="Node" parent="TrainingDummy" unique_id=1110486422]
+script = ExtResource("100_63xd4")
+metadata/_custom_type_script = "uid://basrpbnesb5wq"
+
+[node name="Health" type="Node" parent="TrainingDummy/TrainingDummy" unique_id=1745461664]
+script = ExtResource("105_ndew3")
+MaxValue = 100.0
+CurrentValue = 0.0
+metadata/_custom_type_script = "uid://bkywrixskk54e"

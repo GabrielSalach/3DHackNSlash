@@ -14,6 +14,7 @@ public partial class PlayerStateDriver : Node
 	[Export] private AnimationPlayer animationPlayer;
 	[Export] private SpringArm3D springArm;
 	[Export] private PlayerModel modelRoot;
+	[Export] private CombatEntity combatEntity;
 	
 	public override void _Ready()
 	{
@@ -22,7 +23,8 @@ public partial class PlayerStateDriver : Node
 			animationPlayer = animationPlayer,
 			characterBody = characterBody,
 			springArm = springArm,
-			modelRoot = modelRoot
+			modelRoot = modelRoot,
+			combatEntity = combatEntity
 		};
 		stateMachine = new StateMachine(rootState, context);
 		rootState.Machine = stateMachine;

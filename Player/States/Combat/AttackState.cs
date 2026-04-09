@@ -11,8 +11,18 @@ public partial class AttackState : State
 {
     [Export] private State hit;
     [Export] private State recovery;
+    [Export] private Ability ability;
+    [Export] private CombatEntity target;
 
     protected override State GetInitialState() => hit;
+
+    protected override void OnEnter()
+    {
+        if (ability != null && target != null)
+        {
+            ability.Execute(Context.combatEntity, target);
+        }
+    }
 
     protected override void SetupTransitions()
     {

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Ability" format=3 uid="uid://bq31qyug880vl"]
+
+[ext_resource type="Script" uid="uid://1fdat73iaamj" path="res://Combat/Abilities/Ability.cs" id="1_ehgou"]
+[ext_resource type="Script" uid="uid://df3dycrpcyxli" path="res://Combat/Abilities/DamageEffect.cs" id="1_tg1ia"]
+
+[sub_resource type="Resource" id="Resource_f1vwj"]
+script = ExtResource("1_tg1ia")
+amount = 10.0
+metadata/_custom_type_script = "uid://df3dycrpcyxli"
+
+[resource]
+script = ExtResource("1_ehgou")
+Effects = Array[Object]([SubResource("Resource_f1vwj")])
+metadata/_custom_type_script = "uid://1fdat73iaamj"
