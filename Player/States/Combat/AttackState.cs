@@ -53,7 +53,11 @@ public partial class AttackState : State
         if (weapon != null)
         {
             weapon.OnEntityHit += OnHit;
-            weapon.ActivateHurtBox();
+            SceneTreeTimer anticipationTimer = GetTree().CreateTimer(0.2);
+            anticipationTimer.Timeout += () =>
+            {
+                weapon.ActivateHurtBox();
+            };
         }
     }
 

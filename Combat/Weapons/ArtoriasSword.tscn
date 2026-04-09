@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxerp4umfkijk"]
 
 [ext_resource type="PackedScene" uid="uid://bxtvbkbsy45lr" path="res://sword_of_artorias.glb" id="1_bll1j"]
-[ext_resource type="Script" uid="uid://rqwcq5vhlr0e" path="res://Combat/Weapon.cs" id="2_tkcql"]
+[ext_resource type="Script" uid="uid://rqwcq5vhlr0e" path="res://Combat/Weapons/Weapon.cs" id="2_tkcql"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkcql"]
 size = Vector3(1.0902491, 0.1631012, 0.1303711)

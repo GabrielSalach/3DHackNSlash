@@ -22,7 +22,8 @@ public partial class Weapon : Node3D
 	
 	public void ActivateHurtBox()
 	{
-		AddChild(hurtBox);
+		if(!hurtBox.IsInsideTree())
+			AddChild(hurtBox);
 	}
 
 	public void DeactivateHurtBox()

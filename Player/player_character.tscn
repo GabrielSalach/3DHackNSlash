@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://x4pr6bw6nhqt" path="res://Player/States/Combat/CombatState.cs" id="7_8025q"]
 [ext_resource type="PackedScene" uid="uid://cxerp4umfkijk" path="res://Combat/Weapons/ArtoriasSword.tscn" id="8_rki08"]
 [ext_resource type="Script" uid="uid://5cqrqfqeqffd" path="res://Player/States/Combat/AttackState.cs" id="9_4uoe5"]
-[ext_resource type="Resource" uid="uid://bq31qyug880vl" path="res://Player/Combat/DebugAbility.tres" id="10_guxiv"]
+[ext_resource type="Resource" uid="uid://c6vli5iv1lnnl" path="res://Player/Combat/lightAttack.tres" id="10_4qhxw"]
 [ext_resource type="Script" uid="uid://kewaupp57wpr" path="res://Player/States/Combat/DashState.cs" id="11_rxoxl"]
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="12_vh7uj"]
 [ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="13_ghw05"]
@@ -276,7 +276,7 @@ metadata/_custom_type_script = "uid://bsqijymya7p46"
 script = ExtResource("9_4uoe5")
 hit = NodePath("HitState")
 recovery = NodePath("RecoveryState")
-ability = ExtResource("10_guxiv")
+ability = ExtResource("10_4qhxw")
 metadata/_custom_type_script = "uid://5cqrqfqeqffd"
 
 [node name="HitState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/LightAttackAState" unique_id=2075353918]
@@ -293,6 +293,7 @@ metadata/_custom_type_script = "uid://bsqijymya7p46"
 script = ExtResource("9_4uoe5")
 hit = NodePath("HitState")
 recovery = NodePath("RecoveryState")
+ability = ExtResource("10_4qhxw")
 metadata/_custom_type_script = "uid://5cqrqfqeqffd"
 
 [node name="HitState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/LightAttackBState" unique_id=1713814903]
