@@ -4,13 +4,16 @@ using Godot;
 [GlobalClass]
 public partial class PlayerState : State
 {
+    [Export] SpringArm3D springArm;
+    [Export] public float MouseSensitivity = 0.003f;
+    [Export] public float MinPitch = -40.0f;
+    [Export] public float MaxPitch = 60.0f;
+    
+    [ExportCategory("Child States")]
     [Export] private GroundedState groundedState;
     [Export] private AirborneState airborneState;
     [Export] private CombatState combatState;
     
-    [Export] public float MouseSensitivity = 0.003f;
-    [Export] public float MinPitch = -40.0f;
-    [Export] public float MaxPitch = 60.0f;
 
     private float _yaw ;
     private float _pitch;
@@ -39,7 +42,7 @@ public partial class PlayerState : State
 
     protected override void OnUpdate(float delta)
     {
-        Context.springArm.Rotation = new Vector3(_pitch, _yaw, 0);
+        springArm.Rotation = new Vector3(_pitch, _yaw, 0);
     }
 
     public override void _Input(InputEvent @event)

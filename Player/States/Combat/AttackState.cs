@@ -10,6 +10,7 @@ public enum AnimationPhase
 [GlobalClass]
 public partial class AttackState : State
 {
+    [ExportCategory("Child States")]
     [Export] private State hit;
     [Export] private State recovery;
     [Export] private Ability ability;

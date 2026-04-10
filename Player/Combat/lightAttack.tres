@@ -6,7 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_hwmue"]
 script = ExtResource("1_enh5r")
-amount = 10.0
 metadata/_custom_type_script = "uid://df3dycrpcyxli"
 
 [sub_resource type="Resource" id="Resource_yr16h"]

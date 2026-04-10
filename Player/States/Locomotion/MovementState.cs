@@ -18,10 +18,9 @@ public partial class MovementState : State
         Vector3 input = InputHelpers.GetMovementInputAsVector3();
         if (input != Vector3.Zero)
         {
-            Vector3 direction = (Context.springArm.Transform.Basis * InputHelpers.GetMovementInputAsVector3()).Normalized();
             Vector3 velocity = Context.characterBody.Velocity;
-            velocity.X = direction.X * Speed;
-            velocity.Z = direction.Z * Speed;
+            velocity.X = Context.MovementDirection.X * Speed;
+            velocity.Z = Context.MovementDirection.Z * Speed;
             Context.characterBody.Velocity = velocity;
         }
         

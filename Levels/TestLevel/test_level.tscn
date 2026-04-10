@@ -52,6 +52,6 @@ metadata/_custom_type_script = "uid://basrpbnesb5wq"
 
 [node name="Health" type="Node" parent="TrainingDummy/TrainingDummyEntity" unique_id=1745461664]
 script = ExtResource("105_ndew3")
-MaxValue = 100.0
-CurrentValue = 0.0
+MaxValue = 100
+CurrentValue = 0
 metadata/_custom_type_script = "uid://bkywrixskk54e"

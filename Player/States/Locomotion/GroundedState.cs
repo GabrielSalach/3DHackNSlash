@@ -3,11 +3,12 @@ using Godot;
 [GlobalClass]
 public partial class GroundedState : State
 {
-    [Export] private State idleState;
-    [Export] private MovementState groundMovement;
-    
     [Export] private float jumpForce;
     [Export] private float friction = 5.0f;
+    
+    [ExportCategory("Child States")]
+    [Export] private State idleState;
+    [Export] private MovementState groundMovement;
     
     protected override State GetInitialState() => idleState;
     protected override void SetupTransitions()

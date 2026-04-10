@@ -11,187 +11,96 @@
 [ext_resource type="Script" uid="uid://5cqrqfqeqffd" path="res://Player/States/Combat/AttackState.cs" id="9_4uoe5"]
 [ext_resource type="Resource" uid="uid://c6vli5iv1lnnl" path="res://Player/Combat/lightAttack.tres" id="10_4qhxw"]
 [ext_resource type="Script" uid="uid://kewaupp57wpr" path="res://Player/States/Combat/DashState.cs" id="11_rxoxl"]
-[ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="12_vh7uj"]
-[ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="13_ghw05"]
-[ext_resource type="Animation" uid="uid://2nncrageml7x" path="res://Player/Animations/UniversalAnimationPack/ClimbUp_1m_RM.res" id="14_y4hlj"]
-[ext_resource type="Animation" uid="uid://bnrp0gjqaljln" path="res://Player/Animations/UniversalAnimationPack/Consume.res" id="15_3h8ua"]
-[ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="16_7j7so"]
-[ext_resource type="Animation" uid="uid://b3edoo7i4w2ca" path="res://Player/Animations/UniversalAnimationPack/Crouch_Idle.res" id="17_gy6c6"]
-[ext_resource type="Animation" uid="uid://cohr5iir8c6v2" path="res://Player/Animations/UniversalAnimationPack/Dance.res" id="18_elero"]
-[ext_resource type="Animation" uid="uid://bi7gj4tr2ovjj" path="res://Player/Animations/UniversalAnimationPack/Death01.res" id="19_ikyiy"]
-[ext_resource type="Animation" uid="uid://dxd3v4htlwvca" path="res://Player/Animations/UniversalAnimationPack/Driving.res" id="20_d4af4"]
-[ext_resource type="Animation" uid="uid://colim6p4j3k02" path="res://Player/Animations/UniversalAnimationPack/Farm_Harvest.res" id="21_af4se"]
-[ext_resource type="Animation" uid="uid://06x0p5uajijy" path="res://Player/Animations/UniversalAnimationPack/Farm_PlantSeed.res" id="22_qqj3u"]
-[ext_resource type="Animation" uid="uid://31fixrpwy15e" path="res://Player/Animations/UniversalAnimationPack/Farm_Watering.res" id="23_fthn2"]
-[ext_resource type="Animation" uid="uid://ce840nduq7qju" path="res://Player/Animations/UniversalAnimationPack/Fixing_Kneeling.res" id="24_lkbr6"]
-[ext_resource type="Animation" uid="uid://cjfxs3wwygo4t" path="res://Player/Animations/UniversalAnimationPack/Hit_Chest.res" id="25_1tjmi"]
-[ext_resource type="Animation" uid="uid://cdtxdoyn00cbq" path="res://Player/Animations/UniversalAnimationPack/Hit_Head.res" id="26_ro4v2"]
-[ext_resource type="Animation" uid="uid://cda4fxowhsd74" path="res://Player/Animations/UniversalAnimationPack/Hit_Knockback.res" id="27_jq4o2"]
-[ext_resource type="Animation" uid="uid://bsjbscaisnsxs" path="res://Player/Animations/UniversalAnimationPack/Hit_Knockback_RM.res" id="28_ivdhu"]
-[ext_resource type="Animation" uid="uid://cwvtp0nrj2gss" path="res://Player/Animations/UniversalAnimationPack/Idle.res" id="29_lb2q4"]
-[ext_resource type="Animation" uid="uid://cnle5pdn6tn0b" path="res://Player/Animations/UniversalAnimationPack/Idle_FoldArms.res" id="30_2lj4l"]
-[ext_resource type="Animation" uid="uid://b5taaavhomgb7" path="res://Player/Animations/UniversalAnimationPack/Idle_Lantern.res" id="31_ddoq0"]
-[ext_resource type="Animation" uid="uid://bg8sisg37fhv" path="res://Player/Animations/UniversalAnimationPack/Idle_No.res" id="32_php0n"]
-[ext_resource type="Animation" uid="uid://cvmycihwt6bru" path="res://Player/Animations/UniversalAnimationPack/Idle_Rail.res" id="33_brult"]
-[ext_resource type="Animation" uid="uid://c0568hri214w2" path="res://Player/Animations/UniversalAnimationPack/Idle_Rail_Call.res" id="34_ekxhf"]
-[ext_resource type="Animation" uid="uid://2rx8nbn6wo6e" path="res://Player/Animations/UniversalAnimationPack/Idle_Shield.res" id="35_lrdar"]
-[ext_resource type="Animation" uid="uid://bm6qpaqfil02o" path="res://Player/Animations/UniversalAnimationPack/Idle_Shield_Break.res" id="36_voj5f"]
-[ext_resource type="Animation" uid="uid://dis1cvo0h3ca7" path="res://Player/Animations/UniversalAnimationPack/Idle_Talking.res" id="37_e2gfp"]
-[ext_resource type="Animation" uid="uid://bb2mggyjdopqv" path="res://Player/Animations/UniversalAnimationPack/Idle_TalkingPhone.res" id="38_isqr0"]
-[ext_resource type="Animation" uid="uid://b3msienwnn224" path="res://Player/Animations/UniversalAnimationPack/Idle_Torch.res" id="39_fom3k"]
-[ext_resource type="Animation" uid="uid://cw13inhnulubl" path="res://Player/Animations/UniversalAnimationPack/Interact.res" id="40_6dp3a"]
-[ext_resource type="Animation" uid="uid://dhsggircfyqyb" path="res://Player/Animations/UniversalAnimationPack/Jog_Fwd.res" id="41_l1nn0"]
-[ext_resource type="Animation" uid="uid://xorm22nfp7kn" path="res://Player/Animations/UniversalAnimationPack/Jump.res" id="42_5cual"]
-[ext_resource type="Animation" uid="uid://dy6xenrsixpiu" path="res://Player/Animations/UniversalAnimationPack/Jump_Land.res" id="43_r2xdh"]
-[ext_resource type="Animation" uid="uid://bali1xem5yxvv" path="res://Player/Animations/UniversalAnimationPack/Jump_Start.res" id="44_fgm6n"]
-[ext_resource type="Animation" uid="uid://bcw8erh8kjrkl" path="res://Player/Animations/UniversalAnimationPack/LayToIdle.res" id="45_b5l3g"]
-[ext_resource type="Animation" uid="uid://bxyr5wooeor52" path="res://Player/Animations/UniversalAnimationPack/Melee_Hook.res" id="46_ucr5t"]
-[ext_resource type="Animation" uid="uid://dsbgg136r34so" path="res://Player/Animations/UniversalAnimationPack/Melee_Hook_Rec.res" id="47_qy8bl"]
-[ext_resource type="Animation" uid="uid://wx22ktd7yb5d" path="res://Player/Animations/UniversalAnimationPack/NinjaJump_Idle.res" id="48_c2s1k"]
-[ext_resource type="Animation" uid="uid://c0kkexgrvg5mx" path="res://Player/Animations/UniversalAnimationPack/NinjaJump_Land.res" id="49_r1nuv"]
-[ext_resource type="Animation" uid="uid://dkenqhhnmr5du" path="res://Player/Animations/UniversalAnimationPack/NinjaJump_Start.res" id="50_u5e4n"]
-[ext_resource type="Animation" uid="uid://cgbm0108mulca" path="res://Player/Animations/UniversalAnimationPack/OverhandThrow.res" id="51_eud77"]
-[ext_resource type="Animation" uid="uid://ccigeb4d4m57p" path="res://Player/Animations/UniversalAnimationPack/PickUp_Table.res" id="52_q2jlc"]
-[ext_resource type="Animation" uid="uid://48c43dxdciss" path="res://Player/Animations/UniversalAnimationPack/Pistol_Aim_Down.res" id="53_7um0y"]
-[ext_resource type="Animation" uid="uid://dqjcdarjuux60" path="res://Player/Animations/UniversalAnimationPack/Pistol_Aim_Neutral.res" id="54_a7omh"]
-[ext_resource type="Animation" uid="uid://bl81sld026aw" path="res://Player/Animations/UniversalAnimationPack/Pistol_Aim_Up.res" id="55_sesxo"]
-[ext_resource type="Animation" uid="uid://b3jgwdwmosv4k" path="res://Player/Animations/UniversalAnimationPack/Pistol_Idle.res" id="56_773h1"]
-[ext_resource type="Animation" uid="uid://b4ut7taa0ku5g" path="res://Player/Animations/UniversalAnimationPack/Pistol_Reload.res" id="57_rftmv"]
-[ext_resource type="Animation" uid="uid://dibt55mu3uvai" path="res://Player/Animations/UniversalAnimationPack/Pistol_Shoot.res" id="58_fogfd"]
-[ext_resource type="Animation" uid="uid://csgvt3jhpsbv" path="res://Player/Animations/UniversalAnimationPack/Punch_Cross.res" id="59_ai82b"]
-[ext_resource type="Animation" uid="uid://bqw3d88qw3lan" path="res://Player/Animations/UniversalAnimationPack/Punch_Jab.res" id="60_hq15x"]
-[ext_resource type="Animation" uid="uid://bqo5illhndrfc" path="res://Player/Animations/UniversalAnimationPack/Push.res" id="61_uux8r"]
-[ext_resource type="Animation" uid="uid://dncsgtb5wgsct" path="res://Player/Animations/UniversalAnimationPack/Roll.res" id="62_0ag50"]
-[ext_resource type="Animation" uid="uid://cy0obvs0esdub" path="res://Player/Animations/UniversalAnimationPack/Roll_RM.res" id="63_f38c1"]
-[ext_resource type="Animation" uid="uid://kga5h7kkh78v" path="res://Player/Animations/UniversalAnimationPack/Shield_Dash_RM.res" id="64_h6riy"]
-[ext_resource type="Animation" uid="uid://b3l7wsuf3mssk" path="res://Player/Animations/UniversalAnimationPack/Shield_OneShot.res" id="65_wo6jq"]
-[ext_resource type="Animation" uid="uid://cinie3cffog3e" path="res://Player/Animations/UniversalAnimationPack/Sitting_Enter.res" id="66_hikao"]
-[ext_resource type="Animation" uid="uid://cn8cen7f61emv" path="res://Player/Animations/UniversalAnimationPack/Sitting_Exit.res" id="67_0ae76"]
-[ext_resource type="Animation" uid="uid://mll53vssvgg1" path="res://Player/Animations/UniversalAnimationPack/Sitting_Idle.res" id="68_fp26w"]
-[ext_resource type="Animation" uid="uid://6aw42lbanp5d" path="res://Player/Animations/UniversalAnimationPack/Sitting_Talking.res" id="69_42blh"]
-[ext_resource type="Animation" uid="uid://v6u0877aykrg" path="res://Player/Animations/UniversalAnimationPack/Slide.res" id="70_pvx6l"]
-[ext_resource type="Animation" uid="uid://c37qcq3rpxdxv" path="res://Player/Animations/UniversalAnimationPack/Slide_Exit.res" id="71_wodg0"]
-[ext_resource type="Animation" uid="uid://brfywhholdi4g" path="res://Player/Animations/UniversalAnimationPack/Slide_Start.res" id="72_0gav0"]
-[ext_resource type="Animation" uid="uid://c2n0vi6v61xm5" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Enter.res" id="73_dqert"]
-[ext_resource type="Animation" uid="uid://ix016ajubq1g" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Exit.res" id="74_vcfxs"]
-[ext_resource type="Animation" uid="uid://kd866prqp6s8" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Idle.res" id="75_gudi0"]
-[ext_resource type="Animation" uid="uid://bqenf04p5tibw" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Shoot.res" id="76_7pf1g"]
-[ext_resource type="Animation" uid="uid://cf2ip0qdyywon" path="res://Player/Animations/UniversalAnimationPack/Sprint.res" id="77_fa4cs"]
-[ext_resource type="Animation" uid="uid://bbrejryumjdsy" path="res://Player/Animations/UniversalAnimationPack/Swim_Fwd.res" id="78_uvr5p"]
-[ext_resource type="Animation" uid="uid://cl1qjf7hbj3ed" path="res://Player/Animations/UniversalAnimationPack/Swim_Idle.res" id="79_jhb3y"]
-[ext_resource type="Animation" uid="uid://cqjihsc0q81ab" path="res://Player/Animations/UniversalAnimationPack/Sword_Attack.res" id="80_1yh70"]
-[ext_resource type="Animation" uid="uid://mlapkolnlqf0" path="res://Player/Animations/UniversalAnimationPack/Sword_Attack_RM.res" id="81_6ib22"]
-[ext_resource type="Animation" uid="uid://5woktyl730jo" path="res://Player/Animations/UniversalAnimationPack/Sword_Block.res" id="82_uos4j"]
-[ext_resource type="Animation" uid="uid://b7wwe4jx5krtg" path="res://Player/Animations/UniversalAnimationPack/Sword_Dash_RM.res" id="83_6snrl"]
-[ext_resource type="Animation" uid="uid://y61tls7565o0" path="res://Player/Animations/UniversalAnimationPack/Sword_Idle.res" id="84_13cjm"]
-[ext_resource type="Animation" uid="uid://biw0ygjcux1f8" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_A.res" id="85_7vt31"]
-[ext_resource type="Animation" uid="uid://x2ensyol0ypc" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_A_Rec.res" id="86_11gf6"]
-[ext_resource type="Animation" uid="uid://cpcdev46fn2y0" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_B.res" id="87_vdyc1"]
-[ext_resource type="Animation" uid="uid://dbp7x7n745yxp" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_B_Rec.res" id="88_fu3w6"]
-[ext_resource type="Animation" uid="uid://db3qfr727srbg" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_C.res" id="89_5xmyt"]
-[ext_resource type="Animation" uid="uid://ryhv7vr8veu8" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_Combo.res" id="90_fc3xh"]
-[ext_resource type="Animation" uid="uid://6v5l6o3sf8mh" path="res://Player/Animations/UniversalAnimationPack/TreeChopping.res" id="91_14fyh"]
-[ext_resource type="Animation" uid="uid://dlor4a7um2efc" path="res://Player/Animations/UniversalAnimationPack/Walk.res" id="92_l7jdf"]
-[ext_resource type="Animation" uid="uid://dpxxl6g4ih71n" path="res://Player/Animations/UniversalAnimationPack/Walk_Carry.res" id="93_bq6br"]
-[ext_resource type="Animation" uid="uid://ckw25f83ukmii" path="res://Player/Animations/UniversalAnimationPack/Walk_Formal.res" id="94_08xn0"]
-[ext_resource type="Animation" uid="uid://cuasbji77jxi4" path="res://Player/Animations/UniversalAnimationPack/Yes.res" id="95_sxww0"]
-[ext_resource type="Animation" uid="uid://dsjy5ah7ulea7" path="res://Player/Animations/UniversalAnimationPack/Zombie_Idle.res" id="96_tyheu"]
-[ext_resource type="Animation" uid="uid://br6c1ol3qg7xk" path="res://Player/Animations/UniversalAnimationPack/Zombie_Scratch.res" id="97_vm14q"]
-[ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="98_fd282"]
+[ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="15_v56wm"]
+[ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="16_5jj8u"]
+[ext_resource type="Animation" uid="uid://2nncrageml7x" path="res://Player/Animations/UniversalAnimationPack/ClimbUp_1m_RM.res" id="17_fo6g4"]
+[ext_resource type="Animation" uid="uid://bnrp0gjqaljln" path="res://Player/Animations/UniversalAnimationPack/Consume.res" id="18_67yq1"]
+[ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="19_4pdpy"]
+[ext_resource type="Animation" uid="uid://b3edoo7i4w2ca" path="res://Player/Animations/UniversalAnimationPack/Crouch_Idle.res" id="20_8025q"]
+[ext_resource type="Animation" uid="uid://cohr5iir8c6v2" path="res://Player/Animations/UniversalAnimationPack/Dance.res" id="21_rki08"]
+[ext_resource type="Animation" uid="uid://bi7gj4tr2ovjj" path="res://Player/Animations/UniversalAnimationPack/Death01.res" id="22_4uoe5"]
+[ext_resource type="Animation" uid="uid://dxd3v4htlwvca" path="res://Player/Animations/UniversalAnimationPack/Driving.res" id="23_guxiv"]
+[ext_resource type="Animation" uid="uid://colim6p4j3k02" path="res://Player/Animations/UniversalAnimationPack/Farm_Harvest.res" id="24_rxoxl"]
+[ext_resource type="Animation" uid="uid://06x0p5uajijy" path="res://Player/Animations/UniversalAnimationPack/Farm_PlantSeed.res" id="25_vh7uj"]
+[ext_resource type="Animation" uid="uid://31fixrpwy15e" path="res://Player/Animations/UniversalAnimationPack/Farm_Watering.res" id="26_ghw05"]
+[ext_resource type="Animation" uid="uid://ce840nduq7qju" path="res://Player/Animations/UniversalAnimationPack/Fixing_Kneeling.res" id="27_y4hlj"]
+[ext_resource type="Animation" uid="uid://cjfxs3wwygo4t" path="res://Player/Animations/UniversalAnimationPack/Hit_Chest.res" id="28_3h8ua"]
+[ext_resource type="Animation" uid="uid://cdtxdoyn00cbq" path="res://Player/Animations/UniversalAnimationPack/Hit_Head.res" id="29_7j7so"]
+[ext_resource type="Animation" uid="uid://cda4fxowhsd74" path="res://Player/Animations/UniversalAnimationPack/Hit_Knockback.res" id="30_gy6c6"]
+[ext_resource type="Animation" uid="uid://bsjbscaisnsxs" path="res://Player/Animations/UniversalAnimationPack/Hit_Knockback_RM.res" id="31_elero"]
+[ext_resource type="Animation" uid="uid://cwvtp0nrj2gss" path="res://Player/Animations/UniversalAnimationPack/Idle.res" id="32_ikyiy"]
+[ext_resource type="Animation" uid="uid://cnle5pdn6tn0b" path="res://Player/Animations/UniversalAnimationPack/Idle_FoldArms.res" id="33_d4af4"]
+[ext_resource type="Animation" uid="uid://b5taaavhomgb7" path="res://Player/Animations/UniversalAnimationPack/Idle_Lantern.res" id="34_af4se"]
+[ext_resource type="Animation" uid="uid://bg8sisg37fhv" path="res://Player/Animations/UniversalAnimationPack/Idle_No.res" id="35_qqj3u"]
+[ext_resource type="Animation" uid="uid://cvmycihwt6bru" path="res://Player/Animations/UniversalAnimationPack/Idle_Rail.res" id="36_fthn2"]
+[ext_resource type="Animation" uid="uid://c0568hri214w2" path="res://Player/Animations/UniversalAnimationPack/Idle_Rail_Call.res" id="37_lkbr6"]
+[ext_resource type="Animation" uid="uid://2rx8nbn6wo6e" path="res://Player/Animations/UniversalAnimationPack/Idle_Shield.res" id="38_1tjmi"]
+[ext_resource type="Animation" uid="uid://bm6qpaqfil02o" path="res://Player/Animations/UniversalAnimationPack/Idle_Shield_Break.res" id="39_ro4v2"]
+[ext_resource type="Animation" uid="uid://dis1cvo0h3ca7" path="res://Player/Animations/UniversalAnimationPack/Idle_Talking.res" id="40_jq4o2"]
+[ext_resource type="Animation" uid="uid://bb2mggyjdopqv" path="res://Player/Animations/UniversalAnimationPack/Idle_TalkingPhone.res" id="41_ivdhu"]
+[ext_resource type="Animation" uid="uid://b3msienwnn224" path="res://Player/Animations/UniversalAnimationPack/Idle_Torch.res" id="42_lb2q4"]
+[ext_resource type="Animation" uid="uid://cw13inhnulubl" path="res://Player/Animations/UniversalAnimationPack/Interact.res" id="43_2lj4l"]
+[ext_resource type="Animation" uid="uid://dhsggircfyqyb" path="res://Player/Animations/UniversalAnimationPack/Jog_Fwd.res" id="44_ddoq0"]
+[ext_resource type="Animation" uid="uid://xorm22nfp7kn" path="res://Player/Animations/UniversalAnimationPack/Jump.res" id="45_php0n"]
+[ext_resource type="Animation" uid="uid://dy6xenrsixpiu" path="res://Player/Animations/UniversalAnimationPack/Jump_Land.res" id="46_brult"]
+[ext_resource type="Animation" uid="uid://bali1xem5yxvv" path="res://Player/Animations/UniversalAnimationPack/Jump_Start.res" id="47_ekxhf"]
+[ext_resource type="Animation" uid="uid://bcw8erh8kjrkl" path="res://Player/Animations/UniversalAnimationPack/LayToIdle.res" id="48_lrdar"]
+[ext_resource type="Animation" uid="uid://bxyr5wooeor52" path="res://Player/Animations/UniversalAnimationPack/Melee_Hook.res" id="49_voj5f"]
+[ext_resource type="Animation" uid="uid://dsbgg136r34so" path="res://Player/Animations/UniversalAnimationPack/Melee_Hook_Rec.res" id="50_e2gfp"]
+[ext_resource type="Animation" uid="uid://wx22ktd7yb5d" path="res://Player/Animations/UniversalAnimationPack/NinjaJump_Idle.res" id="51_isqr0"]
+[ext_resource type="Animation" uid="uid://c0kkexgrvg5mx" path="res://Player/Animations/UniversalAnimationPack/NinjaJump_Land.res" id="52_fom3k"]
+[ext_resource type="Animation" uid="uid://dkenqhhnmr5du" path="res://Player/Animations/UniversalAnimationPack/NinjaJump_Start.res" id="53_6dp3a"]
+[ext_resource type="Animation" uid="uid://cgbm0108mulca" path="res://Player/Animations/UniversalAnimationPack/OverhandThrow.res" id="54_l1nn0"]
+[ext_resource type="Animation" uid="uid://ccigeb4d4m57p" path="res://Player/Animations/UniversalAnimationPack/PickUp_Table.res" id="55_5cual"]
+[ext_resource type="Animation" uid="uid://48c43dxdciss" path="res://Player/Animations/UniversalAnimationPack/Pistol_Aim_Down.res" id="56_r2xdh"]
+[ext_resource type="Animation" uid="uid://dqjcdarjuux60" path="res://Player/Animations/UniversalAnimationPack/Pistol_Aim_Neutral.res" id="57_fgm6n"]
+[ext_resource type="Animation" uid="uid://bl81sld026aw" path="res://Player/Animations/UniversalAnimationPack/Pistol_Aim_Up.res" id="58_b5l3g"]
+[ext_resource type="Animation" uid="uid://b3jgwdwmosv4k" path="res://Player/Animations/UniversalAnimationPack/Pistol_Idle.res" id="59_ucr5t"]
+[ext_resource type="Animation" uid="uid://b4ut7taa0ku5g" path="res://Player/Animations/UniversalAnimationPack/Pistol_Reload.res" id="60_qy8bl"]
+[ext_resource type="Animation" uid="uid://dibt55mu3uvai" path="res://Player/Animations/UniversalAnimationPack/Pistol_Shoot.res" id="61_c2s1k"]
+[ext_resource type="Animation" uid="uid://csgvt3jhpsbv" path="res://Player/Animations/UniversalAnimationPack/Punch_Cross.res" id="62_r1nuv"]
+[ext_resource type="Animation" uid="uid://bqw3d88qw3lan" path="res://Player/Animations/UniversalAnimationPack/Punch_Jab.res" id="63_u5e4n"]
+[ext_resource type="Animation" uid="uid://bqo5illhndrfc" path="res://Player/Animations/UniversalAnimationPack/Push.res" id="64_eud77"]
+[ext_resource type="Animation" uid="uid://dncsgtb5wgsct" path="res://Player/Animations/UniversalAnimationPack/Roll.res" id="65_q2jlc"]
+[ext_resource type="Animation" uid="uid://cy0obvs0esdub" path="res://Player/Animations/UniversalAnimationPack/Roll_RM.res" id="66_7um0y"]
+[ext_resource type="Animation" uid="uid://kga5h7kkh78v" path="res://Player/Animations/UniversalAnimationPack/Shield_Dash_RM.res" id="67_a7omh"]
+[ext_resource type="Animation" uid="uid://b3l7wsuf3mssk" path="res://Player/Animations/UniversalAnimationPack/Shield_OneShot.res" id="68_sesxo"]
+[ext_resource type="Animation" uid="uid://cinie3cffog3e" path="res://Player/Animations/UniversalAnimationPack/Sitting_Enter.res" id="69_773h1"]
+[ext_resource type="Animation" uid="uid://cn8cen7f61emv" path="res://Player/Animations/UniversalAnimationPack/Sitting_Exit.res" id="70_rftmv"]
+[ext_resource type="Animation" uid="uid://mll53vssvgg1" path="res://Player/Animations/UniversalAnimationPack/Sitting_Idle.res" id="71_fogfd"]
+[ext_resource type="Animation" uid="uid://6aw42lbanp5d" path="res://Player/Animations/UniversalAnimationPack/Sitting_Talking.res" id="72_ai82b"]
+[ext_resource type="Animation" uid="uid://v6u0877aykrg" path="res://Player/Animations/UniversalAnimationPack/Slide.res" id="73_hq15x"]
+[ext_resource type="Animation" uid="uid://c37qcq3rpxdxv" path="res://Player/Animations/UniversalAnimationPack/Slide_Exit.res" id="74_uux8r"]
+[ext_resource type="Animation" uid="uid://brfywhholdi4g" path="res://Player/Animations/UniversalAnimationPack/Slide_Start.res" id="75_0ag50"]
+[ext_resource type="Animation" uid="uid://c2n0vi6v61xm5" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Enter.res" id="76_f38c1"]
+[ext_resource type="Animation" uid="uid://ix016ajubq1g" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Exit.res" id="77_h6riy"]
+[ext_resource type="Animation" uid="uid://kd866prqp6s8" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Idle.res" id="78_wo6jq"]
+[ext_resource type="Animation" uid="uid://bqenf04p5tibw" path="res://Player/Animations/UniversalAnimationPack/Spell_Simple_Shoot.res" id="79_hikao"]
+[ext_resource type="Animation" uid="uid://cf2ip0qdyywon" path="res://Player/Animations/UniversalAnimationPack/Sprint.res" id="80_0ae76"]
+[ext_resource type="Animation" uid="uid://bbrejryumjdsy" path="res://Player/Animations/UniversalAnimationPack/Swim_Fwd.res" id="81_fp26w"]
+[ext_resource type="Animation" uid="uid://cl1qjf7hbj3ed" path="res://Player/Animations/UniversalAnimationPack/Swim_Idle.res" id="82_42blh"]
+[ext_resource type="Animation" uid="uid://cqjihsc0q81ab" path="res://Player/Animations/UniversalAnimationPack/Sword_Attack.res" id="83_pvx6l"]
+[ext_resource type="Animation" uid="uid://mlapkolnlqf0" path="res://Player/Animations/UniversalAnimationPack/Sword_Attack_RM.res" id="84_wodg0"]
+[ext_resource type="Animation" uid="uid://5woktyl730jo" path="res://Player/Animations/UniversalAnimationPack/Sword_Block.res" id="85_0gav0"]
+[ext_resource type="Animation" uid="uid://b7wwe4jx5krtg" path="res://Player/Animations/UniversalAnimationPack/Sword_Dash_RM.res" id="86_dqert"]
+[ext_resource type="Animation" uid="uid://y61tls7565o0" path="res://Player/Animations/UniversalAnimationPack/Sword_Idle.res" id="87_vcfxs"]
+[ext_resource type="Animation" uid="uid://biw0ygjcux1f8" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_A.res" id="88_gudi0"]
+[ext_resource type="Animation" uid="uid://x2ensyol0ypc" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_A_Rec.res" id="89_7pf1g"]
+[ext_resource type="Animation" uid="uid://cpcdev46fn2y0" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_B.res" id="90_fa4cs"]
+[ext_resource type="Animation" uid="uid://dbp7x7n745yxp" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_B_Rec.res" id="91_uvr5p"]
+[ext_resource type="Animation" uid="uid://db3qfr727srbg" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_C.res" id="92_jhb3y"]
+[ext_resource type="Animation" uid="uid://ryhv7vr8veu8" path="res://Player/Animations/UniversalAnimationPack/Sword_Regular_Combo.res" id="93_1yh70"]
+[ext_resource type="Animation" uid="uid://6v5l6o3sf8mh" path="res://Player/Animations/UniversalAnimationPack/TreeChopping.res" id="94_6ib22"]
+[ext_resource type="Animation" uid="uid://dlor4a7um2efc" path="res://Player/Animations/UniversalAnimationPack/Walk.res" id="95_uos4j"]
+[ext_resource type="Animation" uid="uid://dpxxl6g4ih71n" path="res://Player/Animations/UniversalAnimationPack/Walk_Carry.res" id="96_6snrl"]
+[ext_resource type="Animation" uid="uid://ckw25f83ukmii" path="res://Player/Animations/UniversalAnimationPack/Walk_Formal.res" id="97_13cjm"]
+[ext_resource type="Animation" uid="uid://cuasbji77jxi4" path="res://Player/Animations/UniversalAnimationPack/Yes.res" id="98_7vt31"]
+[ext_resource type="Animation" uid="uid://dsjy5ah7ulea7" path="res://Player/Animations/UniversalAnimationPack/Zombie_Idle.res" id="99_11gf6"]
 [ext_resource type="PackedScene" uid="uid://wtn3muehpyi8" path="res://Player/PlayerModel.tscn" id="99_apri8"]
+[ext_resource type="Animation" uid="uid://br6c1ol3qg7xk" path="res://Player/Animations/UniversalAnimationPack/Zombie_Scratch.res" id="100_vdyc1"]
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_xkstp"]
+[ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="101_fu3w6"]
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="101_v56wm"]
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lwd48"]
-_data = {
-&"A_TPose": ExtResource("12_vh7uj"),
-&"Chest_Open": ExtResource("13_ghw05"),
-&"ClimbUp_1m_RM": ExtResource("14_y4hlj"),
-&"Consume": ExtResource("15_3h8ua"),
-&"Crouch_Fwd": ExtResource("16_7j7so"),
-&"Crouch_Idle": ExtResource("17_gy6c6"),
-&"Dance": ExtResource("18_elero"),
-&"Death01": ExtResource("19_ikyiy"),
-&"Driving": ExtResource("20_d4af4"),
-&"Farm_Harvest": ExtResource("21_af4se"),
-&"Farm_PlantSeed": ExtResource("22_qqj3u"),
-&"Farm_Watering": ExtResource("23_fthn2"),
-&"Fixing_Kneeling": ExtResource("24_lkbr6"),
-&"Hit_Chest": ExtResource("25_1tjmi"),
-&"Hit_Head": ExtResource("26_ro4v2"),
-&"Hit_Knockback": ExtResource("27_jq4o2"),
-&"Hit_Knockback_RM": ExtResource("28_ivdhu"),
-&"Idle": ExtResource("29_lb2q4"),
-&"Idle_FoldArms": ExtResource("30_2lj4l"),
-&"Idle_Lantern": ExtResource("31_ddoq0"),
-&"Idle_No": ExtResource("32_php0n"),
-&"Idle_Rail": ExtResource("33_brult"),
-&"Idle_Rail_Call": ExtResource("34_ekxhf"),
-&"Idle_Shield": ExtResource("35_lrdar"),
-&"Idle_Shield_Break": ExtResource("36_voj5f"),
-&"Idle_Talking": ExtResource("37_e2gfp"),
-&"Idle_TalkingPhone": ExtResource("38_isqr0"),
-&"Idle_Torch": ExtResource("39_fom3k"),
-&"Interact": ExtResource("40_6dp3a"),
-&"Jog_Fwd": ExtResource("41_l1nn0"),
-&"Jump": ExtResource("42_5cual"),
-&"Jump_Land": ExtResource("43_r2xdh"),
-&"Jump_Start": ExtResource("44_fgm6n"),
-&"LayToIdle": ExtResource("45_b5l3g"),
-&"Melee_Hook": ExtResource("46_ucr5t"),
-&"Melee_Hook_Rec": ExtResource("47_qy8bl"),
-&"NinjaJump_Idle": ExtResource("48_c2s1k"),
-&"NinjaJump_Land": ExtResource("49_r1nuv"),
-&"NinjaJump_Start": ExtResource("50_u5e4n"),
-&"OverhandThrow": ExtResource("51_eud77"),
-&"PickUp_Table": ExtResource("52_q2jlc"),
-&"Pistol_Aim_Down": ExtResource("53_7um0y"),
-&"Pistol_Aim_Neutral": ExtResource("54_a7omh"),
-&"Pistol_Aim_Up": ExtResource("55_sesxo"),
-&"Pistol_Idle": ExtResource("56_773h1"),
-&"Pistol_Reload": ExtResource("57_rftmv"),
-&"Pistol_Shoot": ExtResource("58_fogfd"),
-&"Punch_Cross": ExtResource("59_ai82b"),
-&"Punch_Jab": ExtResource("60_hq15x"),
-&"Push": ExtResource("61_uux8r"),
-&"Roll": ExtResource("62_0ag50"),
-&"Roll_RM": ExtResource("63_f38c1"),
-&"Shield_Dash_RM": ExtResource("64_h6riy"),
-&"Shield_OneShot": ExtResource("65_wo6jq"),
-&"Sitting_Enter": ExtResource("66_hikao"),
-&"Sitting_Exit": ExtResource("67_0ae76"),
-&"Sitting_Idle": ExtResource("68_fp26w"),
-&"Sitting_Talking": ExtResource("69_42blh"),
-&"Slide": ExtResource("70_pvx6l"),
-&"Slide_Exit": ExtResource("71_wodg0"),
-&"Slide_Start": ExtResource("72_0gav0"),
-&"Spell_Simple_Enter": ExtResource("73_dqert"),
-&"Spell_Simple_Exit": ExtResource("74_vcfxs"),
-&"Spell_Simple_Idle": ExtResource("75_gudi0"),
-&"Spell_Simple_Shoot": ExtResource("76_7pf1g"),
-&"Sprint": ExtResource("77_fa4cs"),
-&"Swim_Fwd": ExtResource("78_uvr5p"),
-&"Swim_Idle": ExtResource("79_jhb3y"),
-&"Sword_Attack": ExtResource("80_1yh70"),
-&"Sword_Attack_RM": ExtResource("81_6ib22"),
-&"Sword_Block": ExtResource("82_uos4j"),
-&"Sword_Dash_RM": ExtResource("83_6snrl"),
-&"Sword_Idle": ExtResource("84_13cjm"),
-&"Sword_Regular_A": ExtResource("85_7vt31"),
-&"Sword_Regular_A_Rec": ExtResource("86_11gf6"),
-&"Sword_Regular_B": ExtResource("87_vdyc1"),
-&"Sword_Regular_B_Rec": ExtResource("88_fu3w6"),
-&"Sword_Regular_C": ExtResource("89_5xmyt"),
-&"Sword_Regular_Combo": ExtResource("90_fc3xh"),
-&"TreeChopping": ExtResource("91_14fyh"),
-&"Walk": ExtResource("92_l7jdf"),
-&"Walk_Carry": ExtResource("93_bq6br"),
-&"Walk_Formal": ExtResource("94_08xn0"),
-&"Yes": ExtResource("95_sxww0"),
-&"Zombie_Idle": ExtResource("96_tyheu"),
-&"Zombie_Scratch": ExtResource("97_vm14q"),
-&"Zombie_Walk_Fwd": ExtResource("98_fd282")
-}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcxcq"]
 
@@ -204,150 +113,103 @@ sky_material = SubResource("ProceduralSkyMaterial_xqj8x")
 background_mode = 2
 sky = SubResource("Sky_ttmpx")
 
-[node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xmyt"]
+_data = {
+&"A_TPose": ExtResource("15_v56wm"),
+&"Chest_Open": ExtResource("16_5jj8u"),
+&"ClimbUp_1m_RM": ExtResource("17_fo6g4"),
+&"Consume": ExtResource("18_67yq1"),
+&"Crouch_Fwd": ExtResource("19_4pdpy"),
+&"Crouch_Idle": ExtResource("20_8025q"),
+&"Dance": ExtResource("21_rki08"),
+&"Death01": ExtResource("22_4uoe5"),
+&"Driving": ExtResource("23_guxiv"),
+&"Farm_Harvest": ExtResource("24_rxoxl"),
+&"Farm_PlantSeed": ExtResource("25_vh7uj"),
+&"Farm_Watering": ExtResource("26_ghw05"),
+&"Fixing_Kneeling": ExtResource("27_y4hlj"),
+&"Hit_Chest": ExtResource("28_3h8ua"),
+&"Hit_Head": ExtResource("29_7j7so"),
+&"Hit_Knockback": ExtResource("30_gy6c6"),
+&"Hit_Knockback_RM": ExtResource("31_elero"),
+&"Idle": ExtResource("32_ikyiy"),
+&"Idle_FoldArms": ExtResource("33_d4af4"),
+&"Idle_Lantern": ExtResource("34_af4se"),
+&"Idle_No": ExtResource("35_qqj3u"),
+&"Idle_Rail": ExtResource("36_fthn2"),
+&"Idle_Rail_Call": ExtResource("37_lkbr6"),
+&"Idle_Shield": ExtResource("38_1tjmi"),
+&"Idle_Shield_Break": ExtResource("39_ro4v2"),
+&"Idle_Talking": ExtResource("40_jq4o2"),
+&"Idle_TalkingPhone": ExtResource("41_ivdhu"),
+&"Idle_Torch": ExtResource("42_lb2q4"),
+&"Interact": ExtResource("43_2lj4l"),
+&"Jog_Fwd": ExtResource("44_ddoq0"),
+&"Jump": ExtResource("45_php0n"),
+&"Jump_Land": ExtResource("46_brult"),
+&"Jump_Start": ExtResource("47_ekxhf"),
+&"LayToIdle": ExtResource("48_lrdar"),
+&"Melee_Hook": ExtResource("49_voj5f"),
+&"Melee_Hook_Rec": ExtResource("50_e2gfp"),
+&"NinjaJump_Idle": ExtResource("51_isqr0"),
+&"NinjaJump_Land": ExtResource("52_fom3k"),
+&"NinjaJump_Start": ExtResource("53_6dp3a"),
+&"OverhandThrow": ExtResource("54_l1nn0"),
+&"PickUp_Table": ExtResource("55_5cual"),
+&"Pistol_Aim_Down": ExtResource("56_r2xdh"),
+&"Pistol_Aim_Neutral": ExtResource("57_fgm6n"),
+&"Pistol_Aim_Up": ExtResource("58_b5l3g"),
+&"Pistol_Idle": ExtResource("59_ucr5t"),
+&"Pistol_Reload": ExtResource("60_qy8bl"),
+&"Pistol_Shoot": ExtResource("61_c2s1k"),
+&"Punch_Cross": ExtResource("62_r1nuv"),
+&"Punch_Jab": ExtResource("63_u5e4n"),
+&"Push": ExtResource("64_eud77"),
+&"Roll": ExtResource("65_q2jlc"),
+&"Roll_RM": ExtResource("66_7um0y"),
+&"Shield_Dash_RM": ExtResource("67_a7omh"),
+&"Shield_OneShot": ExtResource("68_sesxo"),
+&"Sitting_Enter": ExtResource("69_773h1"),
+&"Sitting_Exit": ExtResource("70_rftmv"),
+&"Sitting_Idle": ExtResource("71_fogfd"),
+&"Sitting_Talking": ExtResource("72_ai82b"),
+&"Slide": ExtResource("73_hq15x"),
+&"Slide_Exit": ExtResource("74_uux8r"),
+&"Slide_Start": ExtResource("75_0ag50"),
+&"Spell_Simple_Enter": ExtResource("76_f38c1"),
+&"Spell_Simple_Exit": ExtResource("77_h6riy"),
+&"Spell_Simple_Idle": ExtResource("78_wo6jq"),
+&"Spell_Simple_Shoot": ExtResource("79_hikao"),
+&"Sprint": ExtResource("80_0ae76"),
+&"Swim_Fwd": ExtResource("81_fp26w"),
+&"Swim_Idle": ExtResource("82_42blh"),
+&"Sword_Attack": ExtResource("83_pvx6l"),
+&"Sword_Attack_RM": ExtResource("84_wodg0"),
+&"Sword_Block": ExtResource("85_0gav0"),
+&"Sword_Dash_RM": ExtResource("86_dqert"),
+&"Sword_Idle": ExtResource("87_vcfxs"),
+&"Sword_Regular_A": ExtResource("88_gudi0"),
+&"Sword_Regular_A_Rec": ExtResource("89_7pf1g"),
+&"Sword_Regular_B": ExtResource("90_fa4cs"),
+&"Sword_Regular_B_Rec": ExtResource("91_uvr5p"),
+&"Sword_Regular_C": ExtResource("92_jhb3y"),
+&"Sword_Regular_Combo": ExtResource("93_1yh70"),
+&"TreeChopping": ExtResource("94_6ib22"),
+&"Walk": ExtResource("95_uos4j"),
+&"Walk_Carry": ExtResource("96_6snrl"),
+&"Walk_Formal": ExtResource("97_13cjm"),
+&"Yes": ExtResource("98_7vt31"),
+&"Zombie_Idle": ExtResource("99_11gf6"),
+&"Zombie_Scratch": ExtResource("100_vdyc1"),
+&"Zombie_Walk_Fwd": ExtResource("101_fu3w6")
+}
+
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("springArm", "rootState")]
 collision_layer = 2
 collision_mask = 5
-
-[node name="PlayerStateDriver" type="Node" parent="." unique_id=450221700 node_paths=PackedStringArray("rootState", "characterBody", "animationPlayer", "springArm", "modelRoot", "combatEntity")]
 script = ExtResource("1_4qhxw")
+springArm = NodePath("SpringArm3D")
 rootState = NodePath("PlayerState")
-characterBody = NodePath("..")
-animationPlayer = NodePath("../AnimationPlayer")
-springArm = NodePath("../SpringArm3D")
-modelRoot = NodePath("../PlayerModel")
-combatEntity = NodePath("../PlayerEntity")
-metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
-
-[node name="PlayerState" type="Node" parent="PlayerStateDriver" unique_id=369373089 node_paths=PackedStringArray("groundedState", "airborneState", "combatState")]
-script = ExtResource("2_v56wm")
-groundedState = NodePath("GroundedState")
-airborneState = NodePath("AirborneState")
-combatState = NodePath("CombatState")
-metadata/_custom_type_script = "uid://spjaywyr125y"
-
-[node name="GroundedState" type="Node" parent="PlayerStateDriver/PlayerState" unique_id=576693400 node_paths=PackedStringArray("idleState", "groundMovement")]
-script = ExtResource("3_5jj8u")
-idleState = NodePath("IdleState")
-groundMovement = NodePath("MovementState")
-jumpForce = 5.0
-friction = 30.0
-metadata/_custom_type_script = "uid://cbjip600o0gec"
-
-[node name="MovementState" type="Node" parent="PlayerStateDriver/PlayerState/GroundedState" unique_id=1035224271]
-script = ExtResource("4_fo6g4")
-animationName = "Sprint"
-metadata/_custom_type_script = "uid://b2e8f0yptl635"
-
-[node name="IdleState" type="Node" parent="PlayerStateDriver/PlayerState/GroundedState" unique_id=473366282]
-script = ExtResource("5_67yq1")
-animationName = "Idle"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="AirborneState" type="Node" parent="PlayerStateDriver/PlayerState" unique_id=1820034451 node_paths=PackedStringArray("fallState", "jumpState")]
-script = ExtResource("6_4pdpy")
-fallState = NodePath("FallState")
-jumpState = NodePath("JumpState")
-metadata/_custom_type_script = "uid://brlkgplaav8jn"
-
-[node name="JumpState" type="Node" parent="PlayerStateDriver/PlayerState/AirborneState" unique_id=881933701]
-script = ExtResource("5_67yq1")
-animationName = "Jump_Start"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="FallState" type="Node" parent="PlayerStateDriver/PlayerState/AirborneState" unique_id=1427742190]
-script = ExtResource("5_67yq1")
-animationName = "Jump"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="CombatState" type="Node" parent="PlayerStateDriver/PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "heavyAttack", "dashState")]
-script = ExtResource("7_8025q")
-initState = NodePath("InitState")
-lightAttackA = NodePath("LightAttackAState")
-lightAttackB = NodePath("LightAttackBState")
-heavyAttack = NodePath("HeavyAttackState")
-dashState = NodePath("DashState")
-weapon = ExtResource("8_rki08")
-metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
-
-[node name="InitState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState" unique_id=935959507]
-script = ExtResource("5_67yq1")
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="LightAttackAState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState" unique_id=2023168732 node_paths=PackedStringArray("hit", "recovery")]
-script = ExtResource("9_4uoe5")
-hit = NodePath("HitState")
-recovery = NodePath("RecoveryState")
-ability = ExtResource("10_4qhxw")
-metadata/_custom_type_script = "uid://5cqrqfqeqffd"
-
-[node name="HitState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/LightAttackAState" unique_id=2075353918]
-script = ExtResource("5_67yq1")
-animationName = "Sword_Regular_A"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="RecoveryState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/LightAttackAState" unique_id=659760687]
-script = ExtResource("5_67yq1")
-animationName = "Sword_Regular_A_Rec"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="LightAttackBState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState" unique_id=1151020937 node_paths=PackedStringArray("hit", "recovery")]
-script = ExtResource("9_4uoe5")
-hit = NodePath("HitState")
-recovery = NodePath("RecoveryState")
-ability = ExtResource("10_4qhxw")
-metadata/_custom_type_script = "uid://5cqrqfqeqffd"
-
-[node name="HitState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/LightAttackBState" unique_id=1713814903]
-script = ExtResource("5_67yq1")
-animationName = "Sword_Regular_B"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="RecoveryState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/LightAttackBState" unique_id=1080886828]
-script = ExtResource("5_67yq1")
-animationName = "Sword_Regular_B_Rec"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="HeavyAttackState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState" unique_id=571013605 node_paths=PackedStringArray("hit", "recovery")]
-script = ExtResource("9_4uoe5")
-hit = NodePath("HitState")
-recovery = NodePath("RecoveryState")
-metadata/_custom_type_script = "uid://5cqrqfqeqffd"
-
-[node name="HitState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/HeavyAttackState" unique_id=347674410]
-script = ExtResource("5_67yq1")
-animationName = "Sword_Regular_C"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="RecoveryState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState/HeavyAttackState" unique_id=916775201]
-script = ExtResource("5_67yq1")
-animationName = "Sword_Regular_C"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
-
-[node name="DashState" type="Node" parent="PlayerStateDriver/PlayerState/CombatState" unique_id=95577712]
-script = ExtResource("11_rxoxl")
-dashDuration = 0.1
-dashSpeed = 15.0
-metadata/_custom_type_script = "uid://kewaupp57wpr"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1481794423]
-root_node = NodePath("../PlayerModel")
-root_motion_track = NodePath("%GeneralSkeleton:Root")
-root_motion_local = true
-libraries/ = SubResource("AnimationLibrary_lwd48")
-playback_default_blend_time = 0.1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=561518560]
-shape = SubResource("CapsuleShape3D_fcxcq")
-
-[node name="PlayerModel" parent="." unique_id=1564736375 instance=ExtResource("99_apri8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=301747258]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-spring_length = 3.0
-
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1011509088]
-environment = SubResource("Environment_pcqpa")
 
 [node name="PlayerEntity" type="Node" parent="." unique_id=1778919609]
 script = ExtResource("100_xkstp")
@@ -357,3 +219,132 @@ metadata/_custom_type_script = "uid://basrpbnesb5wq"
 script = ExtResource("101_v56wm")
 MaxValue = 100
 CurrentValue = 0
+
+[node name="PlayerState" type="Node" parent="." unique_id=369373089 node_paths=PackedStringArray("springArm", "groundedState", "airborneState", "combatState")]
+script = ExtResource("2_v56wm")
+springArm = NodePath("../SpringArm3D")
+groundedState = NodePath("GroundedState")
+airborneState = NodePath("AirborneState")
+combatState = NodePath("CombatState")
+metadata/_custom_type_script = "uid://spjaywyr125y"
+
+[node name="GroundedState" type="Node" parent="PlayerState" unique_id=576693400 node_paths=PackedStringArray("idleState", "groundMovement")]
+script = ExtResource("3_5jj8u")
+jumpForce = 5.0
+friction = 30.0
+idleState = NodePath("IdleState")
+groundMovement = NodePath("MovementState")
+metadata/_custom_type_script = "uid://cbjip600o0gec"
+
+[node name="MovementState" type="Node" parent="PlayerState/GroundedState" unique_id=1035224271]
+script = ExtResource("4_fo6g4")
+animationName = "Sprint"
+metadata/_custom_type_script = "uid://b2e8f0yptl635"
+
+[node name="IdleState" type="Node" parent="PlayerState/GroundedState" unique_id=473366282]
+script = ExtResource("5_67yq1")
+animationName = "Idle"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="AirborneState" type="Node" parent="PlayerState" unique_id=1820034451 node_paths=PackedStringArray("fallState", "jumpState")]
+script = ExtResource("6_4pdpy")
+fallState = NodePath("FallState")
+jumpState = NodePath("JumpState")
+metadata/_custom_type_script = "uid://brlkgplaav8jn"
+
+[node name="JumpState" type="Node" parent="PlayerState/AirborneState" unique_id=881933701]
+script = ExtResource("5_67yq1")
+animationName = "Jump_Start"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="FallState" type="Node" parent="PlayerState/AirborneState" unique_id=1427742190]
+script = ExtResource("5_67yq1")
+animationName = "Jump"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "heavyAttack", "dashState")]
+script = ExtResource("7_8025q")
+weapon = ExtResource("8_rki08")
+initState = NodePath("InitState")
+lightAttackA = NodePath("LightAttackAState")
+lightAttackB = NodePath("LightAttackBState")
+heavyAttack = NodePath("HeavyAttackState")
+dashState = NodePath("DashState")
+metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
+
+[node name="InitState" type="Node" parent="PlayerState/CombatState" unique_id=935959507]
+script = ExtResource("5_67yq1")
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="LightAttackAState" type="Node" parent="PlayerState/CombatState" unique_id=2023168732 node_paths=PackedStringArray("hit", "recovery")]
+script = ExtResource("9_4uoe5")
+hit = NodePath("HitState")
+recovery = NodePath("RecoveryState")
+ability = ExtResource("10_4qhxw")
+metadata/_custom_type_script = "uid://5cqrqfqeqffd"
+
+[node name="HitState" type="Node" parent="PlayerState/CombatState/LightAttackAState" unique_id=2075353918]
+script = ExtResource("5_67yq1")
+animationName = "Sword_Regular_A"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="RecoveryState" type="Node" parent="PlayerState/CombatState/LightAttackAState" unique_id=659760687]
+script = ExtResource("5_67yq1")
+animationName = "Sword_Regular_A_Rec"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="LightAttackBState" type="Node" parent="PlayerState/CombatState" unique_id=1151020937 node_paths=PackedStringArray("hit", "recovery")]
+script = ExtResource("9_4uoe5")
+hit = NodePath("HitState")
+recovery = NodePath("RecoveryState")
+ability = ExtResource("10_4qhxw")
+metadata/_custom_type_script = "uid://5cqrqfqeqffd"
+
+[node name="HitState" type="Node" parent="PlayerState/CombatState/LightAttackBState" unique_id=1713814903]
+script = ExtResource("5_67yq1")
+animationName = "Sword_Regular_B"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="RecoveryState" type="Node" parent="PlayerState/CombatState/LightAttackBState" unique_id=1080886828]
+script = ExtResource("5_67yq1")
+animationName = "Sword_Regular_B_Rec"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="HeavyAttackState" type="Node" parent="PlayerState/CombatState" unique_id=571013605 node_paths=PackedStringArray("hit", "recovery")]
+script = ExtResource("9_4uoe5")
+hit = NodePath("HitState")
+recovery = NodePath("RecoveryState")
+metadata/_custom_type_script = "uid://5cqrqfqeqffd"
+
+[node name="HitState" type="Node" parent="PlayerState/CombatState/HeavyAttackState" unique_id=347674410]
+script = ExtResource("5_67yq1")
+animationName = "Sword_Regular_C"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="RecoveryState" type="Node" parent="PlayerState/CombatState/HeavyAttackState" unique_id=916775201]
+script = ExtResource("5_67yq1")
+animationName = "Sword_Regular_C"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="DashState" type="Node" parent="PlayerState/CombatState" unique_id=95577712]
+script = ExtResource("11_rxoxl")
+dashDuration = 0.1
+dashSpeed = 15.0
+metadata/_custom_type_script = "uid://kewaupp57wpr"
+
+[node name="PlayerModel" parent="." unique_id=869316439 instance=ExtResource("99_apri8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=561518560]
+shape = SubResource("CapsuleShape3D_fcxcq")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=301747258]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1011509088]
+environment = SubResource("Environment_pcqpa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=754163633]
+root_node = NodePath("../PlayerModel")
+libraries/ = SubResource("AnimationLibrary_5xmyt")

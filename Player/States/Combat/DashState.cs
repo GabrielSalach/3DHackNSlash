@@ -30,8 +30,7 @@ public partial class DashState : State
         Vector3 input = InputHelpers.GetMovementInputAsVector3();
         if (input != Vector3.Zero)
         {
-            direction = (Context.springArm.Transform.Basis * InputHelpers.GetMovementInputAsVector3())
-                .Normalized();
+            direction = Context.MovementDirection;
         }
         else
         {

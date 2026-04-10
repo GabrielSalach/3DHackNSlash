@@ -3,16 +3,15 @@ using Godot;
 [GlobalClass]
 public partial class CombatState : State
 {
+    [Export] private PackedScene weapon;
+    public Weapon WeaponReference { get;private set; }
+
+    [ExportCategory("Child States")]
     [Export] private State initState;
     [Export] private AttackState lightAttackA;
     [Export] private AttackState lightAttackB;
     [Export] private AttackState heavyAttack;
     [Export] private DashState dashState;
-    
-    
-    [Export] private PackedScene weapon;
-    public Weapon WeaponReference { get;private set; }
-
 
     protected override State GetInitialState() => initState;
 
@@ -42,16 +41,13 @@ public partial class CombatState : State
 
     protected override void OnEnter()
     {
-        if (WeaponReference == null)
-        {
-            WeaponReference = weapon.Instantiate() as Weapon;
-        }
-        Context.modelRoot.rightHand.AddChild(WeaponReference);
+        WeaponReference ??= weapon.Instantiate() as Weapon;
+        Context.modelRoot.GetBoneAttachment("RightHand").AddChild(WeaponReference);
         Context.characterBody.Velocity = Vector3.Zero;
     }
 
     protected override void OnExit()
     {
-        Context.modelRoot.rightHand.RemoveChild(WeaponReference);
+        Context.modelRoot.GetBoneAttachment("RightHand").RemoveChild(WeaponReference);
     }
 }
