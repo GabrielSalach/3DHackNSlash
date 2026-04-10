@@ -1,11 +1,11 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 
 [GlobalClass]
 public partial class CombatEntity : Node
 {
-    public Dictionary<Type, StatComponent> components = new Dictionary<Type, StatComponent>();
+    private readonly Dictionary<Type, StatComponent> components = new Dictionary<Type, StatComponent>();
 
     public override void _Ready()
     {
@@ -13,14 +13,18 @@ public partial class CombatEntity : Node
         {
             if (child is StatComponent statComponent)
             {
-                statComponent.CurrentValue = statComponent.MaxValue;
                 components.Add(statComponent.GetType(), statComponent);
             }
         }
     }
     
-    public float GetStatCurrentValue<TStat>() where TStat : StatComponent
+    public StatComponent GetStat<TStat>() where TStat : StatComponent
     {
-        return components[typeof(TStat)].CurrentValue;
+        if (components.TryGetValue(typeof(TStat), out StatComponent statComponent))
+        {
+            return statComponent;
+        }
+
+        throw new ArgumentOutOfRangeException($"{Name} doesn't have a {typeof(TStat).Name} component");
     }
 }

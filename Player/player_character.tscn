@@ -100,6 +100,7 @@
 [ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="98_fd282"]
 [ext_resource type="PackedScene" uid="uid://wtn3muehpyi8" path="res://Player/PlayerModel.tscn" id="99_apri8"]
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_xkstp"]
+[ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="101_v56wm"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lwd48"]
 _data = {
@@ -214,7 +215,7 @@ characterBody = NodePath("..")
 animationPlayer = NodePath("../AnimationPlayer")
 springArm = NodePath("../SpringArm3D")
 modelRoot = NodePath("../PlayerModel")
-combatEntity = NodePath("../CombatEntity")
+combatEntity = NodePath("../PlayerEntity")
 metadata/_custom_type_script = "uid://sqkl1vqbx6q2"
 
 [node name="PlayerState" type="Node" parent="PlayerStateDriver" unique_id=369373089 node_paths=PackedStringArray("groundedState", "airborneState", "combatState")]
@@ -342,14 +343,17 @@ shape = SubResource("CapsuleShape3D_fcxcq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=301747258]
-transform = Transform3D(-0.9895258, 0, -0.14435613, 0, 1, 0, 0.14435613, 0, -0.9895258, 0, 0, 0)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 spring_length = 3.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1011509088]
 environment = SubResource("Environment_pcqpa")
 
-[node name="CombatEntity" type="Node" parent="." unique_id=1778919609]
+[node name="PlayerEntity" type="Node" parent="." unique_id=1778919609]
 script = ExtResource("100_xkstp")
 metadata/_custom_type_script = "uid://basrpbnesb5wq"
 
-[node name="Health" type="Node" parent="CombatEntity" unique_id=596727405]
+[node name="Health" type="Node" parent="PlayerEntity" unique_id=596727405]
+script = ExtResource("101_v56wm")
+MaxValue = 100
+CurrentValue = 0

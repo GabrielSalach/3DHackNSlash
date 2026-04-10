@@ -1,37 +1,46 @@
-using System.ComponentModel;
+using System;
 using Godot;
+using Godot.Collections;
 
 [GlobalClass, Tool]
 public abstract partial class StatComponent : Node
 {
-    public float MaxValue { get; set; }
+    public int MaxValue { get; set; }
 
-    public float CurrentValue
+    public int CurrentValue
     {
         get => currentValue;
         set
         {
+            int delta = value - currentValue;
             currentValue = value;
             NotifyPropertyListChanged();
+            OnValueChanged?.Invoke(delta);
         }
     }
 
-    private float currentValue;
-    
-    public override Godot.Collections.Array<Godot.Collections.Dictionary> _GetPropertyList()
-    {
-        var properties = new Godot.Collections.Array<Godot.Collections.Dictionary>();
+    /// <summary>
+    /// Passes the delta of the value
+    /// </summary>
+    public Action<int> OnValueChanged;
 
-        properties.Add(new Godot.Collections.Dictionary
+    private int currentValue;
+
+    
+    public override Array<Dictionary> _GetPropertyList()
+    {
+        var properties = new Array<Dictionary>();
+
+        properties.Add(new Dictionary
         {
             { "name", "MaxValue" },
-            { "type", (int)Variant.Type.Float },
+            { "type", (int)Variant.Type.Int },
             { "usage", (int)PropertyUsageFlags.Default }
         });
-        properties.Add(new Godot.Collections.Dictionary
+        properties.Add(new Dictionary
         {
             { "name", "CurrentValue" },
-            { "type", (int)Variant.Type.Float },
+            { "type", (int)Variant.Type.Int },
             { "usage", (int)PropertyUsageFlags.Default | (int)PropertyUsageFlags.ReadOnly }
         });
 
@@ -45,5 +54,16 @@ public abstract partial class StatComponent : Node
             return MaxValue;
 
         return default;
+    }
+
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint())
+        {
+            return;
+        }
+
+        currentValue = MaxValue;
+        NotifyPropertyListChanged();
     }
 }
