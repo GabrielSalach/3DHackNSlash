@@ -35,7 +35,7 @@ script = ExtResource("7_go2h7")
 metadata/_custom_type_script = "uid://bn10yp5bfrywl"
 
 [node name="TrainingDummy" type="CharacterBody3D" parent="." unique_id=1379341895]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6902599, 6.4087105)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4887147, 6.4087105)
 collision_layer = 4
 
 [node name="TrainingDummy" type="MeshInstance3D" parent="TrainingDummy" unique_id=1627023891]
@@ -52,6 +52,6 @@ metadata/_custom_type_script = "uid://basrpbnesb5wq"
 
 [node name="Health" type="Node" parent="TrainingDummy/TrainingDummyEntity" unique_id=1745461664]
 script = ExtResource("105_ndew3")
-MaxValue = 100
+MaxValue = 0
 CurrentValue = 0
 metadata/_custom_type_script = "uid://bkywrixskk54e"
