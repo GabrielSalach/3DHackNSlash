@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cjkt5nrrt1scw"]
+
+[ext_resource type="Texture2D" uid="uid://bsmkqfq3s05rc" path="res://Player/M_Character-Colour.png" id="1_vf12a"]
+
+[resource]
+resource_name = "M_Character"
+cull_mode = 2
+albedo_texture = ExtResource("1_vf12a")
+texture_filter = 0

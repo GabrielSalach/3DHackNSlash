@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b3jyw3pqxvupr"]
+
+[ext_resource type="Texture2D" uid="uid://c1ld4ysoiepou" path="res://Player/M_Face-Colour.png" id="1_tq3of"]
+
+[resource]
+resource_name = "M_Face"
+cull_mode = 2
+albedo_texture = ExtResource("1_tq3of")
+texture_filter = 0
