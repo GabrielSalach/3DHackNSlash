@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cp7gvlk0tchex"]
 
-[ext_resource type="PackedScene" uid="uid://bl7ux70qka767" path="res://Player/Noizz.glb" id="1_0n4ac"]
-[ext_resource type="Script" uid="uid://coe866d6n6v0o" path="res://Player/ModelRoot.cs" id="2_8g6on"]
+[ext_resource type="PackedScene" uid="uid://bl7ux70qka767" path="res://Player/PlayerModel/Noizz.glb" id="1_0n4ac"]
+[ext_resource type="Script" uid="uid://coe866d6n6v0o" path="res://Player/PlayerModel/ModelRoot.cs" id="2_8g6on"]
 
 [node name="PlayerModel" unique_id=900740771 node_paths=PackedStringArray("bones") instance=ExtResource("1_0n4ac")]
 script = ExtResource("2_8g6on")
