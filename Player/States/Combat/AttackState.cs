@@ -3,6 +3,7 @@ using Godot;
 
 public enum AnimationPhase
 {
+    ANTICIPATION,
     HIT,
     RECOVERY
 }
@@ -10,26 +11,17 @@ public enum AnimationPhase
 [GlobalClass]
 public partial class AttackState : State
 {
-    [ExportCategory("Child States")]
-    [Export] private State hit;
-    [Export] private State recovery;
     [Export] private Ability ability;
+    [Export] private AnimationData animation;
 
     private Weapon weapon;
     private readonly List<CombatEntity> hitEntities = new List<CombatEntity>();
-    
-    protected override State GetInitialState() => hit;
-
-    protected override void SetupTransitions()
-    {
-        AddTransition(hit, recovery, () => hit.IsCompleted());
-    }
-    
-    public AnimationPhase CurrentPhase => activeState == hit ? AnimationPhase.HIT : AnimationPhase.RECOVERY;
-
-    public override bool IsCompleted() => recovery.IsCompleted();
+    private int currentFrame;
 
     
+    public AnimationPhase CurrentPhase { get; private set; }
+    public override bool IsCompleted() => currentFrame >= animation.hitEndFrame + 35;
+
     private void OnHit(CombatEntity hitEntity)
     {
         if (ability != null && hitEntity != null)
@@ -46,28 +38,38 @@ public partial class AttackState : State
     protected override void OnEnter()
     {
         hitEntities.Clear();
-        if (weapon == null)
-        {
-            weapon = ((CombatState)parent).WeaponReference;
-        }
+        currentFrame = 0;
+        CurrentPhase = AnimationPhase.ANTICIPATION;
+        
+        animationName = "Noizz/" + animation.animation.GetName();
+        Context.animationPlayer.Play(animationName);
+        
+        weapon ??= ((CombatState)parent).WeaponReference;
 
         if (weapon != null)
         {
             weapon.OnEntityHit += OnHit;
-            SceneTreeTimer anticipationTimer = GetTree().CreateTimer(0.2);
-            anticipationTimer.Timeout += () =>
-            {
-                weapon.ActivateHurtBox();
-            };
         }
     }
 
     protected override void OnUpdate(float delta)
     {
-        if (CurrentPhase == AnimationPhase.RECOVERY)
+        if (currentFrame == animation.anticipationEndFrame)
         {
-            weapon.DeactivateHurtBox();
+            CurrentPhase = AnimationPhase.HIT;
+            weapon?.ActivateHurtBox();
         }
+
+        if (currentFrame == animation.hitEndFrame)
+        {
+            weapon?.DeactivateHurtBox();
+        }
+
+        if (currentFrame == animation.hitEndFrame + 15)
+        {
+            CurrentPhase = AnimationPhase.RECOVERY;
+        }
+        currentFrame++;
     }
 
     protected override void OnExit()

@@ -10,7 +10,6 @@ public partial class CombatState : State
     [Export] private State initState;
     [Export] private AttackState lightAttackA;
     [Export] private AttackState lightAttackB;
-    [Export] private AttackState heavyAttack;
     [Export] private DashState dashState;
 
     protected override State GetInitialState() => initState;
@@ -18,18 +17,10 @@ public partial class CombatState : State
     protected override void SetupTransitions()
     {
         AddTransition(initState, lightAttackA, () => Context.actionMap["light_attack"].IsJustPressed);
-        AddTransition(lightAttackA, lightAttackB,
-            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["light_attack"].IsJustPressed);
-        AddTransition(lightAttackB, lightAttackA,
-            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["light_attack"].IsJustPressed);
-        
-        AddTransition(initState, heavyAttack, () => Context.actionMap["heavy_attack"].IsJustPressed);
-        AddTransition(lightAttackA, heavyAttack,
-            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["heavy_attack"].IsJustPressed);
-        AddTransition(lightAttackB, heavyAttack,
-            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["heavy_attack"].IsJustPressed);
-        
         AddTransition(initState, dashState, () => Context.actionMap["dash"].IsJustPressed);
+        
+        AddComboChain(lightAttackA, lightAttackB, "light_attack");
+        AddComboChain(lightAttackB, lightAttackA, "light_attack");
     }
 
     public override bool IsCompleted()
@@ -49,5 +40,14 @@ public partial class CombatState : State
     protected override void OnExit()
     {
         Context.modelRoot.GetBoneAttachment("RightHand").RemoveChild(WeaponReference);
+    }
+
+    /// <summary>
+    /// Wrapper around transition to quickly add an attack in a combo chain
+    /// </summary>
+    private void AddComboChain(AttackState from, AttackState to, string action)
+    {
+        AddTransition(from, to,
+            () => from.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap[action].IsJustPressed);
     }
 }

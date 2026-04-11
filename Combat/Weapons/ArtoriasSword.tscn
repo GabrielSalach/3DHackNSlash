@@ -10,7 +10,7 @@ size = Vector3(1.0902491, 0.1631012, 0.1303711)
 script = ExtResource("2_tkcql")
 hurtBox = NodePath("Area3D")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=341109358]
+[node name="Sketchfab_model" parent="." index="0" unique_id=1587155140]
 transform = Transform3D(-0.027089108, 8.017337e-09, -0.053536728, 0.05353673, 1.8626451e-09, -0.027089112, 9.313226e-10, -0.060000017, -7.916242e-09, 0.43537256, -0.0037525073, 0.034793407)
 
 [node name="Area3D" type="Area3D" parent="." index="1" unique_id=1616622103]

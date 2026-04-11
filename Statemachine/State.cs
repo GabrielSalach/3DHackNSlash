@@ -168,7 +168,7 @@ public abstract partial class State : Node
 
     public virtual bool IsCompleted()
     {
-        if (string.IsNullOrEmpty(animationName)) return true;
+        if (string.IsNullOrEmpty(animationName)) return false;
         
         if (Context.animationPlayer.AssignedAnimation != animationName) return false;
         
