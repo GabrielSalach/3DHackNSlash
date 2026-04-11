@@ -27,16 +27,8 @@ public partial class DashState : State
             AddChild(timer);
         }
         
-        Vector3 input = InputHelpers.GetMovementInputAsVector3();
-        if (input != Vector3.Zero)
-        {
-            direction = Context.MovementDirection;
-        }
-        else
-        {
-            direction = Context.modelRoot.Basis.Z;
-        }
 
+        direction = Context.MovementDirection != Vector3.Zero ? Context.MovementDirection : Context.modelRoot.Basis.Z;
         direction.Y = 0;
         timer.Start(dashDuration);
     }

@@ -17,19 +17,19 @@ public partial class CombatState : State
 
     protected override void SetupTransitions()
     {
-        AddTransition(initState, lightAttackA, () => Input.IsActionJustPressed("light_attack"));
+        AddTransition(initState, lightAttackA, () => Context.actionMap["light_attack"].IsJustPressed);
         AddTransition(lightAttackA, lightAttackB,
-            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("light_attack"));
+            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["light_attack"].IsJustPressed);
         AddTransition(lightAttackB, lightAttackA,
-            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("light_attack"));
+            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["light_attack"].IsJustPressed);
         
-        AddTransition(initState, heavyAttack, () => Input.IsActionJustPressed("heavy_attack"));
+        AddTransition(initState, heavyAttack, () => Context.actionMap["heavy_attack"].IsJustPressed);
         AddTransition(lightAttackA, heavyAttack,
-            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("heavy_attack"));
+            () => lightAttackA.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["heavy_attack"].IsJustPressed);
         AddTransition(lightAttackB, heavyAttack,
-            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Input.IsActionJustPressed("heavy_attack"));
+            () => lightAttackB.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap["heavy_attack"].IsJustPressed);
         
-        AddTransition(initState, dashState, () => Input.IsActionJustPressed("dash"));
+        AddTransition(initState, dashState, () => Context.actionMap["dash"].IsJustPressed);
     }
 
     public override bool IsCompleted()

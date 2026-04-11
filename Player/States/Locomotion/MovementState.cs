@@ -10,13 +10,9 @@ public partial class MovementState : State
     public float JumpVelocity = 4.5f;
     [Export] public float rotationSpeed = 5.0f;
     
-    protected override State GetInitialState() => null;
-    protected override void SetupTransitions() { }
-
     protected override void OnUpdatePhysics(float delta)
     {
-        Vector3 input = InputHelpers.GetMovementInputAsVector3();
-        if (input != Vector3.Zero)
+        if (Context.MovementDirection != Vector3.Zero)
         {
             Vector3 velocity = Context.characterBody.Velocity;
             velocity.X = Context.MovementDirection.X * Speed;

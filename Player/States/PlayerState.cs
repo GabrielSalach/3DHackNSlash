@@ -30,7 +30,7 @@ public partial class PlayerState : State
         
         AddTransition(combatState, groundedState, () => Context.characterBody.IsOnFloor() && (
             combatState.IsCompleted()
-            || (!InputHelpers.GetMovementInput().Equals(Vector2.Zero) && combatState.IsCancellable)
+            || (Context.MovementDirection != Vector3.Zero && combatState.IsCancellable)
         ));
         AddTransition(combatState, airborneState, () => !Context.characterBody.IsOnFloor() && combatState.IsCompleted());
     }

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://k5ta2fedtv18"]
 
 [ext_resource type="Script" uid="uid://sqkl1vqbx6q2" path="res://Player/PlayerStateDriver.cs" id="1_4qhxw"]
+[ext_resource type="Script" uid="uid://sitttud84thh" path="res://Statemachine/ActionMap.cs" id="2_5jj8u"]
 [ext_resource type="Script" uid="uid://spjaywyr125y" path="res://Player/States/PlayerState.cs" id="2_v56wm"]
 [ext_resource type="Script" uid="uid://cbjip600o0gec" path="res://Player/States/Locomotion/GroundedState.cs" id="3_5jj8u"]
 [ext_resource type="Script" uid="uid://b2e8f0yptl635" path="res://Player/States/Locomotion/MovementState.cs" id="4_fo6g4"]
@@ -101,6 +102,11 @@
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_xkstp"]
 [ext_resource type="Animation" uid="uid://gmuw0brb52xv" path="res://Player/Animations/UniversalAnimationPack/Zombie_Walk_Fwd.res" id="101_fu3w6"]
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="101_v56wm"]
+
+[sub_resource type="Resource" id="Resource_5jj8u"]
+script = ExtResource("2_5jj8u")
+actions = Array[String](["jump", "dash", "light_attack", "heavy_attack"])
+metadata/_custom_type_script = "uid://sitttud84thh"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcxcq"]
 
@@ -210,6 +216,7 @@ collision_mask = 5
 script = ExtResource("1_4qhxw")
 springArm = NodePath("SpringArm3D")
 rootState = NodePath("PlayerState")
+actionMap = SubResource("Resource_5jj8u")
 
 [node name="PlayerEntity" type="Node" parent="." unique_id=1778919609]
 script = ExtResource("100_xkstp")

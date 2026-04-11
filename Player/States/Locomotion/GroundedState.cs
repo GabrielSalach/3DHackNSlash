@@ -13,19 +13,14 @@ public partial class GroundedState : State
     protected override State GetInitialState() => idleState;
     protected override void SetupTransitions()
     {
-        AddTransition(groundMovement, idleState, () => InputHelpers.GetMovementInput().Length() <= 0);
-        AddTransition(idleState, groundMovement, () => InputHelpers.GetMovementInput().Length() > 0);
+        AddTransition(groundMovement, idleState, () => Context.MovementDirection.Length() <= 0);
+        AddTransition(idleState, groundMovement, () => Context.MovementDirection.Length() > 0);
     }
-
-    // protected override State GetTransition()
-    // {
-    //     return InputHelpers.GetMovementInput().Length() > 0 ? groundMovement : idleState;
-    // }
 
     protected override void OnUpdatePhysics(float delta)
     {
         Vector3 vel = Context.characterBody.Velocity;
-        if (Input.IsActionJustPressed("jump"))
+        if (Context.actionMap["jump"].IsJustPressed)
         {
             vel.Y = jumpForce;
         }

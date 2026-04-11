@@ -8,8 +8,14 @@ public partial class PlayerStateDriver : StateDriver
 	
 	public override void _Process(double delta)
 	{
-		base._Process(delta);
 		context.MovementDirection = springArm.Transform.Basis * InputHelpers.GetMovementInputAsVector3();
+		ProcessInput("jump");
+		ProcessInput("dash");
+		ProcessInput("light_attack");
+		ProcessInput("heavy_attack");
+		
+		base._Process(delta);
+		
 		string path = string.Empty;
 		foreach (State state in rootState.Leaf().PathToRoot().Reverse())
 		{
@@ -20,4 +26,15 @@ public partial class PlayerStateDriver : StateDriver
 		path = path[..^3];
 		DebugControl.instance.SetValue("leafNodePath", path);
 	}
+
+	private void ProcessInput(string action)
+	{
+		actionMap[action] = new ActionStatus
+		{
+			IsJustPressed = Input.IsActionJustPressed(action),
+			IsPressed = Input.IsActionPressed(action),
+			IsJustReleased = Input.IsActionJustReleased(action),
+		};
+	}
+	
 }

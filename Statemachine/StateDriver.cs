@@ -7,10 +7,12 @@ public partial class StateDriver : CharacterBody3D
     private StateMachine stateMachine;
 	
     [Export] protected State rootState;
+    [Export] protected ActionMap actionMap;
     protected StateMachineContext context;
 
     public override void _Ready()
     {
+        actionMap.BuildActionMap();
         try
         {
             InitializeContextFromChildren();
@@ -38,6 +40,7 @@ public partial class StateDriver : CharacterBody3D
     {
         context = new StateMachineContext
         {
+            actionMap = actionMap,
             characterBody = this
         };
 
@@ -50,7 +53,6 @@ public partial class StateDriver : CharacterBody3D
                     if (context.animationPlayer != null) throw new Exception("Only one animation player are allowed");
                     context.animationPlayer = ap;
                     break;
-
                 }
                 case CombatEntity ce:
                 {

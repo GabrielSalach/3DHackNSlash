@@ -9,6 +9,7 @@ public class StateMachineContext()
         get => movementDirection;
         set => movementDirection = value.Length() > 1 ? value.Normalized() : value;
     }
+    public ActionMap actionMap;
     public CharacterBody3D characterBody;
     public AnimationPlayer animationPlayer;
     public CombatEntity combatEntity;
