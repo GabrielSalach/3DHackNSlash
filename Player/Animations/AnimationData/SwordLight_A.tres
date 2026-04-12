@@ -1,11 +1,13 @@
 [gd_resource type="Resource" script_class="AnimationData" format=3 uid="uid://b0pomxhwkl3m1"]
 
 [ext_resource type="Animation" uid="uid://cv1oq3r6pm8oj" path="res://Player/Animations/Noizz/SwordLight_A.res" id="1_p8b04"]
+[ext_resource type="Script" uid="uid://brpf50mxiame0" path="res://_Core/Animation/AnimationFrameData.cs" id="2_4xs4u"]
 [ext_resource type="Script" uid="uid://dwkq1qh31qfmn" path="res://_Core/Animation/AnimationData.cs" id="2_pko7k"]
 
 [resource]
 script = ExtResource("2_pko7k")
-animation = ExtResource("1_p8b04")
 anticipationEndFrame = 9
 hitEndFrame = 13
+animation = ExtResource("1_p8b04")
+frameData = Array[ExtResource("2_4xs4u")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://dwkq1qh31qfmn"

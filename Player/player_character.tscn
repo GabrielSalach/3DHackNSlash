@@ -279,13 +279,12 @@ script = ExtResource("5_67yq1")
 animationName = "Jump"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
-[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "heavyAttack", "dashState")]
+[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "dashState")]
 script = ExtResource("7_8025q")
 weapon = ExtResource("8_rki08")
 initState = NodePath("InitState")
 lightAttackA = NodePath("LightAttackAState")
 lightAttackB = NodePath("LightAttackBState")
-heavyAttack = NodePath("")
 dashState = NodePath("DashState")
 metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
 

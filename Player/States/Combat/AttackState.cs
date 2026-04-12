@@ -1,13 +1,6 @@
 using System.Collections.Generic;
 using Godot;
 
-public enum AnimationPhase
-{
-    ANTICIPATION,
-    HIT,
-    RECOVERY
-}
-
 [GlobalClass]
 public partial class AttackState : State
 {
@@ -41,7 +34,7 @@ public partial class AttackState : State
         currentFrame = 0;
         CurrentPhase = AnimationPhase.ANTICIPATION;
         
-        animationName = "Noizz/" + animation.animation.GetName();
+        animationName = "Noizz/" + animation._animation.GetName();
         Context.animationPlayer.Play(animationName);
         
         weapon ??= ((CombatState)parent).WeaponReference;
