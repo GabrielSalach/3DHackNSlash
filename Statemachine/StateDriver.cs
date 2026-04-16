@@ -66,6 +66,12 @@ public partial class StateDriver : CharacterBody3D
                     context.modelRoot = mr;
                     break;
                 }
+                case AttackController ac:
+                {
+                    if(context.attackController != null) throw new Exception("Only one attack controller are allowed");
+                    context.attackController = ac;
+                    break;
+                }
             }
         }
         
@@ -75,5 +81,7 @@ public partial class StateDriver : CharacterBody3D
             throw new Exception("Missing a CombatEntity Node");
         if(context.modelRoot == null)
             throw new Exception("Missing a ModelRoot Node");
+        if (context.attackController == null)
+            throw new Exception("Missing an AttackController Node");
     }
 }

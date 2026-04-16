@@ -28,7 +28,7 @@ public partial class CombatState : State
         return activeState.IsCompleted();
     }
 
-    public override bool IsCancellable => activeState is AttackState { CurrentPhase: AnimationPhase.RECOVERY };
+    public override bool IsCancellable => Context.attackController.CurrentAnimationPhase == AnimationPhase.RECOVERY;
 
     protected override void OnEnter()
     {
@@ -48,6 +48,6 @@ public partial class CombatState : State
     private void AddComboChain(AttackState from, AttackState to, string action)
     {
         AddTransition(from, to,
-            () => from.CurrentPhase == AnimationPhase.RECOVERY && Context.actionMap[action].IsJustPressed);
+            () => IsCancellable && Context.actionMap[action].IsJustPressed);
     }
 }

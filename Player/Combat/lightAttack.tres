@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://df3dycrpcyxli" path="res://Combat/AbilityEffects/DamageEffect.cs" id="1_enh5r"]
 [ext_resource type="Script" uid="uid://1fdat73iaamj" path="res://Combat/Ability.cs" id="1_qvkkc"]
 [ext_resource type="Script" uid="uid://cxw4dep60i5r5" path="res://Combat/AbilityEffects/HitStopEffect.cs" id="2_ep00b"]
+[ext_resource type="Script" uid="uid://cyf7bol2uuvq2" path="res://Combat/AbilityEffects/PrintNameEffect.cs" id="3_ep00b"]
 
 [sub_resource type="Resource" id="Resource_hwmue"]
 script = ExtResource("1_enh5r")
@@ -13,7 +14,11 @@ script = ExtResource("2_ep00b")
 duration = 0.25
 metadata/_custom_type_script = "uid://cxw4dep60i5r5"
 
+[sub_resource type="Resource" id="Resource_e76de"]
+script = ExtResource("3_ep00b")
+metadata/_custom_type_script = "uid://cyf7bol2uuvq2"
+
 [resource]
 script = ExtResource("1_qvkkc")
-Effects = Array[Object]([SubResource("Resource_hwmue"), SubResource("Resource_yr16h")])
+Effects = Array[Object]([SubResource("Resource_hwmue"), SubResource("Resource_yr16h"), SubResource("Resource_e76de")])
 metadata/_custom_type_script = "uid://1fdat73iaamj"

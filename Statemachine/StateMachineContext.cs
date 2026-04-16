@@ -14,4 +14,5 @@ public class StateMachineContext()
     public AnimationPlayer animationPlayer;
     public CombatEntity combatEntity;
     public ModelRoot modelRoot;
+    public AttackController attackController;
 }

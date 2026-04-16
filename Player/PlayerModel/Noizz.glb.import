@@ -2098,7 +2098,7 @@ _subresources={
 "SwordLight_A": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://Player/Animations/Noizz/SwordLight_A.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://cv1oq3r6pm8oj",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -4154,7 +4154,7 @@ _subresources={
 "SwordLight_B": {
 "save_to_file/enabled": true,
 "save_to_file/fallback_path": "res://Player/Animations/Noizz/SwordLight_B.res",
-"save_to_file/keep_custom_tracks": "",
+"save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://cd6xpjdtqrkrf",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
