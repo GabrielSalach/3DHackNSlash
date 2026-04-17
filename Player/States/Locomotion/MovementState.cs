@@ -6,8 +6,6 @@ public partial class MovementState : State
 {
     [Export]
     public float Speed = 5.0f;
-    [Export]
-    public float JumpVelocity = 4.5f;
     [Export] public float rotationSpeed = 5.0f;
     
     protected override void OnUpdatePhysics(float delta)

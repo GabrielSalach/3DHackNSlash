@@ -13,6 +13,8 @@ public partial class PlayerStateDriver : StateDriver
 		ProcessInput("dash");
 		ProcessInput("light_attack");
 		ProcessInput("heavy_attack");
+		ProcessInput("aim");
+		ProcessInput("shoot");
 		
 		base._Process(delta);
 		

@@ -13,6 +13,7 @@ public partial class PlayerState : State
     [Export] private GroundedState groundedState;
     [Export] private AirborneState airborneState;
     [Export] private CombatState combatState;
+    [Export] private GunState gunState;
     
 
     private float _yaw ;
@@ -24,6 +25,7 @@ public partial class PlayerState : State
     {
         AddTransition(groundedState, airborneState, () => !Context.characterBody.IsOnFloor());
         AddTransition(groundedState, combatState, InputHelpers.DidAttackThisFrame);
+        AddTransition(groundedState, gunState, () => Context.actionMap["aim"].IsPressed);
         
         AddTransition(airborneState, groundedState, () => Context.characterBody.IsOnFloor());
         AddTransition(airborneState, combatState, InputHelpers.DidAttackThisFrame);
@@ -33,6 +35,8 @@ public partial class PlayerState : State
             || (Context.MovementDirection != Vector3.Zero && combatState.IsCancellable)
         ));
         AddTransition(combatState, airborneState, () => !Context.characterBody.IsOnFloor() && combatState.IsCompleted());
+        
+        AddTransition(gunState, groundedState, () => !Context.actionMap["aim"].IsPressed);
     }
 
     protected override void OnEnter()
