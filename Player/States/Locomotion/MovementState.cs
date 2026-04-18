@@ -2,7 +2,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class MovementState : State
+public partial class MovementState : AnimationState
 {
     [Export]
     public float Speed = 5.0f;

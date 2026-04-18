@@ -4,6 +4,8 @@ using Godot;
 [GlobalClass]
 public partial class AirborneState : State
 {
+    [Export] private AnimationNodeBlendTree tree;
+    
     [ExportCategory("Child States")]
     [Export] private State fallState;
     [Export] private State jumpState;

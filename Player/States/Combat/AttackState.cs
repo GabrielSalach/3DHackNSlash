@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 [GlobalClass]
-public partial class AttackState : State
+public partial class AttackState : AnimationState
 {
     [Export] private Ability ability;
 

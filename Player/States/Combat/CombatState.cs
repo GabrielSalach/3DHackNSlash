@@ -23,10 +23,7 @@ public partial class CombatState : State
         AddComboChain(lightAttackB, lightAttackA, "light_attack");
     }
 
-    public override bool IsCompleted()
-    {
-        return activeState.IsCompleted();
-    }
+    public override bool IsCompleted => activeState.IsCompleted;
 
     public override bool IsCancellable => Context.attackController.CurrentAnimationPhase == AnimationPhase.RECOVERY;
 

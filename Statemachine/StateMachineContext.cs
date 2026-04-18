@@ -11,8 +11,8 @@ public class StateMachineContext()
     }
     public ActionMap actionMap;
     public CharacterBody3D characterBody;
-    public AnimationPlayer animationPlayer;
     public CombatEntity combatEntity;
     public ModelRoot modelRoot;
     public AttackController attackController;
+    public StateMachineAnimator animator;
 }

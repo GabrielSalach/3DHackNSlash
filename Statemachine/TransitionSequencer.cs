@@ -16,15 +16,15 @@ public class TransitionSequencer
     
     public static State LowestCommonAncestor(State a, State b)
     {
-        HashSet<State> ap = new HashSet<State>();
+        HashSet<State> aParents = new HashSet<State>();
         for (State state = a; state != null; state = state.parent)
         {
-            ap.Add(state);
+            aParents.Add(state);
         }
         
         for (State state = b; state != null; state = state.parent)
         {
-            if (ap.Contains(state))
+            if (aParents.Contains(state))
             {
                 return state;
             }

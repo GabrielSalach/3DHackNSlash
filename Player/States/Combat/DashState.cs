@@ -43,5 +43,5 @@ public partial class DashState : State
         Context.characterBody.Velocity = Vector3.Zero;
     }
 
-    public override bool IsCompleted() => completed;
+    public override bool IsCompleted => completed;
 }

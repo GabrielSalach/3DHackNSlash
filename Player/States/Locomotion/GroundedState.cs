@@ -9,6 +9,7 @@ public partial class GroundedState : State
     [ExportCategory("Child States")]
     [Export] private State idleState;
     [Export] private MovementState groundMovement;
+    private AnimationNodeBlendSpace1D locomotionBlend;
     
     protected override State GetInitialState() => idleState;
     protected override void SetupTransitions()

@@ -48,10 +48,10 @@ public partial class StateDriver : CharacterBody3D
         {
             switch (child)
             {
-                case AnimationPlayer ap:
+                case StateMachineAnimator at:
                 {
-                    if (context.animationPlayer != null) throw new Exception("Only one animation player are allowed");
-                    context.animationPlayer = ap;
+                    if (context.animator != null) throw new Exception("Only one animation tree are allowed");
+                    context.animator = at;
                     break;
                 }
                 case CombatEntity ce:
@@ -75,8 +75,8 @@ public partial class StateDriver : CharacterBody3D
             }
         }
         
-        if(context.animationPlayer == null)
-            throw new Exception("Missing an AnimationPlayer Node");
+        if(context.animator == null)
+            throw new Exception("Missing an AnimationTree Node");
         if(context.combatEntity == null)
             throw new Exception("Missing a CombatEntity Node");
         if(context.modelRoot == null)

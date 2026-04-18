@@ -31,10 +31,10 @@ public partial class PlayerState : State
         AddTransition(airborneState, combatState, InputHelpers.DidAttackThisFrame);
         
         AddTransition(combatState, groundedState, () => Context.characterBody.IsOnFloor() && (
-            combatState.IsCompleted()
+            combatState.IsCompleted
             || (Context.MovementDirection != Vector3.Zero && combatState.IsCancellable)
         ));
-        AddTransition(combatState, airborneState, () => !Context.characterBody.IsOnFloor() && combatState.IsCompleted());
+        AddTransition(combatState, airborneState, () => !Context.characterBody.IsOnFloor() && combatState.IsCompleted);
         
         AddTransition(gunState, groundedState, () => !Context.actionMap["aim"].IsPressed);
     }

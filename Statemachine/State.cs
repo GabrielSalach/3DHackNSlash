@@ -5,8 +5,6 @@ using Godot;
 [GlobalClass]
 public abstract partial class State : Node
 {
-    [Export] public string animationName;
-    
     public State parent;
     protected State activeState;
 
@@ -26,16 +24,22 @@ public abstract partial class State : Node
             stateMachine = value;
         }
     }
+    
     protected StateMachineContext Context => Machine.context;
 
+    public AnimationNodeBlendTree BlendTree { get; private set; }
     
     
     
     protected virtual State GetInitialState() => null;
     protected virtual void SetupTransitions() { }
+    protected virtual AnimationNodeBlendTree SetupAnimationTree() => null;
     protected delegate bool TransitionCondition();
-    private Dictionary<State, Dictionary<State, TransitionCondition>> transitions = new Dictionary<State, Dictionary<State, TransitionCondition>>();
-    
+    private readonly Dictionary<State, Dictionary<State, TransitionCondition>> transitions = new Dictionary<State, Dictionary<State, TransitionCondition>>();
+
+    public virtual bool IsCompleted => false;
+
+    public virtual bool IsCancellable => true;
     
     //##########################################################
     //################# LIFECYCLE ##############################
@@ -45,6 +49,7 @@ public abstract partial class State : Node
     {
         parent ??= GetParentOrNull<State>();
         SetupTransitions();
+        BlendTree = SetupAnimationTree();
     }
 
     protected virtual void OnEnter() {}
@@ -59,10 +64,10 @@ public abstract partial class State : Node
             parent.activeState = this;
         }
         OnEnter();
-        if (!string.IsNullOrEmpty(animationName))
-        {
-            Machine.context.animationPlayer.Play(animationName);
-        }
+        
+        if(BlendTree != null)
+            Context.animator.ConnectTree(BlendTree);
+        
         State init = GetInitialState();
         if (init != null)
         {
@@ -165,15 +170,4 @@ public abstract partial class State : Node
         state = null;
         return false;
     }
-
-    public virtual bool IsCompleted()
-    {
-        if (string.IsNullOrEmpty(animationName)) return false;
-        
-        if (Context.animationPlayer.AssignedAnimation != animationName) return false;
-        
-        return !Context.animationPlayer.IsPlaying();
-    }
-
-    public virtual bool IsCancellable => false;
 }

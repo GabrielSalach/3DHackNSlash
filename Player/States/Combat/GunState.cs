@@ -18,7 +18,7 @@ public partial class GunState : State
         AddTransition(aimedMovementState, shootState, () => Context.actionMap["shoot"].IsJustPressed);
         AddTransition(aimedMovementState, aimedIdleState, () => Context.MovementDirection.Length() <= 0);
         
-        AddTransition(shootState, aimedIdleState, () => shootState.IsCompleted());
+        AddTransition(shootState, aimedIdleState, () => shootState.IsCompleted);
     }
 
     protected override void OnEnter()
