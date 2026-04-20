@@ -2,15 +2,50 @@
 
 [ext_resource type="PackedScene" uid="uid://bxtvbkbsy45lr" path="res://sword_of_artorias.glb" id="1_bll1j"]
 [ext_resource type="Script" uid="uid://rqwcq5vhlr0e" path="res://Combat/Weapons/Weapon.cs" id="2_tkcql"]
+[ext_resource type="Shader" uid="uid://ddxn05upaavem" path="res://GPUTrail-main/shaders/trail.gdshader" id="3_4ca3a"]
+[ext_resource type="Shader" uid="uid://csrf8vmlhjd18" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="4_wna2g"]
+[ext_resource type="Script" uid="uid://cdyuje0j2dcup" path="res://GPUTrail-main/GPUTrail3D.gd" id="5_tx0hi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkcql"]
 size = Vector3(1.0902491, 0.1631012, 0.1303711)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4uau"]
+shader = ExtResource("3_4ca3a")
+
+[sub_resource type="Gradient" id="Gradient_iiv4q"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wyms2"]
+gradient = SubResource("Gradient_iiv4q")
+
+[sub_resource type="Curve" id="Curve_2w5j1"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_se6qe"]
+curve = SubResource("Curve_2w5j1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e1lvm"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("4_wna2g")
+shader_parameter/mask_strength = 1.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_wyms2")
+shader_parameter/curve = SubResource("CurveTexture_se6qe")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+
+[sub_resource type="QuadMesh" id="QuadMesh_fhrl7"]
+material = SubResource("ShaderMaterial_e1lvm")
+
 [node name="Sword" unique_id=213238358 node_paths=PackedStringArray("hurtBox") instance=ExtResource("1_bll1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14336264, 0, 0)
 script = ExtResource("2_tkcql")
 hurtBox = NodePath("Area3D")
 
-[node name="Sketchfab_model" parent="." index="0" unique_id=1587155140]
+[node name="Sketchfab_model" parent="." index="0" unique_id=341109358]
 transform = Transform3D(-0.027089108, 8.017337e-09, -0.053536728, 0.05353673, 1.8626451e-09, -0.027089112, 9.313226e-10, -0.060000017, -7.916242e-09, 0.43537256, -0.0037525073, 0.034793407)
 
 [node name="Area3D" type="Area3D" parent="." index="1" unique_id=1616622103]
@@ -20,3 +55,19 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0" unique_id=902269939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.78097874, -0.0037002563, 0.0007324219)
 shape = SubResource("BoxShape3D_tkcql")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="." index="2" unique_id=950740107]
+transform = Transform3D(-2.1200023e-08, -0.485, 0, 0.485, -2.1200023e-08, 0, 0, 0, 0.485, 0.905, 0, 0)
+amount = 10
+lifetime = 10.0
+explosiveness = 1.0
+fixed_fps = 74
+process_material = SubResource("ShaderMaterial_d4uau")
+draw_pass_1 = SubResource("QuadMesh_fhrl7")
+script = ExtResource("5_tx0hi")
+length = 10
+length_seconds = 0.13513513513513514
+color_ramp = SubResource("GradientTexture1D_wyms2")
+curve = SubResource("CurveTexture_se6qe")
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://cdyuje0j2dcup"

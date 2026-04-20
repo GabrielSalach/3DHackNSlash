@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cp7gvlk0tchex" path="res://Player/PlayerModel/player_model.tscn" id="14_v56wm"]
 [ext_resource type="Script" uid="uid://c1wtjvp566v64" path="res://Player/States/Combat/GunState.cs" id="15_8025q"]
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="15_v56wm"]
+[ext_resource type="Script" uid="uid://deni7iinsl4pl" path="res://Player/States/Combat/SpecialMoves/ForwardStrikeState.cs" id="15_y4hlj"]
 [ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="16_5jj8u"]
 [ext_resource type="Animation" uid="uid://2nncrageml7x" path="res://Player/Animations/UniversalAnimationPack/ClimbUp_1m_RM.res" id="17_fo6g4"]
 [ext_resource type="Script" uid="uid://f5mjwu6w8nw0" path="res://Statemachine/StateMachineAnimator.cs" id="17_rki08"]
@@ -106,11 +107,12 @@
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="101_v56wm"]
 [ext_resource type="Animation" uid="uid://cv1oq3r6pm8oj" path="res://Player/Animations/Noizz/SwordLight_A.res" id="104_4pdpy"]
 [ext_resource type="Animation" uid="uid://cd6xpjdtqrkrf" path="res://Player/Animations/Noizz/SwordLight_B.res" id="105_8025q"]
-[ext_resource type="Animation" uid="uid://b5wvdldbyjh5y" path="res://Player/Animations/Noizz/GunAim.res" id="105_guxiv"]
-[ext_resource type="Animation" uid="uid://bsglxg0u6rsv7" path="res://Player/Animations/Noizz/A_TPose.res" id="105_vh7uj"]
-[ext_resource type="Animation" uid="uid://bnujeokl6ja2o" path="res://Player/Animations/Noizz/Dash.res" id="106_ghw05"]
-[ext_resource type="Animation" uid="uid://dcwjrcdxdg6o6" path="res://Player/Animations/Noizz/GunShoot.res" id="106_rxoxl"]
+[ext_resource type="Animation" uid="uid://b4e58qfu6nasd" path="res://Player/Animations/Noizz/GunAim.res" id="105_guxiv"]
+[ext_resource type="Animation" uid="uid://b63hamqwie0ba" path="res://Player/Animations/Noizz/A_TPose.res" id="105_vh7uj"]
+[ext_resource type="Animation" uid="uid://2mlebrtmrm72" path="res://Player/Animations/Noizz/Dash.res" id="106_ghw05"]
+[ext_resource type="Animation" uid="uid://bjjkc6pbtft8d" path="res://Player/Animations/Noizz/GunShoot.res" id="106_rxoxl"]
 [ext_resource type="Script" uid="uid://bluayd2c4h21c" path="res://_Core/Animation/AttackController.cs" id="107_rki08"]
+[ext_resource type="Animation" uid="uid://ym0avflrry1q" path="res://Player/Animations/Noizz/Sword_ForwardStrike.res" id="111_ghw05"]
 
 [sub_resource type="Resource" id="Resource_fo6g4"]
 script = ExtResource("2_5jj8u")
@@ -230,7 +232,8 @@ _data = {
 &"GunAim": ExtResource("105_guxiv"),
 &"GunShoot": ExtResource("106_rxoxl"),
 &"SwordLight_A": ExtResource("104_4pdpy"),
-&"SwordLight_B": ExtResource("105_8025q")
+&"SwordLight_B": ExtResource("105_8025q"),
+&"Sword_ForwardStrike": ExtResource("111_ghw05")
 }
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("springArm", "rootState")]
@@ -294,13 +297,14 @@ script = ExtResource("5_67yq1")
 AnimationName = "Jump"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
-[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "dashState")]
+[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "dashState", "forwardStrikeState")]
 script = ExtResource("7_8025q")
 weapon = ExtResource("8_rki08")
 initState = NodePath("InitState")
 lightAttackA = NodePath("LightAttackAState")
 lightAttackB = NodePath("LightAttackBState")
 dashState = NodePath("DashState")
+forwardStrikeState = NodePath("ForwardStrikeState")
 metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
 
 [node name="InitState" type="Node" parent="PlayerState/CombatState" unique_id=935959507]
@@ -325,6 +329,12 @@ dashDuration = 0.1
 dashSpeed = 50.0
 AnimationName = "Noizz/Dash"
 metadata/_custom_type_script = "uid://kewaupp57wpr"
+
+[node name="ForwardStrikeState" type="Node" parent="PlayerState/CombatState" unique_id=344915788]
+script = ExtResource("15_y4hlj")
+dashSpeed = 50.0
+AnimationName = "Noizz/Sword_ForwardStrike"
+metadata/_custom_type_script = "uid://deni7iinsl4pl"
 
 [node name="GunState" type="Node" parent="PlayerState" unique_id=928553225 node_paths=PackedStringArray("aimedMovementState", "aimedIdleState", "shootState")]
 script = ExtResource("15_8025q")
@@ -375,10 +385,12 @@ root_node = NodePath("../PlayerModel")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("17_rki08")
+defaultStateBlendTime = 0.001
 metadata/_custom_type_script = "uid://f5mjwu6w8nw0"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=119913443]
 root_node = NodePath("../PlayerModel")
+root_motion_track = NodePath("%GeneralSkeleton:Root")
 libraries/ = SubResource("AnimationLibrary_rxoxl")
 libraries/Noizz = SubResource("AnimationLibrary_vh7uj")
 

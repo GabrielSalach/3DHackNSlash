@@ -1,17 +1,15 @@
 using Godot;
 
 [GlobalClass]
-public partial class DashState : AnimationState
+public partial class ForwardStrikeState : AttackState
 {
-    
-    [Export] private float dashDuration;
+    public double timeLeft;
+    private bool completed;
+    private Timer timer;
+    public Vector3 direction;
+
     [Export] private float dashSpeed;
     
-    public Vector3 direction = Vector3.Zero;
-    public Timer timer;
-
-    private bool completed;
-
     protected override void OnEnter()
     {
         completed = false;
@@ -28,20 +26,18 @@ public partial class DashState : AnimationState
         }
         
 
-        direction = Context.MovementDirection != Vector3.Zero ? Context.MovementDirection : Context.modelRoot.Basis.Z;
-        direction.Y = 0;
-        timer.Start(dashDuration);
+        timer.Start(timeLeft);
     }
 
-    protected override void OnUpdatePhysics(float delta)
+    protected override void OnUpdate(float delta)
     {
-        Context.characterBody.Velocity += direction * dashSpeed;
+        Context.characterBody.Velocity = direction * Context.animator.GetRootMotionPositionAccumulator().Length() * dashSpeed;
     }
-
+    
     protected override void OnExit()
     {
         Context.characterBody.Velocity = Vector3.Zero;
     }
-
+    
     public override bool IsCompleted => completed;
 }

@@ -11,6 +11,7 @@ public partial class CombatState : State
     [Export] private AttackState lightAttackA;
     [Export] private AttackState lightAttackB;
     [Export] private DashState dashState;
+    [Export] private ForwardStrikeState forwardStrikeState;
 
     private string bufferedInput;
     
@@ -24,6 +25,8 @@ public partial class CombatState : State
         
         AddComboChain(lightAttackA, lightAttackB, "light_attack");
         AddComboChain(lightAttackB, lightAttackA, "light_attack");
+        
+        AddTransition(dashState, forwardStrikeState, () => bufferedInput == "light_attack");
     }
 
     public override bool IsCompleted => activeState.IsCompleted;
@@ -54,12 +57,17 @@ public partial class CombatState : State
     protected override void OnChildrenTransition(State from, State to)
     {
         bufferedInput = "";
+        if (from == dashState && to == forwardStrikeState)
+        {
+            forwardStrikeState.direction = dashState.direction;
+            forwardStrikeState.timeLeft = dashState.timer.TimeLeft;
+        }
     }
 
     /// <summary>
     /// Wrapper around transition to quickly add an attack in a combo chain
     /// </summary>
-    private void AddComboChain(AttackState from, AttackState to, string action)
+    private void AddComboChain(State from, State to, string action)
     {
         AddTransition(from, to, () => IsCancellable && bufferedInput == action);
     }
