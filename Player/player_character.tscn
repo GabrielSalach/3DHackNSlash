@@ -106,6 +106,8 @@
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="101_v56wm"]
 [ext_resource type="Animation" uid="uid://cv1oq3r6pm8oj" path="res://Player/Animations/Noizz/SwordLight_A.res" id="104_4pdpy"]
 [ext_resource type="Animation" uid="uid://cd6xpjdtqrkrf" path="res://Player/Animations/Noizz/SwordLight_B.res" id="105_8025q"]
+[ext_resource type="Animation" uid="uid://b5wvdldbyjh5y" path="res://Player/Animations/Noizz/GunAim.res" id="105_guxiv"]
+[ext_resource type="Animation" uid="uid://dcwjrcdxdg6o6" path="res://Player/Animations/Noizz/GunShoot.res" id="106_rxoxl"]
 [ext_resource type="Script" uid="uid://bluayd2c4h21c" path="res://_Core/Animation/AttackController.cs" id="107_rki08"]
 
 [sub_resource type="Resource" id="Resource_fo6g4"]
@@ -219,6 +221,8 @@ _data = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vh7uj"]
 _data = {
+&"GunAim": ExtResource("105_guxiv"),
+&"GunShoot": ExtResource("106_rxoxl"),
 &"SwordLight_A": ExtResource("104_4pdpy"),
 &"SwordLight_B": ExtResource("105_8025q")
 }
@@ -324,14 +328,17 @@ metadata/_custom_type_script = "uid://c1wtjvp566v64"
 
 [node name="AimedMovementState" type="Node" parent="PlayerState/GunState" unique_id=57968226]
 script = ExtResource("4_fo6g4")
+AnimationName = "Noizz/GunAim"
 metadata/_custom_type_script = "uid://b2e8f0yptl635"
 
 [node name="AimedIdleState" type="Node" parent="PlayerState/GunState" unique_id=1424912942]
 script = ExtResource("5_67yq1")
+AnimationName = "Noizz/GunAim"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
 [node name="ShootState" type="Node" parent="PlayerState/GunState" unique_id=1759620575]
 script = ExtResource("5_67yq1")
+AnimationName = "Noizz/GunShoot"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
 [node name="PlayerModel" parent="." unique_id=900740771 instance=ExtResource("14_v56wm")]
