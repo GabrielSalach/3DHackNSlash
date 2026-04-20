@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://_Core/DebugControl.cs" id="7_go2h7"]
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_63xd4"]
 [ext_resource type="Material" uid="uid://c0xhptege731q" path="res://NPC/TrainingDummy/M_Dummy.tres" id="102_5frrj"]
-[ext_resource type="ArrayMesh" uid="uid://cd48m3374qj5i" path="res://NPC/TrainingDummy/Mesh_003.res" id="103_4yoyx"]
+[ext_resource type="ArrayMesh" uid="uid://cskallo0n36hp" path="res://NPC/TrainingDummy/Mesh_003.res" id="103_4yoyx"]
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="105_ndew3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_okgj3"]
