@@ -56,6 +56,7 @@ public abstract partial class State : Node
     protected virtual void OnUpdate(float delta) {}
     protected virtual void OnUpdatePhysics(float delta) {}
     protected virtual void OnExit() {}
+    protected virtual void OnChildrenTransition(State from, State to) {}
 
     internal void Enter()
     {
@@ -81,6 +82,7 @@ public abstract partial class State : Node
         {
             if (TryGetTargetState(out State state))
             {
+                OnChildrenTransition(activeState, state);
                 Machine.sequencer.RequestTransition(activeState, state);
             }
             activeState.Update(deltaTime);

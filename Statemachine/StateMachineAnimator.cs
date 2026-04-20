@@ -3,6 +3,8 @@ using Godot;
 [GlobalClass]
 public partial class StateMachineAnimator : AnimationTree
 {
+    [Export] private float defaultStateBlendTime = 0.1f;
+    
     private string activeTreeName;
     private const string treeA = "TreeA";
     private const string treeB = "TreeB";
@@ -41,7 +43,9 @@ public partial class StateMachineAnimator : AnimationTree
             root.AddNode(treeB, tree);
             root.ConnectNode(mainBlend, 1, treeB);
             activeTreeName = treeB;
-            Set("parameters/MainBlend/blend_amount", 1);
+            // Set("parameters/MainBlend/blend_amount", 1);
+            Tween blendTween = GetTree().CreateTween();
+            blendTween.TweenProperty(this, "parameters/MainBlend/blend_amount", 1, 0.1f);
         }
         else
         {
@@ -53,7 +57,9 @@ public partial class StateMachineAnimator : AnimationTree
             root.AddNode(treeA, tree);
             root.ConnectNode(mainBlend, 0, treeA);
             activeTreeName = treeA;
-            Set("parameters/MainBlend/blend_amount", 0);
+            // Set("parameters/MainBlend/blend_amount", 0);
+            Tween blendTween = GetTree().CreateTween();
+            blendTween.TweenProperty(this, "parameters/MainBlend/blend_amount", 0, 0.1f);
         }
     }
 

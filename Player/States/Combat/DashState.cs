@@ -1,7 +1,7 @@
 using Godot;
 
 [GlobalClass]
-public partial class DashState : State
+public partial class DashState : AnimationState
 {
     
     [Export] private float dashDuration;
