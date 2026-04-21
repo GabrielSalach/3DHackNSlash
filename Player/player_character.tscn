@@ -17,7 +17,9 @@
 [ext_resource type="Animation" uid="uid://c5mmtq5jhdsej" path="res://Player/Animations/UniversalAnimationPack/A_TPose.res" id="15_v56wm"]
 [ext_resource type="Script" uid="uid://deni7iinsl4pl" path="res://Player/States/Combat/SpecialMoves/ForwardStrikeState.cs" id="15_y4hlj"]
 [ext_resource type="Animation" uid="uid://eg8vksblar2m" path="res://Player/Animations/UniversalAnimationPack/Chest_Open.res" id="16_5jj8u"]
+[ext_resource type="Script" uid="uid://dxb0vlablfth1" path="res://Player/States/Combat/SpecialMoves/UpwardStrikeState.cs" id="16_7j7so"]
 [ext_resource type="Animation" uid="uid://2nncrageml7x" path="res://Player/Animations/UniversalAnimationPack/ClimbUp_1m_RM.res" id="17_fo6g4"]
+[ext_resource type="Resource" uid="uid://cv5cmnx0ojakp" path="res://Player/Combat/UpwardStrike.tres" id="17_gy6c6"]
 [ext_resource type="Script" uid="uid://f5mjwu6w8nw0" path="res://Statemachine/StateMachineAnimator.cs" id="17_rki08"]
 [ext_resource type="Animation" uid="uid://bnrp0gjqaljln" path="res://Player/Animations/UniversalAnimationPack/Consume.res" id="18_67yq1"]
 [ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="19_4pdpy"]
@@ -113,6 +115,7 @@
 [ext_resource type="Animation" uid="uid://bjjkc6pbtft8d" path="res://Player/Animations/Noizz/GunShoot.res" id="106_rxoxl"]
 [ext_resource type="Script" uid="uid://bluayd2c4h21c" path="res://_Core/Animation/AttackController.cs" id="107_rki08"]
 [ext_resource type="Animation" uid="uid://ym0avflrry1q" path="res://Player/Animations/Noizz/Sword_ForwardStrike.res" id="111_ghw05"]
+[ext_resource type="Animation" uid="uid://ckfj1vlob8yr2" path="res://Player/Animations/Noizz/Sword_UpwardStrike.res" id="114_gy6c6"]
 
 [sub_resource type="Resource" id="Resource_fo6g4"]
 script = ExtResource("2_5jj8u")
@@ -120,8 +123,6 @@ actions = Array[String](["jump", "dash", "light_attack", "heavy_attack", "aim", 
 metadata/_custom_type_script = "uid://sitttud84thh"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rki08"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8025q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcxcq"]
 
@@ -133,6 +134,57 @@ sky_material = SubResource("ProceduralSkyMaterial_xqj8x")
 [sub_resource type="Environment" id="Environment_pcqpa"]
 background_mode = 2
 sky = SubResource("Sky_ttmpx")
+
+[sub_resource type="Animation" id="Animation_7j7so"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AttackController:CurrentAnimationPhase")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox/CollisionShape3D:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rxoxl"]
 _data = {
@@ -186,6 +238,7 @@ _data = {
 &"Punch_Cross": ExtResource("62_r1nuv"),
 &"Punch_Jab": ExtResource("63_u5e4n"),
 &"Push": ExtResource("64_eud77"),
+&"RESET": SubResource("Animation_7j7so"),
 &"Roll": ExtResource("65_q2jlc"),
 &"Roll_RM": ExtResource("66_7um0y"),
 &"Shield_Dash_RM": ExtResource("67_a7omh"),
@@ -233,7 +286,8 @@ _data = {
 &"GunShoot": ExtResource("106_rxoxl"),
 &"SwordLight_A": ExtResource("104_4pdpy"),
 &"SwordLight_B": ExtResource("105_8025q"),
-&"Sword_ForwardStrike": ExtResource("111_ghw05")
+&"Sword_ForwardStrike": ExtResource("111_ghw05"),
+&"Sword_UpwardStrike": ExtResource("114_gy6c6")
 }
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("springArm", "rootState")]
@@ -297,7 +351,7 @@ script = ExtResource("5_67yq1")
 AnimationName = "Jump"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
-[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "dashState", "forwardStrikeState")]
+[node name="CombatState" type="Node" parent="PlayerState" unique_id=83449336 node_paths=PackedStringArray("initState", "lightAttackA", "lightAttackB", "dashState", "forwardStrikeState", "upwardStrikeState")]
 script = ExtResource("7_8025q")
 weapon = ExtResource("8_rki08")
 initState = NodePath("InitState")
@@ -305,6 +359,7 @@ lightAttackA = NodePath("LightAttackAState")
 lightAttackB = NodePath("LightAttackBState")
 dashState = NodePath("DashState")
 forwardStrikeState = NodePath("ForwardStrikeState")
+upwardStrikeState = NodePath("UpwardStrikeState")
 metadata/_custom_type_script = "uid://x4pr6bw6nhqt"
 
 [node name="InitState" type="Node" parent="PlayerState/CombatState" unique_id=935959507]
@@ -336,6 +391,13 @@ dashSpeed = 50.0
 AnimationName = "Noizz/Sword_ForwardStrike"
 metadata/_custom_type_script = "uid://deni7iinsl4pl"
 
+[node name="UpwardStrikeState" type="Node" parent="PlayerState/CombatState" unique_id=1628355857]
+script = ExtResource("16_7j7so")
+jumpHeight = 100.0
+ability = ExtResource("17_gy6c6")
+AnimationName = "Noizz/Sword_UpwardStrike"
+metadata/_custom_type_script = "uid://dxb0vlablfth1"
+
 [node name="GunState" type="Node" parent="PlayerState" unique_id=928553225 node_paths=PackedStringArray("aimedMovementState", "aimedIdleState", "shootState")]
 script = ExtResource("15_8025q")
 aimedMovementState = NodePath("AimedMovementState")
@@ -362,13 +424,10 @@ metadata/_custom_type_script = "uid://bsqijymya7p46"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="HurtBox" type="Area3D" parent="PlayerModel" unique_id=1867971009]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
 collision_layer = 8
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerModel/HurtBox" unique_id=2004512185]
-shape = SubResource("BoxShape3D_8025q")
-disabled = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=561518560]
 shape = SubResource("CapsuleShape3D_fcxcq")

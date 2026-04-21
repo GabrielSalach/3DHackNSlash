@@ -50,8 +50,13 @@ public abstract partial class State : Node
         parent ??= GetParentOrNull<State>();
         SetupTransitions();
         BlendTree = SetupAnimationTree();
+        Initialize();
     }
 
+    /// <summary>
+    /// Method to override instead of _Ready() to initialize a state at runtime start.
+    /// </summary>
+    protected virtual void Initialize() { }
     protected virtual void OnEnter() {}
     protected virtual void OnUpdate(float delta) {}
     protected virtual void OnUpdatePhysics(float delta) {}
@@ -171,5 +176,10 @@ public abstract partial class State : Node
         
         state = null;
         return false;
+    }
+
+    protected void ApplyRootMotion(double delta, float scale = 1.0f)
+    {
+        Context.characterBody.Velocity = Context.animator.GetRootMotionPosition() * scale * (float)delta;
     }
 }

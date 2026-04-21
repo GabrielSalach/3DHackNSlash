@@ -16,6 +16,7 @@ metadata/_custom_type_script = "uid://cxw4dep60i5r5"
 
 [sub_resource type="Resource" id="Resource_e76de"]
 script = ExtResource("3_ep00b")
+AttackName = "Light Attack"
 metadata/_custom_type_script = "uid://cyf7bol2uuvq2"
 
 [resource]

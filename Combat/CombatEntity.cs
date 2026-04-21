@@ -6,7 +6,11 @@ using Godot;
 public partial class CombatEntity : Node
 {
     private readonly Dictionary<Type, StatComponent> components = new Dictionary<Type, StatComponent>();
-
+    
+    
+    public CharacterBody3D GetCharacterBody() => GetParent() as CharacterBody3D;
+    
+    
     public override void _Ready()
     {
         foreach (Node child in GetChildren())

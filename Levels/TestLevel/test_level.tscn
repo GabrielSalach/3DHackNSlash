@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://bshd1sgfky7tc" path="res://Levels/TestLevel/Checker.tres" id="1_gojnm"]
 [ext_resource type="PackedScene" uid="uid://k5ta2fedtv18" path="res://Player/player_character.tscn" id="2_go2h7"]
+[ext_resource type="Script" uid="uid://ddi7o2xloo55w" path="res://NPC/TrainingDummy/TrainingDummy.cs" id="4_okgj3"]
 [ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://_Core/DebugControl.cs" id="7_go2h7"]
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_63xd4"]
 [ext_resource type="Material" uid="uid://c0xhptege731q" path="res://NPC/TrainingDummy/M_Dummy.tres" id="102_5frrj"]
@@ -35,8 +36,9 @@ script = ExtResource("7_go2h7")
 metadata/_custom_type_script = "uid://bn10yp5bfrywl"
 
 [node name="TrainingDummy" type="CharacterBody3D" parent="." unique_id=1379341895]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4887147, 6.4087105)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.771691, 6.4087105)
 collision_layer = 4
+script = ExtResource("4_okgj3")
 
 [node name="TrainingDummy" type="MeshInstance3D" parent="TrainingDummy" unique_id=1627023891]
 material_override = ExtResource("102_5frrj")
