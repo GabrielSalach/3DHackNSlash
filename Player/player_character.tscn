@@ -316,12 +316,13 @@ combatState = NodePath("CombatState")
 gunState = NodePath("GunState")
 metadata/_custom_type_script = "uid://spjaywyr125y"
 
-[node name="GroundedState" type="Node" parent="PlayerState" unique_id=576693400 node_paths=PackedStringArray("idleState", "groundMovement")]
+[node name="GroundedState" type="Node" parent="PlayerState" unique_id=576693400 node_paths=PackedStringArray("idleState", "groundMovement", "landingState")]
 script = ExtResource("3_5jj8u")
 jumpForce = 5.0
 friction = 30.0
 idleState = NodePath("IdleState")
 groundMovement = NodePath("MovementState")
+landingState = NodePath("LandingState")
 metadata/_custom_type_script = "uid://cbjip600o0gec"
 
 [node name="MovementState" type="Node" parent="PlayerState/GroundedState" unique_id=1035224271]
@@ -332,6 +333,11 @@ metadata/_custom_type_script = "uid://b2e8f0yptl635"
 [node name="IdleState" type="Node" parent="PlayerState/GroundedState" unique_id=473366282]
 script = ExtResource("5_67yq1")
 AnimationName = "Idle"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="LandingState" type="Node" parent="PlayerState/GroundedState" unique_id=891063127]
+script = ExtResource("5_67yq1")
+AnimationName = "Jump_Land"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
 [node name="AirborneState" type="Node" parent="PlayerState" unique_id=1820034451 node_paths=PackedStringArray("fallState", "jumpState")]

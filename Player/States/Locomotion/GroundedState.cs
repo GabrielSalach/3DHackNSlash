@@ -9,13 +9,25 @@ public partial class GroundedState : State
     [ExportCategory("Child States")]
     [Export] private State idleState;
     [Export] private MovementState groundMovement;
-    private AnimationNodeBlendSpace1D locomotionBlend;
+    [Export] private AnimationState landingState;
+
+    public bool fromAirborne = false;
     
     protected override State GetInitialState() => idleState;
     protected override void SetupTransitions()
     {
-        AddTransition(groundMovement, idleState, () => Context.MovementDirection.Length() <= 0);
+        AddTransition(idleState, landingState, () => fromAirborne);
         AddTransition(idleState, groundMovement, () => Context.MovementDirection.Length() > 0);
+        AddTransition(groundMovement, idleState, () => Context.MovementDirection.Length() <= 0);
+        AddTransition(landingState, idleState, () => landingState.IsCompleted);
+    }
+
+    protected override void OnChildrenTransition(State from, State to)
+    {
+        if (to == landingState)
+        {
+            fromAirborne = false;
+        }
     }
 
     protected override void OnUpdatePhysics(float delta)

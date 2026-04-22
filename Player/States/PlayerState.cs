@@ -49,6 +49,14 @@ public partial class PlayerState : State
         springArm.Rotation = new Vector3(_pitch, _yaw, 0);
     }
 
+    protected override void OnChildrenTransition(State from, State to)
+    {
+        if (from == airborneState && to == groundedState)
+        {
+            groundedState.fromAirborne = true;
+        }
+    }
+
     public override void _Input(InputEvent @event)
     {
         if (@event is InputEventMouseMotion motion)
