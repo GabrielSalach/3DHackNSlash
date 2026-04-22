@@ -26,6 +26,7 @@ public partial class CombatState : State
         
         AddComboChain(lightAttackA, lightAttackB, "light_attack");
         AddComboChain(lightAttackA, upwardStrikeState, "jump"); 
+        AddComboChain(lightAttackA, forwardStrikeState, "dash");
         AddComboChain(lightAttackB, lightAttackA, "light_attack");
         
         AddTransition(dashState, forwardStrikeState, () => bufferedInput == "light_attack");
@@ -53,6 +54,11 @@ public partial class CombatState : State
         {
             bufferedInput = "jump";
         }
+
+        if (Context.actionMap["dash"].IsJustPressed)
+        {
+            bufferedInput = "dash";
+        }
     }
 
     protected override void OnExit()
@@ -68,6 +74,12 @@ public partial class CombatState : State
         {
             forwardStrikeState.direction = dashState.direction;
             forwardStrikeState.timeLeft = dashState.timer.TimeLeft;
+        }
+
+        if (from == lightAttackA && to == forwardStrikeState)
+        {
+            forwardStrikeState.direction = Context.modelRoot.Basis.Z;
+            forwardStrikeState.timeLeft = 0.1f;
         }
     }
 
