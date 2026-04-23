@@ -4,9 +4,11 @@ using Godot;
 [GlobalClass]
 public partial class PlayerStateDriver : StateDriver
 {
+	[Export] private OrbitalCamera orbitalCamera;
+	
 	public override void _Process(double delta)
 	{
-		context.MovementDirection = InputHelpers.GetMovementInputAsVector3();
+		context.MovementDirection = orbitalCamera.Transform.Basis * InputHelpers.GetMovementInputAsVector3();
 		ProcessInput("jump");
 		ProcessInput("dash");
 		ProcessInput("light_attack");

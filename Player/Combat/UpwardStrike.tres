@@ -6,7 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_1kcm5"]
 script = ExtResource("1_53och")
-AttackName = "Upward Strike"
 metadata/_custom_type_script = "uid://cyf7bol2uuvq2"
 
 [sub_resource type="Resource" id="Resource_e7btd"]
