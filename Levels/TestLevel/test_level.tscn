@@ -29,8 +29,11 @@ material = ExtResource("1_gojnm")
 [node name="PlayerCharacter" parent="." unique_id=556318163 instance=ExtResource("2_go2h7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
 
-[node name="OrbitalCamera" parent="PlayerCharacter" index="7" unique_id=1031621675]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 2.12)
+[node name="FreeCamera" parent="PlayerCharacter" index="7" unique_id=855655504]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 2.6226832e-07, 5.254236, -3)
+
+[node name="AimCamera" parent="PlayerCharacter" index="8" unique_id=1256036708]
+transform = Transform3D(-0.9999973, 0, 1.5099464e-07, 0, 0.9999945, 0, -1.509954e-07, 0, -0.99999225, -0.9999997, 5.754236, -1.5)
 
 [node name="DebugControl" type="BoxContainer" parent="." unique_id=1147038709]
 offset_right = 40.0
@@ -63,10 +66,11 @@ CurrentValue = 0
 metadata/_custom_type_script = "uid://bkywrixskk54e"
 
 [node name="CameraController3D" type="Camera3D" parent="." unique_id=1341575342 node_paths=PackedStringArray("currentCamera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 2.12)
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 2.6226832e-07, 5.254236, -3)
 top_level = true
 script = ExtResource("9_0ku8u")
-currentCamera = NodePath("../PlayerCharacter/OrbitalCamera")
+currentCamera = NodePath("../PlayerCharacter/FreeCamera")
+blendTime = 0.1
 metadata/_custom_type_script = "uid://dnd6osbodawcf"
 
 [editable path="PlayerCharacter"]

@@ -6,6 +6,7 @@ using Godot;
 public partial class CameraController3D : Camera3D
 {
     [Export] private VirtualCamera currentCamera;
+    [Export] private float blendTime;
 
     public CameraController3D()
     {
@@ -31,10 +32,28 @@ public partial class CameraController3D : Camera3D
         {
             return;
         }
+
+        if (currentCamera == null)
+        {
+            currentCamera = highestPriorityCamera;
+        }
+
+        if (currentCamera == highestPriorityCamera)
+        {
+            GlobalPosition = currentCamera.GlobalPosition;
+            GlobalRotation = currentCamera.GlobalRotation;
+        }
+        else
+        {
+            Tween tween = GetTree().CreateTween();
+            tween.SetParallel();
+            tween.TweenProperty(this, "global_position", highestPriorityCamera.GlobalPosition, blendTime);
+            tween.TweenProperty(this, "global_rotation", highestPriorityCamera.GlobalRotation, blendTime);
+            tween.Finished += () =>
+            {
+                currentCamera = highestPriorityCamera;
+            };
+        }
         
-        currentCamera = highestPriorityCamera;
-        
-        GlobalPosition = currentCamera.GlobalPosition;
-        GlobalRotation = currentCamera.GlobalRotation;
     }
 }

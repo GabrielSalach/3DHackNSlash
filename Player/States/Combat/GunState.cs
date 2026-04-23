@@ -3,6 +3,8 @@ using Godot;
 [GlobalClass]
 public partial class GunState : State
 {
+    [Export] private OrbitalCamera aimCamera;
+    
     [ExportCategory("Child States")]
     [Export] private MovementState aimedMovementState;
     [Export] private State aimedIdleState;
@@ -24,5 +26,11 @@ public partial class GunState : State
     protected override void OnEnter()
     {
         Context.characterBody.Velocity = Vector3.Zero;
+        aimCamera.Priority = 1;
+    }
+
+    protected override void OnExit()
+    {
+        aimCamera.Priority = -1;
     }
 }
