@@ -2,58 +2,39 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-[GlobalClass]
+[GlobalClass, Tool]
 public partial class CameraController3D : Camera3D
 {
-    public static CameraController3D Instance { get; private set; }
-    
-    private readonly List<VirtualCamera> virtualCameras = new List<VirtualCamera>();
-    private VirtualCamera currentCamera;
+    [Export] private VirtualCamera currentCamera;
 
-    public override void _EnterTree()
+    public CameraController3D()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            GD.PushWarning("More than one CameraController3D exists");
-            QueueFree();
-        }
-    }
-
-    public override void _Process(double delta)
-    {
-        currentCamera = GetHighestPriorityCamera();
-        
-        if (currentCamera == null)
-        {
-            return;
-        }
-        
-        Position = currentCamera.Position;
-        Rotation = currentCamera.Rotation;
+        TopLevel = true;
     }
 
     private VirtualCamera GetHighestPriorityCamera()
     {
-        if (virtualCameras.Count == 0)
+        List<VirtualCamera> vCams = GetTree().GetNodesInGroup("VirtualCameras").Cast<VirtualCamera>().ToList();
+
+        if (vCams.Count == 0)
         {
             return null;
         }
-        
-        VirtualCamera current = virtualCameras[0];
-        foreach (VirtualCamera vCam in virtualCameras.Where(vCam => vCam.Priority > current.Priority))
-        {
-            current = vCam;
-        }
 
-        return current;
+        return vCams.MaxBy(vCam => vCam.Priority);
     }
 
-    public void RegisterVirtualCamera(VirtualCamera vCam)
+    public override void _Process(double delta)
     {
-        virtualCameras.Add(vCam);
+        VirtualCamera highestPriorityCamera = GetHighestPriorityCamera();
+        if (highestPriorityCamera == null)
+        {
+            return;
+        }
+        
+        currentCamera = highestPriorityCamera;
+        
+        GlobalPosition = currentCamera.GlobalPosition;
+        GlobalRotation = currentCamera.GlobalRotation;
     }
 }

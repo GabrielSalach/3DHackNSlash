@@ -116,6 +116,7 @@
 [ext_resource type="Script" uid="uid://bluayd2c4h21c" path="res://_Core/Animation/AttackController.cs" id="107_rki08"]
 [ext_resource type="Animation" uid="uid://ym0avflrry1q" path="res://Player/Animations/Noizz/Sword_ForwardStrike.res" id="111_ghw05"]
 [ext_resource type="Animation" uid="uid://ckfj1vlob8yr2" path="res://Player/Animations/Noizz/Sword_UpwardStrike.res" id="114_gy6c6"]
+[ext_resource type="Script" uid="uid://btctq6j3x0hx0" path="res://CameraSystem/OrbitalCamera.cs" id="117_elero"]
 
 [sub_resource type="Resource" id="Resource_fo6g4"]
 script = ExtResource("2_5jj8u")
@@ -125,15 +126,6 @@ metadata/_custom_type_script = "uid://sitttud84thh"
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rki08"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fcxcq"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_xqj8x"]
-
-[sub_resource type="Sky" id="Sky_ttmpx"]
-sky_material = SubResource("ProceduralSkyMaterial_xqj8x")
-
-[sub_resource type="Environment" id="Environment_pcqpa"]
-background_mode = 2
-sky = SubResource("Sky_ttmpx")
 
 [sub_resource type="Animation" id="Animation_7j7so"]
 length = 0.001
@@ -290,11 +282,10 @@ _data = {
 &"Sword_UpwardStrike": ExtResource("114_gy6c6")
 }
 
-[node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("springArm", "rootState")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("rootState")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_4qhxw")
-springArm = NodePath("SpringArm3D")
 rootState = NodePath("PlayerState")
 actionMap = SubResource("Resource_fo6g4")
 
@@ -307,9 +298,8 @@ script = ExtResource("101_v56wm")
 MaxValue = 100
 CurrentValue = 0
 
-[node name="PlayerState" type="Node" parent="." unique_id=369373089 node_paths=PackedStringArray("springArm", "groundedState", "airborneState", "combatState", "gunState")]
+[node name="PlayerState" type="Node" parent="." unique_id=369373089 node_paths=PackedStringArray("groundedState", "airborneState", "combatState", "gunState")]
 script = ExtResource("2_v56wm")
-springArm = NodePath("../SpringArm3D")
 groundedState = NodePath("GroundedState")
 airborneState = NodePath("AirborneState")
 combatState = NodePath("CombatState")
@@ -438,13 +428,6 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=561518560]
 shape = SubResource("CapsuleShape3D_fcxcq")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=301747258]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
-spring_length = 3.0
-
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1011509088]
-environment = SubResource("Environment_pcqpa")
-
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=163601330]
 root_node = NodePath("../PlayerModel")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
@@ -463,3 +446,11 @@ libraries/Noizz = SubResource("AnimationLibrary_vh7uj")
 script = ExtResource("107_rki08")
 hurtBox = NodePath("../PlayerModel/HurtBox")
 metadata/_custom_type_script = "uid://bluayd2c4h21c"
+
+[node name="OrbitalCamera" type="Node3D" parent="." unique_id=1031621675 node_paths=PackedStringArray("Target")]
+transform = Transform3D(-0.9999995, 0, -8.742272e-08, 0, 0.9999999, 0, 8.7422734e-08, 0, -0.99999934, 0, 0, -3)
+top_level = true
+script = ExtResource("117_elero")
+Target = NodePath("..")
+ArmLength = 3.0
+metadata/_custom_type_script = "uid://btctq6j3x0hx0"

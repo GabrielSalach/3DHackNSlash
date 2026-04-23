@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://k5ta2fedtv18" path="res://Player/player_character.tscn" id="2_go2h7"]
 [ext_resource type="Script" uid="uid://ddi7o2xloo55w" path="res://NPC/TrainingDummy/TrainingDummy.cs" id="4_okgj3"]
 [ext_resource type="Script" uid="uid://bn10yp5bfrywl" path="res://_Core/DebugControl.cs" id="7_go2h7"]
+[ext_resource type="Script" uid="uid://dnd6osbodawcf" path="res://CameraSystem/CameraController3D.cs" id="9_0ku8u"]
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_63xd4"]
 [ext_resource type="Material" uid="uid://c0xhptege731q" path="res://NPC/TrainingDummy/M_Dummy.tres" id="102_5frrj"]
-[ext_resource type="ArrayMesh" uid="uid://cskallo0n36hp" path="res://NPC/TrainingDummy/Mesh_003.res" id="103_4yoyx"]
+[ext_resource type="ArrayMesh" uid="uid://cd48m3374qj5i" path="res://NPC/TrainingDummy/Mesh_003.res" id="103_4yoyx"]
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="105_ndew3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_okgj3"]
@@ -27,6 +28,10 @@ material = ExtResource("1_gojnm")
 
 [node name="PlayerCharacter" parent="." unique_id=556318163 instance=ExtResource("2_go2h7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2542377, 0)
+
+[node name="OrbitalCamera" parent="PlayerCharacter" index="8" unique_id=1031621675]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 5.2542377, -2.12)
+ArmLength = 2.12
 
 [node name="DebugControl" type="BoxContainer" parent="." unique_id=1147038709]
 offset_right = 40.0
@@ -57,3 +62,12 @@ script = ExtResource("105_ndew3")
 MaxValue = 0
 CurrentValue = 0
 metadata/_custom_type_script = "uid://bkywrixskk54e"
+
+[node name="CameraController3D" type="Camera3D" parent="." unique_id=1341575342 node_paths=PackedStringArray("currentCamera")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 5.2542377, -2.12)
+top_level = true
+script = ExtResource("9_0ku8u")
+currentCamera = NodePath("../PlayerCharacter/OrbitalCamera")
+metadata/_custom_type_script = "uid://dnd6osbodawcf"
+
+[editable path="PlayerCharacter"]

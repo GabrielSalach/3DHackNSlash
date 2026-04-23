@@ -23,6 +23,10 @@ project/assembly_name="DevilAutomata"
 
 enabled=PackedStringArray("res://addons/state_machine_viewer_plugin/plugin.cfg")
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 forward={

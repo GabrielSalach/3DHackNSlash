@@ -4,7 +4,6 @@ using Godot;
 [GlobalClass]
 public partial class PlayerState : State
 {
-    [Export] SpringArm3D springArm;
     [Export] public float MouseSensitivity = 0.003f;
     [Export] public float MinPitch = -40.0f;
     [Export] public float MaxPitch = 60.0f;
@@ -46,7 +45,7 @@ public partial class PlayerState : State
 
     protected override void OnUpdate(float delta)
     {
-        springArm.Rotation = new Vector3(_pitch, _yaw, 0);
+        // springArm.Rotation = new Vector3(_pitch, _yaw, 0);
     }
 
     protected override void OnChildrenTransition(State from, State to)

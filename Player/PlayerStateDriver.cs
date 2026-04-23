@@ -4,11 +4,9 @@ using Godot;
 [GlobalClass]
 public partial class PlayerStateDriver : StateDriver
 {
-	[Export] private SpringArm3D springArm;
-	
 	public override void _Process(double delta)
 	{
-		context.MovementDirection = springArm.Transform.Basis * InputHelpers.GetMovementInputAsVector3();
+		context.MovementDirection = InputHelpers.GetMovementInputAsVector3();
 		ProcessInput("jump");
 		ProcessInput("dash");
 		ProcessInput("light_attack");
