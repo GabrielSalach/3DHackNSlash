@@ -29,6 +29,16 @@ public partial class GunState : State
         aimCamera.Priority = 1;
     }
 
+    protected override void OnUpdate(float delta)
+    {
+        Vector3 cameraForward = aimCamera.GlobalTransform.Basis.Z;
+        cameraForward.Y = 0; 
+        cameraForward = cameraForward.Normalized();
+
+        if (cameraForward.LengthSquared() > 0.001f)
+            Context.modelRoot.LookAt(Context.modelRoot.GlobalPosition + cameraForward, Vector3.Up);
+    }
+
     protected override void OnExit()
     {
         aimCamera.Priority = -1;
