@@ -42,6 +42,7 @@ public partial class CameraController3D : Camera3D
         {
             GlobalPosition = currentCamera.GlobalPosition;
             GlobalRotation = currentCamera.GlobalRotation;
+            Fov = currentCamera.FOV;
         }
         else
         {
@@ -49,6 +50,7 @@ public partial class CameraController3D : Camera3D
             tween.SetParallel();
             tween.TweenProperty(this, "global_position", highestPriorityCamera.GlobalPosition, blendTime);
             tween.TweenProperty(this, "global_rotation", highestPriorityCamera.GlobalRotation, blendTime);
+            tween.TweenProperty(this, "fov", highestPriorityCamera.FOV, blendTime);
             tween.Finished += () =>
             {
                 currentCamera = highestPriorityCamera;

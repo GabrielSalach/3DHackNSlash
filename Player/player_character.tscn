@@ -450,21 +450,24 @@ hurtBox = NodePath("../PlayerModel/HurtBox")
 metadata/_custom_type_script = "uid://bluayd2c4h21c"
 
 [node name="FreeCamera" type="Node3D" parent="." unique_id=855655504 node_paths=PackedStringArray("Target")]
-transform = Transform3D(-0.9999973, 0, 1.5099464e-07, 0, 0.9999945, 0, -1.509954e-07, 0, -0.99999225, 2.6226832e-07, -4e-45, -3)
+transform = Transform3D(-0.9999973, 0, 1.5099464e-07, 0, 0.9999945, 0, -1.509954e-07, 0, -0.99999225, 2.6226832e-07, 0, -3)
 top_level = true
 script = ExtResource("117_elero")
 Target = NodePath("../PlayerModel")
 ArmLength = 3.0
 Offset = Vector3(0, 1, 0)
+Damping = Vector3(0, 0, 0)
 CollisionMask = 1
 metadata/_custom_type_script = "uid://btctq6j3x0hx0"
 
 [node name="AimCamera" type="Node3D" parent="." unique_id=1256036708 node_paths=PackedStringArray("Target")]
-transform = Transform3D(-0.9999973, 0, 1.5099464e-07, 0, 0.9999945, 0, -1.509954e-07, 0, -0.99999225, -0.9999997, 0.4999999, -1.5)
+transform = Transform3D(-0.9999974, 0, 1.5099464e-07, 0, 0.9999945, 0, -1.509954e-07, 0, -0.99999225, -0.9999999, 0.5, -1.5)
 top_level = true
 script = ExtResource("117_elero")
 Target = NodePath("../PlayerModel")
 ArmLength = 1.5
 Offset = Vector3(-1, 1.5, 0)
+Damping = Vector3(0, 0, 0)
 CollisionMask = 1
+FOV = 60.0
 metadata/_custom_type_script = "uid://btctq6j3x0hx0"
