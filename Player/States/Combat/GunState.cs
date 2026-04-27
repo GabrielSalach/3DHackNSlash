@@ -4,6 +4,7 @@ using Godot;
 public partial class GunState : State
 {
     [Export] private OrbitalCamera aimCamera;
+    [Export] private float friction = 30.0f; 
     
     [ExportCategory("Child States")]
     [Export] private MovementState aimedMovementState;
@@ -37,6 +38,14 @@ public partial class GunState : State
 
         if (cameraForward.LengthSquared() > 0.001f)
             Context.modelRoot.LookAt(Context.modelRoot.GlobalPosition + cameraForward, Vector3.Up);
+    }
+    
+    protected override void OnUpdatePhysics(float delta)
+    {
+        Vector3 vel = Context.characterBody.Velocity;
+        vel.X = Mathf.MoveToward(vel.X, 0, friction * delta);
+        vel.Z = Mathf.MoveToward(vel.Z, 0, friction * delta);
+        Context.characterBody.Velocity = vel;
     }
 
     protected override void OnExit()
