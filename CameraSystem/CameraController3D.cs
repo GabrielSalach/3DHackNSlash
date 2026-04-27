@@ -13,6 +13,15 @@ public partial class CameraController3D : Camera3D
         TopLevel = true;
     }
 
+    public override void _Ready()
+    {
+        List<VirtualCamera> vCams = GetTree().GetNodesInGroup("VirtualCameras").Cast<VirtualCamera>().ToList();
+        foreach (VirtualCamera vCam in vCams)
+        {
+            vCam.Controller = this;
+        }
+    }
+
     private VirtualCamera GetHighestPriorityCamera()
     {
         List<VirtualCamera> vCams = GetTree().GetNodesInGroup("VirtualCameras").Cast<VirtualCamera>().ToList();

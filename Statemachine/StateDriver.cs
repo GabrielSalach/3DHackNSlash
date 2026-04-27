@@ -83,5 +83,7 @@ public partial class StateDriver : CharacterBody3D
             throw new Exception("Missing a ModelRoot Node");
         if (context.attackController == null)
             throw new Exception("Missing an AttackController Node");
+
+        context.spaceState = GetWorld3D().DirectSpaceState;
     }
 }

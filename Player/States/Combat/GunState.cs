@@ -4,12 +4,13 @@ using Godot;
 public partial class GunState : State
 {
     [Export] private OrbitalCamera aimCamera;
-    [Export] private float friction = 30.0f; 
+    [Export] private float friction = 30.0f;
+    [Export] private Control crosshair;
     
     [ExportCategory("Child States")]
     [Export] private MovementState aimedMovementState;
     [Export] private State aimedIdleState;
-    [Export] private State shootState;
+    [Export] private ShootState shootState;
 
     protected override State GetInitialState() => aimedIdleState;
 
@@ -28,6 +29,7 @@ public partial class GunState : State
     {
         Context.characterBody.Velocity = Vector3.Zero;
         aimCamera.Priority = 1;
+        crosshair.Visible = true;
     }
 
     protected override void OnUpdate(float delta)
@@ -50,6 +52,7 @@ public partial class GunState : State
 
     protected override void OnExit()
     {
+        crosshair.Visible = false;
         aimCamera.Priority = -1;
     }
 }

@@ -23,7 +23,9 @@
 [ext_resource type="Script" uid="uid://f5mjwu6w8nw0" path="res://Statemachine/StateMachineAnimator.cs" id="17_rki08"]
 [ext_resource type="Animation" uid="uid://bnrp0gjqaljln" path="res://Player/Animations/UniversalAnimationPack/Consume.res" id="18_67yq1"]
 [ext_resource type="Animation" uid="uid://c5gkeoxeo17fh" path="res://Player/Animations/UniversalAnimationPack/Crouch_Fwd.res" id="19_4pdpy"]
+[ext_resource type="Script" uid="uid://jx2solbnboib" path="res://Player/States/Combat/ShootState.cs" id="19_d4af4"]
 [ext_resource type="Animation" uid="uid://b3edoo7i4w2ca" path="res://Player/Animations/UniversalAnimationPack/Crouch_Idle.res" id="20_8025q"]
+[ext_resource type="PackedScene" uid="uid://c5poop02fp8vx" path="res://Combat/GunCombat/BulletTracer.tscn" id="20_af4se"]
 [ext_resource type="Animation" uid="uid://cohr5iir8c6v2" path="res://Player/Animations/UniversalAnimationPack/Dance.res" id="21_rki08"]
 [ext_resource type="Animation" uid="uid://bi7gj4tr2ovjj" path="res://Player/Animations/UniversalAnimationPack/Death01.res" id="22_4uoe5"]
 [ext_resource type="Animation" uid="uid://dxd3v4htlwvca" path="res://Player/Animations/UniversalAnimationPack/Driving.res" id="23_guxiv"]
@@ -117,6 +119,7 @@
 [ext_resource type="Animation" uid="uid://ym0avflrry1q" path="res://Player/Animations/Noizz/Sword_ForwardStrike.res" id="111_ghw05"]
 [ext_resource type="Animation" uid="uid://ckfj1vlob8yr2" path="res://Player/Animations/Noizz/Sword_UpwardStrike.res" id="114_gy6c6"]
 [ext_resource type="Script" uid="uid://btctq6j3x0hx0" path="res://CameraSystem/OrbitalCamera.cs" id="117_elero"]
+[ext_resource type="Texture2D" uid="uid://8rx4r3rax8fd" path="res://Combat/GunCombat/crosshair.png" id="118_ikyiy"]
 
 [sub_resource type="Resource" id="Resource_fo6g4"]
 script = ExtResource("2_5jj8u")
@@ -395,9 +398,10 @@ ability = ExtResource("17_gy6c6")
 AnimationName = "Noizz/Sword_UpwardStrike"
 metadata/_custom_type_script = "uid://dxb0vlablfth1"
 
-[node name="GunState" type="Node" parent="PlayerState" unique_id=928553225 node_paths=PackedStringArray("aimCamera", "aimedMovementState", "aimedIdleState", "shootState")]
+[node name="GunState" type="Node" parent="PlayerState" unique_id=928553225 node_paths=PackedStringArray("aimCamera", "crosshair", "aimedMovementState", "aimedIdleState", "shootState")]
 script = ExtResource("15_8025q")
 aimCamera = NodePath("../../AimCamera")
+crosshair = NodePath("../../Crosshair")
 aimedMovementState = NodePath("AimedMovementState")
 aimedIdleState = NodePath("AimedIdleState")
 shootState = NodePath("ShootState")
@@ -413,10 +417,15 @@ script = ExtResource("5_67yq1")
 AnimationName = "Noizz/GunAim"
 metadata/_custom_type_script = "uid://bsqijymya7p46"
 
-[node name="ShootState" type="Node" parent="PlayerState/GunState" unique_id=1759620575]
-script = ExtResource("5_67yq1")
+[node name="ShootState" type="Node" parent="PlayerState/GunState" unique_id=1245374204 node_paths=PackedStringArray("aimCamera")]
+script = ExtResource("19_d4af4")
+bulletAbility = ExtResource("10_4qhxw")
+bulletTracer = ExtResource("20_af4se")
+bulletSpeed = 0.1
+gunRange = 100.0
+aimCamera = NodePath("../../../AimCamera")
 AnimationName = "Noizz/GunShoot"
-metadata/_custom_type_script = "uid://bsqijymya7p46"
+metadata/_custom_type_script = "uid://jx2solbnboib"
 
 [node name="PlayerModel" parent="." unique_id=900740771 instance=ExtResource("14_v56wm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -471,3 +480,28 @@ Damping = Vector3(0, 0, 0)
 CollisionMask = 1
 FOV = 60.0
 metadata/_custom_type_script = "uid://btctq6j3x0hx0"
+
+[node name="Crosshair" type="Control" parent="." unique_id=372644710]
+visible = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Crosshair" unique_id=862788350]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("118_ikyiy")

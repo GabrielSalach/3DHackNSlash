@@ -15,4 +15,5 @@ public class StateMachineContext()
     public ModelRoot modelRoot;
     public AttackController attackController;
     public StateMachineAnimator animator;
+    public PhysicsDirectSpaceState3D spaceState;
 }

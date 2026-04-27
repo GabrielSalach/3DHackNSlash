@@ -5,9 +5,9 @@
 
 [node name="PlayerModel" unique_id=900740771 node_paths=PackedStringArray("bones") instance=ExtResource("1_0n4ac")]
 script = ExtResource("2_8g6on")
-bones = [NodePath("Armature/GeneralSkeleton/RightHand")]
+bones = [NodePath("Armature/GeneralSkeleton/RightHand"), NodePath("Armature/GeneralSkeleton/LeftHand")]
 
-[node name="GeneralSkeleton" parent="Armature" parent_id_path=PackedInt32Array(1478400975) index="0" unique_id=843272952]
+[node name="GeneralSkeleton" parent="Armature" parent_id_path=PackedInt32Array(477301378) index="0" unique_id=267143020]
 bones/1/position = Vector3(-0.001388289, 0.52858394, 0.19972464)
 bones/1/rotation = Quaternion(0.10775666, -0.5997327, -0.033787195, 0.79219174)
 bones/3/rotation = Quaternion(0.14978951, -0.030045545, 0.057834916, 0.9865676)
@@ -195,3 +195,8 @@ bones/287/rotation = Quaternion(-0.483969, -0.40018377, -0.4479663, 0.6363594)
 transform = Transform3D(-0.84121615, -0.2524916, 0.47812447, -0.4113111, -0.27515754, -0.8689713, 0.35096762, -0.927651, 0.12761448, -0.3549186, 0.9571752, -0.39075023)
 bone_name = "RightHand"
 bone_idx = 25
+
+[node name="LeftHand" type="BoneAttachment3D" parent="Armature/GeneralSkeleton" index="8" unique_id=77752721]
+transform = Transform3D(-0.6433743, -0.4684512, -0.60549366, -0.1593624, 0.8555511, -0.49258038, 0.7487809, -0.22042073, -0.62509334, -0.3845991, 1.0248232, 0.71937084)
+bone_name = "LeftHand"
+bone_idx = 13
