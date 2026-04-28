@@ -5,6 +5,7 @@ using Godot;
 public partial class AnimationState : State
 {
     [Export] private string AnimationName;
+    [Export] protected bool applyRootMotion;
     private AnimationNodeAnimation animation = new AnimationNodeAnimation();
     
     protected override AnimationNodeBlendTree SetupAnimationTree()
@@ -17,6 +18,14 @@ public partial class AnimationState : State
         tree.ConnectNode("output", 0, "Animation");
         
         return tree;
+    }
+
+    protected override void OnUpdatePhysics(float delta)
+    {
+        if (applyRootMotion)
+        {
+            ApplyRootMotion(delta, 1);
+        }
     }
 
     public override bool IsCompleted

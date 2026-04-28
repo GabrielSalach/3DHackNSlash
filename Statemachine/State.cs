@@ -180,6 +180,6 @@ public abstract partial class State : Node
 
     protected void ApplyRootMotion(double delta, float scale = 1.0f)
     {
-        Context.characterBody.Velocity = Context.animator.GetRootMotionPosition() * scale * (float)delta;
+        Context.characterBody.Velocity = Context.modelRoot.Transform.Basis.GetRotationQuaternion().Normalized() * Context.animator.GetRootMotionPosition() * scale / (float)delta;
     }
 }

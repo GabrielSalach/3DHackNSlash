@@ -370,12 +370,14 @@ metadata/_custom_type_script = "uid://bsqijymya7p46"
 script = ExtResource("9_4uoe5")
 ability = ExtResource("10_4qhxw")
 AnimationName = "Noizz/SwordLight_A"
+applyRootMotion = true
 metadata/_custom_type_script = "uid://5cqrqfqeqffd"
 
 [node name="LightAttackBState" type="Node" parent="PlayerState/CombatState" unique_id=1151020937]
 script = ExtResource("9_4uoe5")
 ability = ExtResource("10_4qhxw")
 AnimationName = "Noizz/SwordLight_B"
+applyRootMotion = true
 metadata/_custom_type_script = "uid://5cqrqfqeqffd"
 
 [node name="DashState" type="Node" parent="PlayerState/CombatState" unique_id=95577712]
@@ -398,10 +400,9 @@ ability = ExtResource("17_gy6c6")
 AnimationName = "Noizz/Sword_UpwardStrike"
 metadata/_custom_type_script = "uid://dxb0vlablfth1"
 
-[node name="GunState" type="Node" parent="PlayerState" unique_id=928553225 node_paths=PackedStringArray("aimCamera", "crosshair", "aimedMovementState", "aimedIdleState", "shootState")]
+[node name="GunState" type="Node" parent="PlayerState" unique_id=928553225 node_paths=PackedStringArray("aimCamera", "aimedMovementState", "aimedIdleState", "shootState")]
 script = ExtResource("15_8025q")
 aimCamera = NodePath("../../AimCamera")
-crosshair = NodePath("../../Crosshair")
 aimedMovementState = NodePath("AimedMovementState")
 aimedIdleState = NodePath("AimedIdleState")
 shootState = NodePath("ShootState")
@@ -442,6 +443,7 @@ shape = SubResource("CapsuleShape3D_fcxcq")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=163601330]
 root_node = NodePath("../PlayerModel")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
+callback_mode_process = 0
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("17_rki08")
 defaultStateBlendTime = 0.001
@@ -450,6 +452,7 @@ metadata/_custom_type_script = "uid://f5mjwu6w8nw0"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=119913443]
 root_node = NodePath("../PlayerModel")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
+callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_rxoxl")
 libraries/Noizz = SubResource("AnimationLibrary_vh7uj")
 
@@ -505,3 +508,6 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("118_ikyiy")
+
+[node name="RootMotionView" type="RootMotionView" parent="." unique_id=776312407]
+animation_path = NodePath("../AnimationPlayer")
