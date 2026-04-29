@@ -7,7 +7,7 @@
 script = ExtResource("2_8g6on")
 bones = [NodePath("Armature/GeneralSkeleton/RightHand"), NodePath("Armature/GeneralSkeleton/LeftHand")]
 
-[node name="GeneralSkeleton" parent="Armature" parent_id_path=PackedInt32Array(477301378) index="0" unique_id=267143020]
+[node name="GeneralSkeleton" parent="Armature" parent_id_path=PackedInt32Array(3513242) index="0" unique_id=2091349721]
 bones/1/position = Vector3(-0.001388289, 0.52858394, 0.19972464)
 bones/1/rotation = Quaternion(0.10775666, -0.5997327, -0.033787195, 0.79219174)
 bones/3/rotation = Quaternion(0.14978951, -0.030045545, 0.057834916, 0.9865676)

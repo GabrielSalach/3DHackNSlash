@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-[GlobalClass]
+[GlobalClass, Tool]
 public abstract partial class State : Node
 {
     public State parent;
@@ -24,11 +24,8 @@ public abstract partial class State : Node
             stateMachine = value;
         }
     }
-    
     protected StateMachineContext Context => Machine.context;
-
-    public AnimationNodeBlendTree BlendTree { get; private set; }
-    
+    public AnimationNodeBlendTree AnimationBlendTree { get; private set; }
     
     
     protected virtual State GetInitialState() => null;
@@ -36,27 +33,16 @@ public abstract partial class State : Node
     protected virtual AnimationNodeBlendTree SetupAnimationTree() => null;
     protected delegate bool TransitionCondition();
     private readonly Dictionary<State, Dictionary<State, TransitionCondition>> transitions = new Dictionary<State, Dictionary<State, TransitionCondition>>();
-
-    public virtual bool IsCompleted => false;
-
     public virtual bool IsCancellable => true;
-    
-    //##########################################################
-    //################# LIFECYCLE ##############################
-    //##########################################################
 
-    public override void _Ready()
+    #region Lifecycle
+
+    public override void _EnterTree()
     {
         parent ??= GetParentOrNull<State>();
-        SetupTransitions();
-        BlendTree = SetupAnimationTree();
-        Initialize();
+        AnimationBlendTree = SetupAnimationTree();
     }
 
-    /// <summary>
-    /// Method to override instead of _Ready() to initialize a state at runtime start.
-    /// </summary>
-    protected virtual void Initialize() { }
     protected virtual void OnEnter() {}
     protected virtual void OnUpdate(float delta) {}
     protected virtual void OnUpdatePhysics(float delta) {}
@@ -71,8 +57,8 @@ public abstract partial class State : Node
         }
         OnEnter();
         
-        if(BlendTree != null)
-            Context.animator.ConnectTree(BlendTree);
+        if(AnimationBlendTree != null)
+            Context.animator.ConnectTree(AnimationBlendTree);
         
         State init = GetInitialState();
         if (init != null)
@@ -85,6 +71,7 @@ public abstract partial class State : Node
     {
         if (activeState != null)
         {
+            // If one transition == true
             if (TryGetTargetState(out State state))
             {
                 OnChildrenTransition(activeState, state);
@@ -114,30 +101,10 @@ public abstract partial class State : Node
         activeState = null;
         OnExit();
     }
-    
-    //##########################################################
-    //################# HELPERS ################################
-    //##########################################################
 
+    #endregion
 
-    public State Leaf()
-    {
-        State s = this;
-        while (s.activeState != null)
-        {
-            s = s.activeState;
-        }
-
-        return s;
-    }
-
-    public IEnumerable<State> PathToRoot()
-    {
-        for (State s = this; s != null; s = s.parent)
-        {
-            yield return s;
-        }
-    }
+    #region Transitions
 
     protected bool TryAddTransition(State from, State to, TransitionCondition condition)
     {
@@ -160,6 +127,11 @@ public abstract partial class State : Node
         }
     }
 
+    /// <summary>
+    /// Tries to find a state where the transition condition returns true in the activeState's dictionary
+    /// </summary>
+    /// <param name="state">State found (null if no state is found).</param>
+    /// <returns>True if a state has been found, false otherwise.</returns>
     private bool TryGetTargetState(out State state)
     {
         if(activeState != null && transitions.TryGetValue(activeState, out Dictionary<State, TransitionCondition> currentTransitions))
@@ -177,9 +149,35 @@ public abstract partial class State : Node
         state = null;
         return false;
     }
+    
+    #endregion
 
-    protected void ApplyRootMotion(double delta, float scale = 1.0f)
+    #region Helpers
+    
+    public State Leaf()
     {
-        Context.characterBody.Velocity = Context.modelRoot.Transform.Basis.GetRotationQuaternion().Normalized() * Context.animator.GetRootMotionPosition() * scale / (float)delta;
+        State s = this;
+        while (s.activeState != null)
+        {
+            s = s.activeState;
+        }
+
+        return s;
     }
+
+    public IEnumerable<State> PathToRoot()
+    {
+        for (State s = this; s != null; s = s.parent)
+        {
+            yield return s;
+        }
+    }
+
+    #endregion
+    
+    
+    // protected void ApplyRootMotion(double delta, float scale = 1.0f)
+    // {
+    //     Context.characterBody.Velocity = Context.modelRoot.Transform.Basis.GetRotationQuaternion().Normalized() * Context.animator.GetRootMotionPosition() * scale / (float)delta;
+    // }
 }

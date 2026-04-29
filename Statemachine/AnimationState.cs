@@ -22,13 +22,13 @@ public partial class AnimationState : State
 
     protected override void OnUpdatePhysics(float delta)
     {
-        if (applyRootMotion)
-        {
-            ApplyRootMotion(delta, 1);
-        }
+        // if (applyRootMotion)
+        // {
+        //     ApplyRootMotion(delta, 1);
+        // }
     }
 
-    public override bool IsCompleted
+    public bool IsAnimationComplete
     {
         get
         {

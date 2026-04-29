@@ -18,6 +18,11 @@ public partial class PlayerStateDriver : StateDriver
 		
 		base._Process(delta);
 		
+		DisplayDebugActivePath();
+	}
+
+	private void DisplayDebugActivePath()
+	{
 		string path = string.Empty;
 		foreach (State state in rootState.Leaf().PathToRoot().Reverse())
 		{

@@ -15,4 +15,15 @@ public static class NodeHelpers
 
         return null;
     }
+
+    public static T GetOrCreateChild<T>(Node node) where T : Node, new()
+    {
+        T value = GetChild<T>(node);
+        if (value == null)
+        {
+            value = new T();
+            node.AddChild(value);
+        }
+        return value;
+    }
 }
