@@ -2,8 +2,13 @@
 
 [ext_resource type="Script" uid="uid://sqkl1vqbx6q2" path="res://Player/PlayerStateDriver.cs" id="1_4qhxw"]
 [ext_resource type="Script" uid="uid://sitttud84thh" path="res://Statemachine/ActionMap.cs" id="2_5jj8u"]
-[ext_resource type="PackedScene" uid="uid://bl7ux70qka767" path="res://Player/PlayerModel/Noizz.glb" id="3_lfdof"]
-[ext_resource type="Script" uid="uid://3yxo8my2co5q" path="res://Player/States/PlayerRootState.cs" id="4_36np3"]
+[ext_resource type="PackedScene" uid="uid://bjor6on3f5rch" path="res://Player/PlayerModel/Noizz2.glb" id="3_36np3"]
+[ext_resource type="Script" uid="uid://3yxo8my2co5q" path="res://Player/States/GroundedState.cs" id="4_36np3"]
+[ext_resource type="Script" uid="uid://bsqijymya7p46" path="res://Statemachine/AnimationState.cs" id="5_5j3b7"]
+[ext_resource type="Script" uid="uid://b6dxbt25x7f71" path="res://Player/States/Locomotion/MovementState.cs" id="6_gqsy7"]
+[ext_resource type="Script" uid="uid://cyg3jfrfmy1w2" path="res://Player/States/PlayerRootState.cs" id="9_g61ia"]
+[ext_resource type="Script" uid="uid://dyb61u8ufpxux" path="res://Player/States/AirborneState.cs" id="13_cymb5"]
+[ext_resource type="Script" uid="uid://cql0qqm05jrqs" path="res://Player/States/FreeFallState.cs" id="14_b46m6"]
 [ext_resource type="Script" uid="uid://f5mjwu6w8nw0" path="res://Statemachine/StateMachineAnimator.cs" id="17_rki08"]
 [ext_resource type="Script" uid="uid://basrpbnesb5wq" path="res://Combat/CombatEntity.cs" id="100_xkstp"]
 [ext_resource type="Script" uid="uid://bkywrixskk54e" path="res://Combat/StatComponents/Health.cs" id="101_v56wm"]
@@ -19,24 +24,21 @@ metadata/_custom_type_script = "uid://sitttud84thh"
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_36np3"]
 
-[node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("orbitalCamera", "rootState", "combatEntity")]
+[node name="PlayerCharacter" type="CharacterBody3D" unique_id=556318163 node_paths=PackedStringArray("orbitalCamera", "rootState", "combatEntity", "animator")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_4qhxw")
 orbitalCamera = NodePath("OrbitalCamera")
 rootState = NodePath("PlayerRootState")
 combatEntity = NodePath("PlayerStats")
+animator = NodePath("StateMachineAnimator")
 actionMap = SubResource("Resource_fo6g4")
 
-[node name="NoizzModel" parent="." unique_id=361334593 instance=ExtResource("3_lfdof")]
+[node name="NoizzModel" parent="." unique_id=1413381411 instance=ExtResource("3_36np3")]
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="." unique_id=561518560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_fcxcq")
-
-[node name="PlayerRootState" type="Node" parent="." unique_id=319041486]
-script = ExtResource("4_36np3")
-metadata/_custom_type_script = "uid://3yxo8my2co5q"
 
 [node name="PlayerStats" type="Node" parent="." unique_id=1778919609]
 script = ExtResource("100_xkstp")
@@ -76,7 +78,7 @@ texture = ExtResource("118_ikyiy")
 transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 2.6226832e-07, 0.9999998, -3)
 top_level = true
 script = ExtResource("117_elero")
-Target = NodePath("../NoizzModel")
+Target = NodePath("..")
 ArmLength = 3.0
 PitchMin = -60.0
 PitchMax = 60.0
@@ -86,9 +88,42 @@ metadata/_custom_type_script = "uid://btctq6j3x0hx0"
 
 [node name="StateMachineAnimator" type="AnimationTree" parent="." unique_id=826627265]
 root_node = NodePath("../NoizzModel")
+root_motion_track = NodePath("root/Skeleton3D:c_traj")
 tree_root = SubResource("AnimationRootNode_36np3")
 anim_player = NodePath("../NoizzModel/AnimationPlayer")
 script = ExtResource("17_rki08")
 metadata/_custom_type_script = "uid://f5mjwu6w8nw0"
+
+[node name="PlayerRootState" type="Node" parent="." unique_id=1118111786 node_paths=PackedStringArray("groundedState", "airborneState")]
+script = ExtResource("9_g61ia")
+groundedState = NodePath("GroundedState")
+airborneState = NodePath("AirborneState")
+metadata/_custom_type_script = "uid://cyg3jfrfmy1w2"
+
+[node name="GroundedState" type="Node" parent="PlayerRootState" unique_id=319041486 node_paths=PackedStringArray("idleState", "movementState")]
+script = ExtResource("4_36np3")
+idleState = NodePath("IdleState")
+movementState = NodePath("MovementState")
+metadata/_custom_type_script = "uid://3yxo8my2co5q"
+
+[node name="IdleState" type="Node" parent="PlayerRootState/GroundedState" unique_id=2127846043]
+script = ExtResource("5_5j3b7")
+AnimationName = "Idle"
+metadata/_custom_type_script = "uid://bsqijymya7p46"
+
+[node name="MovementState" type="Node" parent="PlayerRootState/GroundedState" unique_id=349050292]
+script = ExtResource("6_gqsy7")
+rotationSpeed = 20.0
+Speed = 32.0
+metadata/_custom_type_script = "uid://b6dxbt25x7f71"
+
+[node name="AirborneState" type="Node" parent="PlayerRootState" unique_id=1168525688 node_paths=PackedStringArray("freeFall")]
+script = ExtResource("13_cymb5")
+freeFall = NodePath("FreeFallState")
+metadata/_custom_type_script = "uid://dyb61u8ufpxux"
+
+[node name="FreeFallState" type="Node" parent="PlayerRootState/AirborneState" unique_id=44418784]
+script = ExtResource("14_b46m6")
+metadata/_custom_type_script = "uid://cql0qqm05jrqs"
 
 [editable path="NoizzModel"]

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 [GlobalClass, Tool]
@@ -28,7 +29,7 @@ public abstract partial class State : Node
     public AnimationNodeBlendTree AnimationBlendTree { get; private set; }
     
     
-    protected virtual State GetInitialState() => null;
+    protected virtual State GetInitialState => null;
     protected virtual void SetupTransitions() { }
     protected virtual AnimationNodeBlendTree SetupAnimationTree() => null;
     protected delegate bool TransitionCondition();
@@ -60,11 +61,8 @@ public abstract partial class State : Node
         if(AnimationBlendTree != null)
             Context.animator.ConnectTree(AnimationBlendTree);
         
-        State init = GetInitialState();
-        if (init != null)
-        {
-            init.Enter();
-        }
+        State init = GetInitialState;
+        init?.Enter();
     }
 
     internal void Update(float deltaTime)

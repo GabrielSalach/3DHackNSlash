@@ -17,15 +17,7 @@ public partial class StateDriver : CharacterBody3D
     public override void _Ready()
     {
         actionMap.BuildActionMap();
-        try
-        {
-            InitializeContext();
-        }
-        catch (Exception e)
-        {
-            throw new Exception($"{GetName()}: Error initializing state machine", e);
-        }
-
+        InitializeContext();
         stateMachine = new StateMachine(rootState, context);
         rootState.Machine = stateMachine;
     }
@@ -45,9 +37,11 @@ public partial class StateDriver : CharacterBody3D
         context = new StateMachineContext
         {
             actionMap = actionMap,
-            characterBody = this
+            characterBody = this,
+            animator = animator,
+            combatEntity = combatEntity
         };
-
+        
         
     }
 }
